@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:id="@+id/popup_element"
+    android:background="@mipmap/confirmpage">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#0F1222"
+            android:text="CANCEL"
+            android:textColor="#ffff" />
+
+        <Button
+            android:id="@+id/confirmBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#b30000"
+            android:text="CONFIRM"
+            android:textColor="#ffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_margin="10dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+   <!--  <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/summary"
+        android:layout_marginTop="82dp"
+        android:background="@null"
+        android:padding="10dp"
+        android:text="DO YOU CONFIRM YOUR ORDER?   [NO CANCELLATION \n BEYOND THIS POINT]"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#00001a" /> -->
+
+</RelativeLayout>

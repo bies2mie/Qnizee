@@ -1,0 +1,36 @@
+<resources>
+
+    <string name="app_name">QnitiBox</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_sunday_breakfast">Sunday Breakfast</string>
+    <string name="title_activity_order_menu">Menu Order</string>
+    <string name="title_activity_wednesday_breakfast">Wednesday Breakfast</string>
+    <string name="title_activity_error_page1">Error Page 1</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_error_page2">Error Page 2</string>
+    <string name="title_activity_monday_breakfast">Monday Breakfast</string>
+    <string name="title_activity_tuesday_breakfast">Tuesday Breakfast</string>
+    <string name="title_activity_thursday_breakfast">Thursday Breakfast</string>
+    <string name="title_activity_sunday_lunch">Sunday Lunch</string>
+    <string name="title_activity_monday_lunch">Monday Lunch</string>
+    <string name="title_activity_tuesday_lunch">Tuesday Lunch</string>
+    <string name="title_activity_wednesday_lunch">Wednesday Lunch</string>
+    <string name="title_activity_thursday_lunch">Thursday Lunch</string>
+    <string name="title_activity_sunday_dinner">Sunday Dinner</string>
+    <string name="title_activity_monday_dinner">Monday Dinner</string>
+    <string name="title_activity_tuesday_dinner">Tuesday Dinner</string>
+    <string name="title_activity_wednesday_dinner">Wednesday Dinner</string>
+    <string name="title_activity_thursday_dinner">Thursday Dinner</string>
+    <string name="title_activity_how_to">How To Order</string>
+    <string name="title_activity_feedback_page">Feedback Page</string>
+    <string name="title_activity_staff_order">Staff Order</string>
+    <string name="title_activity_friday_breakfast">Friday Breakfast</string>
+    <string name="title_activity_saturday_breakfast">Saturday Breakfast</string>
+    <string name="title_activity_friday_lunch">Friday Lunch</string>
+    <string name="title_activity_friday_dinner">Friday Dinner</string>
+    <string name="title_activity_saturday_lunch">Saturday Lunch</string>
+    <string name="title_activity_saturday_dinner">Saturday Dinner</string>
+    <string name="title_activity_how_to_menu">How To Menu</string>
+
+</resources>

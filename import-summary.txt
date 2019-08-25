@@ -1,0 +1,157 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .idea\
+* .idea\MealsNJoy.iml
+* .idea\codeStyles\
+* .idea\codeStyles\Project.xml
+* .idea\modules.xml
+* .idea\runConfigurations.xml
+* .idea\workspace.xml
+* MealsNJoy.iml
+* gradle\
+* gradle\wrapper\
+* gradle\wrapper\gradle-wrapper.jar
+* gradle\wrapper\gradle-wrapper.properties
+* gradlew
+* gradlew.bat
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:28.0.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets
+* libs\android-support-compat.jar => app\libs\android-support-compat.jar
+* libs\volley.jar => app\libs\volley.jar
+* lint.xml => app\lint.xml
+* src\ => app\src\main\java\
+* src\res\drawable-hdpi\ic_launcher.png => app\src\main\resources\res\drawable-hdpi\ic_launcher.png
+* src\res\drawable-ldpi\ic_launcher.png => app\src\main\resources\res\drawable-ldpi\ic_launcher.png
+* src\res\drawable-mdpi\ic_launcher.png => app\src\main\resources\res\drawable-mdpi\ic_launcher.png
+* src\res\drawable-xhdpi\ic_launcher.png => app\src\main\resources\res\drawable-xhdpi\ic_launcher.png
+* src\res\drawable-xxhdpi\background_splash.xml => app\src\main\resources\res\drawable-xxhdpi\background_splash.xml
+* src\res\drawable-xxhdpi\close.png => app\src\main\resources\res\drawable-xxhdpi\close.png
+* src\res\drawable-xxhdpi\combine.png => app\src\main\resources\res\drawable-xxhdpi\combine.png
+* src\res\drawable-xxhdpi\confirmpage.png => app\src\main\resources\res\drawable-xxhdpi\confirmpage.png
+* src\res\drawable-xxhdpi\contact.png => app\src\main\resources\res\drawable-xxhdpi\contact.png
+* src\res\drawable-xxhdpi\errorpage1.png => app\src\main\resources\res\drawable-xxhdpi\errorpage1.png
+* src\res\drawable-xxhdpi\errorpage2.png => app\src\main\resources\res\drawable-xxhdpi\errorpage2.png
+* src\res\drawable-xxhdpi\eventsbtn.png => app\src\main\resources\res\drawable-xxhdpi\eventsbtn.png
+* src\res\drawable-xxhdpi\feedback.png => app\src\main\resources\res\drawable-xxhdpi\feedback.png
+* src\res\drawable-xxhdpi\feedbackbtn.png => app\src\main\resources\res\drawable-xxhdpi\feedbackbtn.png
+* src\res\drawable-xxhdpi\feedbackicon.png => app\src\main\resources\res\drawable-xxhdpi\feedbackicon.png
+* src\res\drawable-xxhdpi\fridaybreakfast.png => app\src\main\resources\res\drawable-xxhdpi\fridaybreakfast.png
+* src\res\drawable-xxhdpi\fridaydinner.png => app\src\main\resources\res\drawable-xxhdpi\fridaydinner.png
+* src\res\drawable-xxhdpi\fridaylunch.png => app\src\main\resources\res\drawable-xxhdpi\fridaylunch.png
+* src\res\drawable-xxhdpi\gmatwallpaper.png => app\src\main\resources\res\drawable-xxhdpi\gmatwallpaper.png
+* src\res\drawable-xxhdpi\homebtn.png => app\src\main\resources\res\drawable-xxhdpi\homebtn.png
+* src\res\drawable-xxhdpi\howtobuy.png => app\src\main\resources\res\drawable-xxhdpi\howtobuy.png
+* src\res\drawable-xxhdpi\ic_action_name.png => app\src\main\resources\res\drawable-xxhdpi\ic_action_name.png
+* src\res\drawable-xxhdpi\ic_launcher.png => app\src\main\resources\res\drawable-xxhdpi\ic_launcher.png
+* src\res\drawable-xxhdpi\iconfeedback4.png => app\src\main\resources\res\drawable-xxhdpi\iconfeedback4.png
+* src\res\drawable-xxhdpi\individualbtn.png => app\src\main\resources\res\drawable-xxhdpi\individualbtn.png
+* src\res\drawable-xxhdpi\menu.png => app\src\main\resources\res\drawable-xxhdpi\menu.png
+* src\res\drawable-xxhdpi\menubutton.png => app\src\main\resources\res\drawable-xxhdpi\menubutton.png
+* src\res\drawable-xxhdpi\menuicon.png => app\src\main\resources\res\drawable-xxhdpi\menuicon.png
+* src\res\drawable-xxhdpi\mondaybreakfast.png => app\src\main\resources\res\drawable-xxhdpi\mondaybreakfast.png
+* src\res\drawable-xxhdpi\mondaydinner.png => app\src\main\resources\res\drawable-xxhdpi\mondaydinner.png
+* src\res\drawable-xxhdpi\mondaylunch.png => app\src\main\resources\res\drawable-xxhdpi\mondaylunch.png
+* src\res\drawable-xxhdpi\saturdaybreakfast.png => app\src\main\resources\res\drawable-xxhdpi\saturdaybreakfast.png
+* src\res\drawable-xxhdpi\saturdaydinner.png => app\src\main\resources\res\drawable-xxhdpi\saturdaydinner.png
+* src\res\drawable-xxhdpi\saturdaylunch.png => app\src\main\resources\res\drawable-xxhdpi\saturdaylunch.png
+* src\res\drawable-xxhdpi\share.png => app\src\main\resources\res\drawable-xxhdpi\share.png
+* src\res\drawable-xxhdpi\splashscreen.png => app\src\main\resources\res\drawable-xxhdpi\splashscreen.png
+* src\res\drawable-xxhdpi\staff.png => app\src\main\resources\res\drawable-xxhdpi\staff.png
+* src\res\drawable-xxhdpi\staff3.png => app\src\main\resources\res\drawable-xxhdpi\staff3.png
+* src\res\drawable-xxhdpi\staffnew2.png => app\src\main\resources\res\drawable-xxhdpi\staffnew2.png
+* src\res\drawable-xxhdpi\sundaybreakfast.png => app\src\main\resources\res\drawable-xxhdpi\sundaybreakfast.png
+* src\res\drawable-xxhdpi\sundaydinner.png => app\src\main\resources\res\drawable-xxhdpi\sundaydinner.png
+* src\res\drawable-xxhdpi\sundaylunch.png => app\src\main\resources\res\drawable-xxhdpi\sundaylunch.png
+* src\res\drawable-xxhdpi\thursdaybreakfast.png => app\src\main\resources\res\drawable-xxhdpi\thursdaybreakfast.png
+* src\res\drawable-xxhdpi\thursdaydinner.png => app\src\main\resources\res\drawable-xxhdpi\thursdaydinner.png
+* src\res\drawable-xxhdpi\thursdaylunch.png => app\src\main\resources\res\drawable-xxhdpi\thursdaylunch.png
+* src\res\drawable-xxhdpi\tuesdaybreakfast.png => app\src\main\resources\res\drawable-xxhdpi\tuesdaybreakfast.png
+* src\res\drawable-xxhdpi\tuesdaydinner.png => app\src\main\resources\res\drawable-xxhdpi\tuesdaydinner.png
+* src\res\drawable-xxhdpi\tuesdaylunch.png => app\src\main\resources\res\drawable-xxhdpi\tuesdaylunch.png
+* src\res\drawable-xxhdpi\wednesdaybreakfast.png => app\src\main\resources\res\drawable-xxhdpi\wednesdaybreakfast.png
+* src\res\drawable-xxhdpi\wednesdaydinner.png => app\src\main\resources\res\drawable-xxhdpi\wednesdaydinner.png
+* src\res\drawable-xxhdpi\wednesdaylunch.png => app\src\main\resources\res\drawable-xxhdpi\wednesdaylunch.png
+* src\res\layout\activity_error_page1.xml => app\src\main\resources\res\layout\activity_error_page1.xml
+* src\res\layout\activity_error_page2.xml => app\src\main\resources\res\layout\activity_error_page2.xml
+* src\res\layout\activity_feedback_page.xml => app\src\main\resources\res\layout\activity_feedback_page.xml
+* src\res\layout\activity_friday_breakfast.xml => app\src\main\resources\res\layout\activity_friday_breakfast.xml
+* src\res\layout\activity_friday_dinner.xml => app\src\main\resources\res\layout\activity_friday_dinner.xml
+* src\res\layout\activity_friday_lunch.xml => app\src\main\resources\res\layout\activity_friday_lunch.xml
+* src\res\layout\activity_how_to.xml => app\src\main\resources\res\layout\activity_how_to.xml
+* src\res\layout\activity_howtomenu.xml => app\src\main\resources\res\layout\activity_howtomenu.xml
+* src\res\layout\activity_menu_type.xml => app\src\main\resources\res\layout\activity_menu_type.xml
+* src\res\layout\activity_monday_breakfast.xml => app\src\main\resources\res\layout\activity_monday_breakfast.xml
+* src\res\layout\activity_monday_dinner.xml => app\src\main\resources\res\layout\activity_monday_dinner.xml
+* src\res\layout\activity_monday_lunch.xml => app\src\main\resources\res\layout\activity_monday_lunch.xml
+* src\res\layout\activity_order_menu.xml => app\src\main\resources\res\layout\activity_order_menu.xml
+* src\res\layout\activity_saturday_breakfast.xml => app\src\main\resources\res\layout\activity_saturday_breakfast.xml
+* src\res\layout\activity_saturday_dinner.xml => app\src\main\resources\res\layout\activity_saturday_dinner.xml
+* src\res\layout\activity_saturday_lunch.xml => app\src\main\resources\res\layout\activity_saturday_lunch.xml
+* src\res\layout\activity_staff_order.xml => app\src\main\resources\res\layout\activity_staff_order.xml
+* src\res\layout\activity_sunday_breakfast.xml => app\src\main\resources\res\layout\activity_sunday_breakfast.xml
+* src\res\layout\activity_sunday_dinner.xml => app\src\main\resources\res\layout\activity_sunday_dinner.xml
+* src\res\layout\activity_sunday_lunch.xml => app\src\main\resources\res\layout\activity_sunday_lunch.xml
+* src\res\layout\activity_thursday_breakfast.xml => app\src\main\resources\res\layout\activity_thursday_breakfast.xml
+* src\res\layout\activity_thursday_dinner.xml => app\src\main\resources\res\layout\activity_thursday_dinner.xml
+* src\res\layout\activity_thursday_lunch.xml => app\src\main\resources\res\layout\activity_thursday_lunch.xml
+* src\res\layout\activity_tuesday_breakfast.xml => app\src\main\resources\res\layout\activity_tuesday_breakfast.xml
+* src\res\layout\activity_tuesday_dinner.xml => app\src\main\resources\res\layout\activity_tuesday_dinner.xml
+* src\res\layout\activity_tuesday_lunch.xml => app\src\main\resources\res\layout\activity_tuesday_lunch.xml
+* src\res\layout\activity_wednesday_breakfast.xml => app\src\main\resources\res\layout\activity_wednesday_breakfast.xml
+* src\res\layout\activity_wednesday_dinner.xml => app\src\main\resources\res\layout\activity_wednesday_dinner.xml
+* src\res\layout\activity_wednesday_lunch.xml => app\src\main\resources\res\layout\activity_wednesday_lunch.xml
+* src\res\layout\popup_confirmationorder.xml => app\src\main\resources\res\layout\popup_confirmationorder.xml
+* src\res\menu\error_page1.xml => app\src\main\resources\res\menu\error_page1.xml
+* src\res\menu\menu_type.xml => app\src\main\resources\res\menu\menu_type.xml
+* src\res\menu\order_menu.xml => app\src\main\resources\res\menu\order_menu.xml
+* src\res\menu\sunday_breakfast.xml => app\src\main\resources\res\menu\sunday_breakfast.xml
+* src\res\menu\wednesday_breakfast.xml => app\src\main\resources\res\menu\wednesday_breakfast.xml
+* src\res\values-v11\styles.xml => app\src\main\resources\res\values-v11\styles.xml
+* src\res\values-v14\styles.xml => app\src\main\resources\res\values-v14\styles.xml
+* src\res\values-w820dp\dimens.xml => app\src\main\resources\res\values-w820dp\dimens.xml
+* src\res\values\colors.xml => app\src\main\resources\res\values\colors.xml
+* src\res\values\dimens.xml => app\src\main\resources\res\values\dimens.xml
+* src\res\values\strings.xml => app\src\main\resources\res\values\strings.xml
+* src\res\values\styles.xml => app\src\main\resources\res\values\styles.xml
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
