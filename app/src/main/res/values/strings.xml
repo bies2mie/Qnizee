@@ -2,6 +2,8 @@
 
     <string name="app_name">QnitiBox</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_noncomplete">Scanner</string>
+    <string name="title_complete">Order Dulu</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_sunday_breakfast">Sunday Breakfast</string>
     <string name="title_activity_order_menu">Menu Order</string>
@@ -32,5 +34,8 @@
     <string name="title_activity_saturday_lunch">Saturday Lunch</string>
     <string name="title_activity_saturday_dinner">Saturday Dinner</string>
     <string name="title_activity_how_to_menu">How To Menu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

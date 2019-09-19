@@ -28,7 +28,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.SettingNotFoundException;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;

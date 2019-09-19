@@ -28,7 +28,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.SettingNotFoundException;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,11 +104,11 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 		orderDate = sharedPreferences.getString(Config.ORDER_DATE, "Not Available");
 		orderTime = sharedPreferences.getString(Config.ORDER_TIME, "Not Available");
 
-		nextBtn = (Button) findViewById(R.id.nextBtn);
-		exit = (ImageButton) findViewById(R.id.exit);
+		nextBtn = findViewById(R.id.nextBtn);
+		exit = findViewById(R.id.exit);
 		// staffOrder =(ImageButton) findViewById(R.id.stafforder);
-		menuTypeD = (TextView) findViewById(R.id.menuTypeDisplay);
-		menuDayD = (TextView) findViewById(R.id.menuDayDisplay);
+		menuTypeD = findViewById(R.id.menuTypeDisplay);
+		menuDayD = findViewById(R.id.menuDayDisplay);
 		name = (EditText) findViewById(R.id.nameText);
 		phone = (EditText) findViewById(R.id.phoneNum);
 		cardNum = (EditText) findViewById(R.id.cardNum);
