@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.SettingNotFoundException;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
 import android.view.View;
@@ -29,7 +31,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class FeedbackPage extends Activity {
+public class FeedbackPage extends AppCompatActivity {
 
 	public static final String FEEDBACK_URL = "http://gmartbox.cvmall.my/apps/gmatfeedback.php";
 	public static final String KEY_PHONE = "userNotel";

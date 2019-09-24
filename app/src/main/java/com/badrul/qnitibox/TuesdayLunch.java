@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 
-public class TuesdayLunch extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class TuesdayLunch extends AppCompatActivity {
 
 	ImageButton continueBtn;
 	ImageButton eventBtn;

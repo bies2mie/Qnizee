@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class MenuType extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MenuType extends AppCompatActivity {
 
 	Calendar startDate;
 	Calendar calendar1;
@@ -54,6 +56,18 @@ public class MenuType extends Activity {
 		breakfast = (Button) findViewById(R.id.breakfastBtn);
 		lunch = (Button) findViewById(R.id.lunchBtn);
 		dinner = (Button) findViewById(R.id.dinnerBtn);
+		Button prv = findViewById(R.id.prevorder);
+
+
+		prv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				Intent i = new Intent(MenuType.this, LoginPage.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(i);
+			}
+		});
 		// menuTest = (TextView)findViewById(R.id.testDate);
 		// timeTest = (TextView)findViewById(R.id.testTime);
 

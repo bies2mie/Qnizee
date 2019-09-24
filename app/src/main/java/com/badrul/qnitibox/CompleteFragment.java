@@ -35,17 +35,14 @@ import java.util.List;
 public class CompleteFragment extends Fragment implements OrderAdapter.OnItemClicked{
 
     List<Order> orderList;
-    List<User> userList;
+
 
     //the recyclerview
     RecyclerView recyclerView;
     // ImageButton logout;
-    int userid;
-    String userNama;
-    String userIC;
-    String userAlamat;
-    String userCredit;
-    String userIC_Shared;
+
+    String userEmail_Shared;
+    String userID;
     String image;
     TextView userNama_tx;
     TextView userCredit_tx;
@@ -58,12 +55,18 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
         View myView = inflater.inflate(R.layout.fragment_complete, container, false);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, getActivity().getApplicationContext().MODE_PRIVATE);
-        userIC_Shared = sharedPreferences.getString(Config.ID_SHARED_PREF, "Not Available");
+        userID = sharedPreferences.getString(Config.USER_ID2, "Not Available");
+        String userNama = sharedPreferences.getString(Config.NAME_ID2,"Not Available");
+        String userPhone = sharedPreferences.getString(Config.PHONE_ID2,"Not Available");
+
 
         //logout =myView.findViewById(R.id.logoutBtn);
         userNama_tx = myView.findViewById(R.id.userNama1);
         userCredit_tx = myView.findViewById(R.id.userCredit1);
         recyclerView = myView.findViewById(R.id.recylcerView);
+
+        userNama_tx.setText(userNama);
+        userCredit_tx.setText(userPhone);
 
         // Set the layout manager to your recyclerview and reverse the position
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -77,11 +80,11 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
         //initializing the productlist
 
         orderList = new ArrayList<>();
-        userList = new ArrayList<>();
+
 
         //this method will fetch and parse json
         //to display it in recyclerview
-        loadUser();
+
         loadOrder();
 
 
@@ -144,9 +147,9 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
 
     private void loadOrder() {
 
-        final ProgressDialog loading = ProgressDialog.show(getActivity(),"Sila Tunggu","Menghubungi Server",false,false);
+        final ProgressDialog loading = ProgressDialog.show(getActivity(),"Please Wait","Contacting Server",false,false);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ORDER_STATUS_COMPLETE+userIC_Shared,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ORDER_STATUS_COMPLETE+userID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -173,6 +176,7 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                                         product.getString("orderDate"),
                                         product.getString("orderTime"),
                                         product.getString("orderQTT"),
+                                        product.getString("orderUserType"),
                                         product.getString("puLocation"),
                                         product.getString("puTime"),
                                         product.getString("completeDate"),
@@ -233,86 +237,7 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
 
     }*/
 
-    private void loadUser(){
-        final ProgressDialog loading = ProgressDialog.show(getActivity(),"Sila Tunggu","Menghubungi Server",false,false);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.PROFILE_URL+userIC_Shared,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            //converting the string to json array object
-                            JSONArray array = new JSONArray(response);
-
-                            //traversing through all the object
-                            for (int i = 0; i < array.length(); i++) {
-
-                                //getting product object from json array
-                                JSONObject user = array.getJSONObject(i);
-
-                                //adding the product to product list
-                                userList.add(new User(
-                                        userid = user.getInt("userid"),
-                                        userIC = user.getString("userIC"),
-                                        userNama = user.getString("userNama"),
-                                        userAlamat = user.getString("userAlamat"),
-                                        userCredit = user.getString("usercredit"),
-                                        image = user.getString("image")
-
-                                ));
-
-                            }
-
-                            userNama_tx.setText(userNama);
-                            userCredit_tx.setText("RM: "+userCredit);
-                            //add shared preference ID,nama,credit here
-                            SharedPreferences sharedPreferences = getActivity().getApplicationContext().getSharedPreferences(Config.SHARED_PREF_NAME,
-                                    getActivity().getApplicationContext().MODE_PRIVATE);
-
-                            // Creating editor to store values to shared preferences
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                            // Adding values to editor
-
-                            editor.putString(Config.USER_ID, String.valueOf(userid));
-                            editor.putString(Config.USER_NAMA, userNama);
-                            editor.putString(Config.USER_ICNUM, userIC);
-                            editor.putString(Config.USER_ALAMAT, userAlamat);
-                            editor.putString(Config.USER_CREDIT, userCredit);
-                            editor.putString(Config.IMAGE, image);
-
-                            // Saving values to editor
-                            editor.commit();
-
-                            loading.dismiss();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        loading.dismiss();
-                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                            Toast.makeText(getActivity(),"No internet . Please check your connection",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        else{
-
-                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                30000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //adding our stringrequest to queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        requestQueue.add(stringRequest);
-    }
 
     @Override
     public void onItemClick(int position) {
@@ -341,10 +266,12 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
         editor.putString(Config.ORDER_DATE2, order.getOrderDate());
         editor.putString(Config.ORDER_TIME2, order.getOrderTime());
         editor.putString(Config.ORDER_QTT, order.getOrderQTT());
+        editor.putString(Config.ORDER_USERTYPE, order.getOrderUserType());
         editor.putString(Config.PICKUP_LOCATION, order.getPuLocation());
         editor.putString(Config.PICKUP_TIME, order.getPuTime());
         editor.putString(Config.ORDER_STATUS, order.getOrderStatus());
-
+        editor.putString(Config.ORDER_COMPLETEDATE, order.getCompleteDate());
+        editor.putString(Config.ORDER_COMPLETETIME, order.getCompleteTime());
 
 
         // Saving values to editor

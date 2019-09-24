@@ -8,7 +8,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class HowToMenu extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class HowToMenu extends AppCompatActivity {
 
 	Button backBtn;
 	ImageButton btnShare;

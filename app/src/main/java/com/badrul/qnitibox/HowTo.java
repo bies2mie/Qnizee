@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-public class HowTo extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class HowTo extends AppCompatActivity {
 
 	Button backBtn;
 

@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-public class ErrorPage2 extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ErrorPage2 extends AppCompatActivity {
 
 	Button backBtn;
 

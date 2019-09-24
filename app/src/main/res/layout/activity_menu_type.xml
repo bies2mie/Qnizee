@@ -72,6 +72,15 @@
             android:textColor="#ffff"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/prevorder"
+            android:layout_width="297dp"
+            android:layout_height="75dp"
+            android:background="#0F1923"
+            android:text="PREVIOUS ORDER"
+            android:textColor="#ffff"
+            android:textStyle="bold" />
+
         <!--
         <TextView
             android:id="@+id/testTime"

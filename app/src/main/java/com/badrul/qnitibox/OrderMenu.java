@@ -28,6 +28,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.SettingNotFoundException;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -47,7 +49,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class OrderMenu extends Activity implements OnItemSelectedListener {
+public class OrderMenu extends AppCompatActivity implements OnItemSelectedListener {
 
 	public static final String CONFIRMORDER_URL = "http://gmartbox.cvmall.my/apps/gmartorder.php";
 	public static final String EMAIL_IDV_URL = "http://atsventures.com/mail/indmailer.php";
@@ -56,15 +58,21 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 	public static final String KEY_MENUDAY = "menuDay";
 	public static final String KEY_ORDER_DATE = "orderDate";
 	public static final String KEY_ORDER_TIME = "orderTime";
-	public static final String KEY_PHONE = "userNotel";
 	public static final String KEY_CARDNUM = "userCard";
-	public static final String KEY_NAME = "userName";
-	public static final String KEY_MATRIXNUM = "userMatrix";
+	public static final String KEY_PHONE = "phoneID";
+	public static final String KEY_NAME = "nameID";
 	public static final String KEY_MENUQTT = "userQtt";
 	public static final String KEY_MENUSTATUS = "orderStatus";
 	public static final String KEY_LOCATION = "puLocation";
 	public static final String KEY_EMAIL = "emailID";
+	public static final String KEY_USERID = "userID";
 
+
+	String userID;
+	String nameID;
+	String phoneID;
+	String emailID;
+	String matrixID;
 	String menuType;
 	String menuDay;
 	String orderDate;
@@ -80,15 +88,12 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 	ImageButton staffOrder;
 	TextView menuTypeD;
 	TextView menuDayD;
-	EditText name;
-	EditText phone;
 	EditText cardNum;
-	EditText matrixNum;
-	EditText emailTest;
 	EditText qttNum;
 	Spinner sp;
 	List<String> list;
 	ArrayAdapter<String> adp;
+	Boolean loggedIn;
 	// int result = 0;
 
 	@Override
@@ -103,18 +108,40 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 		menuDay = sharedPreferences.getString(Config.MENU_DAY, "Not Available");
 		orderDate = sharedPreferences.getString(Config.ORDER_DATE, "Not Available");
 		orderTime = sharedPreferences.getString(Config.ORDER_TIME, "Not Available");
+		userID = sharedPreferences.getString(Config.USER_ID2,"0");
+		nameID = sharedPreferences.getString(Config.NAME_ID2, "Not Available");
+		phoneID = sharedPreferences.getString(Config.PHONE_ID2, "Not Available");
+		emailID = sharedPreferences.getString(Config.EMAIL_ID2, "Not Available");
+		matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
+
+		loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+		//If we will get true
+		if(loggedIn==false){
+			//We will start the Profile Activity
+			Intent intent = new Intent(OrderMenu.this, LoginPage.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();
+		}
+
+
+		TextView showName = findViewById(R.id.nameText);
+		TextView showPhone = findViewById(R.id.phoneNum);
+		TextView showEmail = findViewById(R.id.emailIDtxt);
+		TextView showMatrix = findViewById(R.id.matrixNum);
+
+		showName.setText(nameID);
+		showEmail.setText(emailID);
+		showMatrix.setText(matrixID);
+		showPhone.setText(phoneID);
 
 		nextBtn = findViewById(R.id.nextBtn);
 		exit = findViewById(R.id.exit);
 		// staffOrder =(ImageButton) findViewById(R.id.stafforder);
 		menuTypeD = findViewById(R.id.menuTypeDisplay);
 		menuDayD = findViewById(R.id.menuDayDisplay);
-		name = (EditText) findViewById(R.id.nameText);
-		phone = (EditText) findViewById(R.id.phoneNum);
 		cardNum = (EditText) findViewById(R.id.cardNum);
-		matrixNum = (EditText) findViewById(R.id.matrixNum);
 		qttNum = (EditText) findViewById(R.id.qttNum);
-		emailTest = (EditText) findViewById(R.id.emailID);
 		sp = (Spinner) findViewById(R.id.spinner);
 		sp.setOnItemSelectedListener(this);
 
@@ -272,25 +299,12 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 			@Override
 			public void onClick(View view) {
 				
-				
-				final String username = name.getText().toString().trim();
+
 				final String myCard = cardNum.getText().toString().trim();
-				final String myPhone = phone.getText().toString().trim();
-				final String myMatrix = matrixNum.getText().toString().trim();
 				final String myQtt = qttNum.getText().toString().trim();
-				final String myEmail = emailTest.getText().toString().trim();
 				final int result = Integer.parseInt(myQtt);
 
-				if (username.length() < 5) {
-					Toast.makeText(getApplicationContext(), "Please enter minimum 5 character in Name!",
-							Toast.LENGTH_LONG).show();
-				} else if (myPhone.length() < 10 || myPhone.length() > 12) {
-					Toast.makeText(getApplicationContext(), "Please enter proper phone number!",
-							Toast.LENGTH_LONG).show();
-				} else if (myEmail.length() < 5) {
-					Toast.makeText(getApplicationContext(), "Please enter proper email address!",
-							Toast.LENGTH_LONG).show();
-				} else if (locat == "") {
+				if (locat == "") {
 					Toast.makeText(getApplicationContext(), "Please select pickup location",
 							Toast.LENGTH_LONG).show();
 				} else if (result < 1) {
@@ -381,14 +395,11 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 												params.put(KEY_MENUDAY, menuDay);
 												params.put(KEY_ORDER_DATE, orderDate);
 												params.put(KEY_ORDER_TIME, orderTime);
-												params.put(KEY_PHONE, myPhone);
-												params.put(KEY_NAME, username);
 												params.put(KEY_CARDNUM, myCard);
-												params.put(KEY_MATRIXNUM, myMatrix);
 												params.put(KEY_MENUQTT, myQtt);
 												params.put(KEY_MENUSTATUS, myStatus);
 												params.put(KEY_LOCATION, locat);
-												params.put(KEY_EMAIL, myEmail);
+												params.put(KEY_USERID, userID);
 												return params;
 											}
 
@@ -487,10 +498,7 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 
 	public void emailer() {
 
-		final String username = name.getText().toString().trim();
-		final String myPhone = phone.getText().toString().trim();
 		final String myQtt = qttNum.getText().toString().trim();
-		final String myEmail = emailTest.getText().toString().trim();
 
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, EMAIL_IDV_URL,
 				new Response.Listener<String>() {
@@ -511,12 +519,12 @@ public class OrderMenu extends Activity implements OnItemSelectedListener {
 				params.put(KEY_MENUDAY, menuDay);
 				params.put(KEY_ORDER_DATE, orderDate);
 				params.put(KEY_ORDER_TIME, orderTime);
-				params.put(KEY_PHONE, myPhone);
-				params.put(KEY_NAME, username);
+				params.put(KEY_PHONE, phoneID);
+				params.put(KEY_NAME, nameID);
 				params.put(KEY_MENUQTT, myQtt);
 				params.put(KEY_MENUSTATUS, myStatus);
 				params.put(KEY_LOCATION, locat);
-				params.put(KEY_EMAIL, myEmail);
+				params.put(KEY_EMAIL, emailID);
 				return params;
 			}
 

@@ -10,8 +10,9 @@ public class Config {
 	public static final String ORDER_TIME = "orderTime";
 
 
-	public static final String ORDER_STATUS_COMPLETE = "http://zakatkedah.cvmall.my/loginmanager.php";
-
+	public static final String ORDER_STATUS_COMPLETE = "http://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
+	public static final String ORDER_STATUS_PROCESSING = "http://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
+	public static final String PROFILE = "http://gmartbox.cvmall.my/apps/getuserinfo.php?userEmail=";
 	//FOR ORDER
 	public static final String ORDER_ID = "orderid";
 	public static final String CARD_ID = "cardID";
@@ -23,17 +24,26 @@ public class Config {
 	public static final String ORDER_DAY = "orderDay";
 	public static final String ORDER_DATE2 = "orderDate2";
 	public static final String ORDER_TIME2 = "orderTime2";
+	public static final String ORDER_COMPLETEDATE = "CompleteDate";
+	public static final String ORDER_COMPLETETIME = "CompleteTime";
 	public static final String ORDER_QTT = "orderQTT";
+	public static final String ORDER_USERTYPE = "orderUserType";
 	public static final String PICKUP_LOCATION = "puLocation";
 	public static final String PICKUP_TIME = "puTime";
-
 
 	public static final String COMPLETE_DATE = "completeDate";
 	public static final String COMPLETE_TIME = "completeTime";
 	public static final String ORDER_STATUS = "orderStatus";
 
+	//For User
+	public static final String USER_ID2 = "userID2";
+	public static final String NAME_ID2 = "nameID2";
+	public static final String PHONE_ID2 = "phoneID2";
+	public static final String EMAIL_ID2 = "emailID2";
+	public static final String MATRIX_ID2 = "matrixID";
 
-	public static final String LOGIN_URL = "http://zakatkedah.cvmall.my/loginmanager.php";
+
+	public static final String LOGIN_URL = "http://gmartbox.cvmall.my/apps/loginqniti.php";
 
 	//Keys for email and password as defined in our $_POST['key'] in login.php
 //public static final String KEY_ID = "userIC";

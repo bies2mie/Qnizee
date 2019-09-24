@@ -14,6 +14,7 @@ public class Order {
     private String orderDate;
     private String orderTime;
     private String orderQTT;
+    private String orderUserType;
     // private int usercredit;
     private String puLocation;
     private String puTime;
@@ -22,7 +23,7 @@ public class Order {
     private String completeTime;
 
 
-    public Order(int orderID, String cardID, String nameID, String phoneID, String emailID, String matrixID, String orderType, String orderDay, String orderDate, String orderTime, String orderQTT, String puLocation, String puTime, String orderStatus, String completeDate, String completeTime) {
+    public Order(int orderID, String cardID, String nameID, String phoneID, String emailID, String matrixID, String orderType, String orderDay, String orderDate, String orderTime, String orderQTT, String orderUserType, String puLocation, String puTime, String orderStatus, String completeDate, String completeTime) {
 
         this.orderID = orderID;
         this.nameID = nameID;
@@ -35,6 +36,7 @@ public class Order {
         this.orderDate = orderDate;
         this.orderTime = orderTime;
         this.orderQTT = orderQTT;
+        this.orderUserType = orderUserType;
         this.puLocation = puLocation;
         this.puTime = puTime;
         this.orderStatus = orderStatus;
@@ -76,7 +78,6 @@ public class Order {
         return orderDay;
     }
 
-
     public String getOrderDate() {
         return orderDate;
     }
@@ -87,6 +88,10 @@ public class Order {
 
     public String getOrderQTT() {
         return orderQTT;
+    }
+
+    public String getOrderUserType() {
+        return orderUserType;
     }
 
     public String getPuLocation() {
