@@ -67,7 +67,7 @@
             android:name="com.badrul.qnitibox.SundayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.badrul.qnitibox.OrderMenu"
+            android:name="com.badrul.qnitibox.IndvOrder"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.badrul.qnitibox.WednesdayBreakfast"

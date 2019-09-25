@@ -1,6 +1,5 @@
 package com.badrul.qnitibox;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,7 +44,7 @@ public class SundayLunch extends AppCompatActivity {
 				// Saving values to editor
 				editor.commit();
 
-				Intent i = new Intent(SundayLunch.this, OrderMenu.class);
+				Intent i = new Intent(SundayLunch.this, IndvOrder.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 				finish();

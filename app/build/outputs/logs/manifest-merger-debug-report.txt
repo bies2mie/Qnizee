@@ -140,7 +140,7 @@ ADDED from C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\
 		ADDED from C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:32:13-49
 	android:name
 		ADDED from C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:31:13-44
-activity#com.badrul.qnitibox.OrderMenu
+activity#com.badrul.qnitibox.IndvOrder
 ADDED from C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:33:9-35:52
 	android:screenOrientation
 		ADDED from C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:35:13-49

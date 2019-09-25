@@ -9,9 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -20,6 +23,7 @@ import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -121,13 +125,13 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 		emailID = sharedPreferences.getString(Config.EMAIL_ID2, "Not Available");
 		matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
 
-		nextBtn = (Button) findViewById(R.id.nextBtn);
-		exit = (ImageButton) findViewById(R.id.exit);
-		menuTypeD = (TextView) findViewById(R.id.menuTypeDisplay);
-		menuDayD = (TextView) findViewById(R.id.menuDayDisplay);
-		cardNum = (EditText) findViewById(R.id.cardNum);
-		qttNum = (EditText) findViewById(R.id.qttNum);
-		puLocat = (EditText) findViewById(R.id.puLocat);
+		nextBtn = findViewById(R.id.nextBtn);
+		exit = findViewById(R.id.exit);
+		menuTypeD = findViewById(R.id.menuTypeDisplay);
+		menuDayD = findViewById(R.id.menuDayDisplay);
+		cardNum = findViewById(R.id.cardNum);
+		qttNum = findViewById(R.id.qttNum);
+		puLocat = findViewById(R.id.puLocat);
 		//chooseTime = (TextView) findViewById(R.id.puTime);
 
 		loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
@@ -151,7 +155,7 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 		showMatrix.setText(matrixID);
 		showPhone.setText(phoneID);
 		
-		sp = (Spinner) findViewById(R.id.spinner);
+		sp = findViewById(R.id.spinner);
 		sp.setOnItemSelectedListener(this);
 
 		Date dt = new Date();
@@ -309,13 +313,15 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 										startActivityForResult(
 												new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
 									}
-
+									final ProgressDialog loading = ProgressDialog.show(StaffOrder.this,"Please Wait","Contacting Server",false,false);
 									
 
 										StringRequest stringRequest = new StringRequest(Request.Method.POST,
 												CONFIRMORDER_URL, new Response.Listener<String>() {
 													@Override
 													public void onResponse(String response) {
+
+														loading.dismiss();
 														Toast.makeText(StaffOrder.this, response, Toast.LENGTH_LONG)
 																.show();
 														Intent i = new Intent(StaffOrder.this, MenuType.class);
@@ -327,8 +333,15 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 												}, new Response.ErrorListener() {
 													@Override
 													public void onErrorResponse(VolleyError error) {
-														Toast.makeText(StaffOrder.this, error.toString(),
-																Toast.LENGTH_LONG).show();
+														loading.dismiss();
+														if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+															Toast.makeText(StaffOrder.this,"No internet . Please check your connection",
+																	Toast.LENGTH_LONG).show();
+														}
+														else{
+
+															Toast.makeText(StaffOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+														}
 													}
 												}) {
 											@Override
@@ -348,6 +361,11 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 											}
 
 										};
+
+									stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+											30000,
+											DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+											DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 										RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 										requestQueue.add(stringRequest);
@@ -422,16 +440,28 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 		final String myQtt = qttNum.getText().toString().trim();
 		final String myLocat = puLocat.getText().toString().trim();
 
+		final ProgressDialog loading = ProgressDialog.show(StaffOrder.this,"Please Wait","Contacting Server",false,false);
+
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, EMAIL_EVENT_URL,
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						// Toast.makeText(OrderMenu.this,response,Toast.LENGTH_LONG).show();
+
+						loading.dismiss();
+						// Toast.makeText(IndvOrder.this,response,Toast.LENGTH_LONG).show();
 					}
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Toast.makeText(StaffOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+						loading.dismiss();
+						if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+							Toast.makeText(StaffOrder.this,"No internet . Please check your connection",
+									Toast.LENGTH_LONG).show();
+						}
+						else{
+
+							Toast.makeText(StaffOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+						}
 					}
 				}) {
 			@Override
@@ -452,6 +482,11 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 			}
 
 		};
+
+		stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+				30000,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 		requestQueue.add(stringRequest);

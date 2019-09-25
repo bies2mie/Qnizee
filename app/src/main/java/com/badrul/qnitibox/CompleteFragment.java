@@ -1,19 +1,24 @@
 package com.badrul.qnitibox;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NoConnectionError;
@@ -35,6 +40,7 @@ import java.util.List;
 public class CompleteFragment extends Fragment implements OrderAdapter.OnItemClicked{
 
     List<Order> orderList;
+    ImageButton logout;
 
 
     //the recyclerview
@@ -46,6 +52,8 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
     String image;
     TextView userNama_tx;
     TextView userCredit_tx;
+    ImageView imgGone;
+    TextView txtGone;
     //int curCheckPosition = 0;
 
 
@@ -64,6 +72,10 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
         userNama_tx = myView.findViewById(R.id.userNama1);
         userCredit_tx = myView.findViewById(R.id.userCredit1);
         recyclerView = myView.findViewById(R.id.recylcerView);
+        logout = myView.findViewById(R.id.logout);
+        imgGone = myView.findViewById(R.id.imageViewGone);
+        txtGone = myView.findViewById(R.id.textViewGone);
+
 
         userNama_tx.setText(userNama);
         userCredit_tx.setText(userPhone);
@@ -87,26 +99,20 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
 
         loadOrder();
 
-
-        /*if (savedInstanceState != null) {
-            // Restore last state for checked position.
-            curCheckPosition = savedInstanceState.getInt("curChoice", 0);
-        }
-
-         logout.setOnClickListener(new View.OnClickListener() {
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //Creating an alert dialog to confirm logout
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                alertDialogBuilder.setMessage("Are you sure you want to logout?");
+                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(getActivity());
+                alertDialogBuilder.setMessage("Do you want to logout?");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
 
                                 //Getting out sharedpreferences
-                                SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+                                SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
                                 //Getting editor
                                 SharedPreferences.Editor editor = preferences.edit();
 
@@ -117,11 +123,13 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                                 editor.putString(Config.ID_SHARED_PREF, "");
 
                                 //Saving the sharedpreferences
+                                editor.clear();
                                 editor.commit();
 
                                 //Starting login activity
-                                Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                                Intent intent = new Intent(getActivity().getApplicationContext(), MenuType.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                getActivity().finish();
                                 startActivity(intent);
                                 getActivity().getSupportFragmentManager().popBackStack();
                             }
@@ -139,7 +147,7 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
-        }); */
+        });
 
         return myView;
     }
@@ -179,9 +187,9 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                                         product.getString("orderUserType"),
                                         product.getString("puLocation"),
                                         product.getString("puTime"),
+                                        product.getString("orderStatus"),
                                         product.getString("completeDate"),
-                                        product.getString("completeTime"),
-                                        product.getString("orderStatus")
+                                        product.getString("completeTime")
                                 ));
                             }
 
@@ -189,6 +197,15 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                             OrderAdapter adapter = new OrderAdapter(getActivity().getApplicationContext(), orderList);
                             recyclerView.setAdapter(adapter);
                             adapter.setOnClick(CompleteFragment.this);
+
+                            if (adapter.getItemCount() == 0) {
+                               imgGone.setVisibility(View.VISIBLE);
+                               txtGone.setVisibility(View.VISIBLE);
+                            } else{
+
+                                imgGone.setVisibility(View.GONE);
+                                txtGone.setVisibility(View.GONE);
+                            }
 
                             //add shared preference ID,nama,credit here
                             loading.dismiss();

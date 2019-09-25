@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@mipmap/gmatwallpaper">
+    android:background="@mipmap/loginbg">
     <!-- <GridLayout
         android:layout_width="235dp"
         android:layout_height="97dp"
@@ -21,11 +21,22 @@
             android:src="@drawable/splogo" />
 
     </GridLayout> -->
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-80dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/colorNextButton"
+        android:text="Please Login to Proceed" />
+
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="150dp"
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -84,7 +95,7 @@
             android:id="@+id/btnLogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
+            android:layout_marginTop="40dp"
             android:background="@drawable/buttoncornerredgrad2"
             android:text="SIGN IN"
             android:textColor="#ffff" />
@@ -96,7 +107,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:textStyle="bold"
-            android:textColor="#ffffff"
+            android:textColor="#b30000"
             android:text="Not register yet? Click Here" />
 
         <!-- Link to Login Screen -->

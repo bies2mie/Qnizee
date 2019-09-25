@@ -125,7 +125,7 @@
 68-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:32:13-49
 69        <activity
 69-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:33:9-35:52
-70            android:name="com.badrul.qnitibox.OrderMenu"
+70            android:name="com.badrul.qnitibox.IndvOrder"
 70-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:34:13-38
 71            android:screenOrientation="portrait" />
 71-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:35:13-49

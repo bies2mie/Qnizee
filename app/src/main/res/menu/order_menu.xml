@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.badrul.qnitibox.OrderMenu" >
+    tools:context="com.badrul.qnitibox.IndvOrder" >
 
     <item
         android:id="@+id/action_settings"

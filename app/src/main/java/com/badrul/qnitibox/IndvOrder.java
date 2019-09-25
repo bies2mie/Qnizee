@@ -9,18 +9,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -49,7 +52,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class OrderMenu extends AppCompatActivity implements OnItemSelectedListener {
+public class IndvOrder extends AppCompatActivity implements OnItemSelectedListener {
 
 	public static final String CONFIRMORDER_URL = "http://gmartbox.cvmall.my/apps/gmartorder.php";
 	public static final String EMAIL_IDV_URL = "http://atsventures.com/mail/indmailer.php";
@@ -118,7 +121,7 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 		//If we will get true
 		if(loggedIn==false){
 			//We will start the Profile Activity
-			Intent intent = new Intent(OrderMenu.this, LoginPage.class);
+			Intent intent = new Intent(IndvOrder.this, LoginPage.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 			finish();
@@ -325,7 +328,7 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 
 				try {
 					// We need to get the instance of the LayoutInflater
-					LayoutInflater inflater = (LayoutInflater) OrderMenu.this
+					LayoutInflater inflater = (LayoutInflater) IndvOrder.this
 							.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 					View layout = inflater.inflate(R.layout.popup_confirmationorder,
 							(ViewGroup) findViewById(R.id.popup_element));
@@ -368,15 +371,18 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 												new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
 									}
 
-									
+									final ProgressDialog loading = ProgressDialog.show(IndvOrder.this,"Please Wait","Contacting Server",false,false);
 
 										StringRequest stringRequest = new StringRequest(Request.Method.POST,
 												CONFIRMORDER_URL, new Response.Listener<String>() {
 													@Override
 													public void onResponse(String response) {
-														Toast.makeText(OrderMenu.this, response, Toast.LENGTH_LONG)
+														Toast.makeText(IndvOrder.this, response, Toast.LENGTH_LONG)
 																.show();
-														Intent i = new Intent(OrderMenu.this, MenuType.class);
+
+														loading.dismiss();
+
+														Intent i = new Intent(IndvOrder.this, MenuType.class);
 														i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 														startActivity(i);
 														finish();
@@ -384,8 +390,15 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 												}, new Response.ErrorListener() {
 													@Override
 													public void onErrorResponse(VolleyError error) {
-														Toast.makeText(OrderMenu.this, error.toString(),
-																Toast.LENGTH_LONG).show();
+														loading.dismiss();
+														if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+															Toast.makeText(IndvOrder.this,"No internet . Please check your connection",
+																	Toast.LENGTH_LONG).show();
+														}
+														else{
+
+															Toast.makeText(IndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+														}
 													}
 												}) {
 											@Override
@@ -404,6 +417,11 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 											}
 
 										};
+
+									stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+											30000,
+											DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+											DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 										RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 										requestQueue.add(stringRequest);
@@ -426,7 +444,7 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 		exit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 
-				Intent i = new Intent(OrderMenu.this, MenuType.class);
+				Intent i = new Intent(IndvOrder.this, MenuType.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 				finish();
@@ -437,7 +455,7 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 		 * staffOrder.setOnClickListener(new View.OnClickListener() { public
 		 * void onClick(View view) {
 		 * 
-		 * Intent i = new Intent(OrderMenu.this, StaffOrder.class);
+		 * Intent i = new Intent(IndvOrder.this, StaffOrder.class);
 		 * i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); startActivity(i);
 		 * finish(); } });
 		 */
@@ -499,17 +517,27 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 	public void emailer() {
 
 		final String myQtt = qttNum.getText().toString().trim();
-
+		final ProgressDialog loading = ProgressDialog.show(IndvOrder.this,"Please Wait","Contacting Server",false,false);
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, EMAIL_IDV_URL,
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						// Toast.makeText(OrderMenu.this,response,Toast.LENGTH_LONG).show();
+
+						loading.dismiss();
+						// Toast.makeText(IndvOrder.this,response,Toast.LENGTH_LONG).show();
 					}
 				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Toast.makeText(OrderMenu.this, error.toString(), Toast.LENGTH_LONG).show();
+						loading.dismiss();
+						if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+							Toast.makeText(IndvOrder.this,"No internet . Please check your connection",
+									Toast.LENGTH_LONG).show();
+						}
+						else{
+
+							Toast.makeText(IndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+						}
 					}
 				}) {
 			@Override
@@ -529,6 +557,11 @@ public class OrderMenu extends AppCompatActivity implements OnItemSelectedListen
 			}
 
 		};
+
+		stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+				30000,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 		requestQueue.add(stringRequest);

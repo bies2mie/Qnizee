@@ -31,7 +31,7 @@
             android:name=".SundayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OrderMenu"
+            android:name=".IndvOrder"
             android:screenOrientation="portrait" />
         <activity
             android:name=".WednesdayBreakfast"

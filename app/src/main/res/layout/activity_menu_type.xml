@@ -77,7 +77,7 @@
             android:layout_width="297dp"
             android:layout_height="75dp"
             android:background="#0F1923"
-            android:text="PREVIOUS ORDER"
+            android:text="YOUR ORDER"
             android:textColor="#ffff"
             android:textStyle="bold" />
 

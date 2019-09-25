@@ -44,6 +44,7 @@ public class Config {
 
 
 	public static final String LOGIN_URL = "http://gmartbox.cvmall.my/apps/loginqniti.php";
+	public static final String REGISTER_URL = "http://gmartbox.cvmall.my/apps/registerqniti.php";
 
 	//Keys for email and password as defined in our $_POST['key'] in login.php
 //public static final String KEY_ID = "userIC";

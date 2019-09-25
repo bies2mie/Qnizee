@@ -2,8 +2,8 @@
 
     <string name="app_name">QnitiBox</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_noncomplete">Scanner</string>
-    <string name="title_complete">Order Dulu</string>
+    <string name="title_noncomplete">Processing</string>
+    <string name="title_complete">Complete</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_sunday_breakfast">Sunday Breakfast</string>
     <string name="title_activity_order_menu">Menu Order</string>

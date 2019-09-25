@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
-        android:background="@drawable/gradientbottomnavi"
+        android:background="@drawable/redgrad"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="" />
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:text="Butiran Pembelian"
+            android:text="Order Details"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textStyle="bold" />
 
@@ -59,10 +59,24 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/buyerName1"
+                            android:id="@+id/buyerNametxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="buyerName" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Phone Number"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/phoneNumtxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView" />
 
                         <TextView
 
@@ -101,7 +115,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/orderUserType"
+                            android:id="@+id/orderUserTypetxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Tiada" />
@@ -139,7 +153,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/buyerEmail"
+                            android:id="@+id/buyerEmailtxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TextView" />
@@ -199,7 +213,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:text="Purchase Item"
                         android:textStyle="bold" />
 
@@ -216,23 +230,25 @@
 
                             <TextView
 
+                                android:id="@+id/orderDayTxt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:text="Monday" />
+                                android:text="Monday"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                             <TextView
 
+                                android:id="@+id/orderTypetxt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:text="Lunch" />
+                                android:text="Lunch"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/itmqtt"
+                            android:id="@+id/orderqtt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -256,18 +272,20 @@
 
                             <TextView
 
+                                android:id="@+id/puLoctxt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:text="Hotel EDC" />
+                                android:text="Hotel EDC"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                             <TextView
 
+                                android:id="@+id/puTimetxt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:text="10 AM" />
+                                android:text="10 AM"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                         </LinearLayout>
 
@@ -277,12 +295,14 @@
 
                 <TextView
 
-                    android:layout_marginTop="30dp"
+                    android:id="@+id/showqrtxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:text="Please show the QR to Deliverer"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:text="Please show the QR to Deliverer" />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_marginTop="10dp"
