@@ -77,8 +77,8 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
         txtGone = myView.findViewById(R.id.textViewGone);
 
 
-        userNama_tx.setText(userNama);
-        userCredit_tx.setText(userPhone);
+        //userNama_tx.setText(userNama);
+        userCredit_tx.setText(userNama);
 
         // Set the layout manager to your recyclerview and reverse the position
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());

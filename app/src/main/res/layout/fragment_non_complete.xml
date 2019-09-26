@@ -48,7 +48,7 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Nama"
+            android:text="Welcome"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#ffffff"
             android:textStyle="bold" />

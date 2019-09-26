@@ -89,8 +89,8 @@ ImageButton logout;
         userNama = sharedPreferences.getString(Config.NAME_ID2,"Not Available");
         userPhone = sharedPreferences.getString(Config.PHONE_ID2,"Not Available");
 
-        userNama_tx.setText(userNama);
-        userCredit_tx.setText(userPhone);
+        //userNama_tx.setText(userNama);
+        userCredit_tx.setText(userNama);
 
         // Set the layout manager to your recyclerview and reverse the position
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());

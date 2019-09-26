@@ -3,9 +3,12 @@ package com.badrul.qnitibox;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -15,6 +18,7 @@ import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -94,19 +98,31 @@ public class FeedbackPage extends AppCompatActivity {
 
 							startActivityForResult(new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
 						} else {
+							final ProgressDialog loading = ProgressDialog.show(FeedbackPage.this,"Please Wait","Sending Data",false,false);
 
 							StringRequest stringRequest = new StringRequest(Request.Method.POST, FEEDBACK_URL,
 									new Response.Listener<String>() {
 										@Override
 										public void onResponse(String response) {
 											Toast.makeText(FeedbackPage.this, response, Toast.LENGTH_LONG).show();
+
+											Intent i = new Intent(FeedbackPage.this, MenuType.class);
+											i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+											startActivity(i);
+											finish();
 										}
 									}, new Response.ErrorListener() {
 										@Override
 										public void onErrorResponse(VolleyError error) {
-											Toast.makeText(FeedbackPage.this, error.toString(), Toast.LENGTH_LONG)
-													.show();
-										}
+											loading.dismiss();
+											if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+												Toast.makeText(FeedbackPage.this,"No internet . Please check your connection",
+														Toast.LENGTH_LONG).show();
+											}
+											else{
+
+												Toast.makeText(FeedbackPage.this, error.toString(), Toast.LENGTH_LONG).show();
+											}}
 									}) {
 								@Override
 								protected Map<String, String> getParams() {
@@ -121,6 +137,11 @@ public class FeedbackPage extends AppCompatActivity {
 								}
 
 							};
+
+							stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+									30000,
+									DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+									DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 							RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 							requestQueue.add(stringRequest);

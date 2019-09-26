@@ -27,10 +27,10 @@ public class OrderDetails extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String orderID = sharedPreferences.getString(Config.ORDER_ID, "Not Available");
-        String nameID = sharedPreferences.getString(Config.NAME_ID2, "Not Available");
-        String phoneID = sharedPreferences.getString(Config.PHONE_ID2, "Not Available");
-        String emailID = sharedPreferences.getString(Config.EMAIL_ID2, "Not Available");
-        String matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
+        String nameID = sharedPreferences.getString(Config.NAME_ID, "Not Available");
+        String phoneID = sharedPreferences.getString(Config.PHONE_ID, "Not Available");
+        String emailID = sharedPreferences.getString(Config.EMAIL_ID, "Not Available");
+        String matrixID = sharedPreferences.getString(Config.MATRIX_ID, "Not Available");
         String orderType = sharedPreferences.getString(Config.ORDER_TYPE, "Not Available");
         String orderDay = sharedPreferences.getString(Config.ORDER_DAY, "Not Available");
         String orderDate = sharedPreferences.getString(Config.ORDER_DATE2, "Not Available");
@@ -40,8 +40,8 @@ public class OrderDetails extends AppCompatActivity {
         String puLocation = sharedPreferences.getString(Config.PICKUP_LOCATION, "Not Available");
         String puTime = sharedPreferences.getString(Config.PICKUP_TIME, "Not Available");
         String orderStatus = sharedPreferences.getString(Config.ORDER_STATUS, "Not Available");
-        String completeDate = sharedPreferences.getString(Config.COMPLETE_DATE, "Not Available");
-        String completeTime = sharedPreferences.getString(Config.COMPLETE_TIME, "Not Available");
+        String completeDate = sharedPreferences.getString(Config.ORDER_COMPLETEDATE, "Not Available");
+        String completeTime = sharedPreferences.getString(Config.ORDER_COMPLETETIME, "Not Available");
 
         order = findViewById(R.id.orderIDtxt);
         name = findViewById(R.id.buyerNametxt);
