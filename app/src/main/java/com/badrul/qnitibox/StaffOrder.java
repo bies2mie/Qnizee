@@ -169,7 +169,7 @@ public class StaffOrder extends AppCompatActivity implements OnItemSelectedListe
 		// class.
 		String strDate = dateFormat.format(dt);
 
-		menuDayD.setText(strDate);
+		menuDayD.setText(orderDate);
 		menuTypeD.setText("Event: " + menuType + "   For   ");
 		
 		switch(menuType) 

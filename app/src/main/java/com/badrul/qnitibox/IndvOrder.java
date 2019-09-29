@@ -159,7 +159,7 @@ public class IndvOrder extends AppCompatActivity implements OnItemSelectedListen
 		// class.
 		String strDate = dateFormat.format(dt);
 
-		menuDayD.setText(strDate);
+		menuDayD.setText(orderDate);
 		menuTypeD.setText(menuType + "   For   ");
 
 		RadioGroup locationType = (RadioGroup) findViewById(R.id.radioType);
