@@ -12,13 +12,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView6"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:text="Order close at 6 PM" />
 
         <TextView
@@ -27,40 +29,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="Nasi Lemak with Mineral Water" />
+            android:textColor="#800000"
+            android:textSize="20dp"
+            android:text="Food Title" />
 
         <TextView
             android:id="@+id/showPrice"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#b30000"
+            android:textSize="35dp"
             android:layout_height="wrap_content"
-            android:text="RM 3" />
+            android:text="Food Price" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/imageFood"
             android:layout_gravity="center"
             android:scaleType="centerInside"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:visibility="gone"
             tools:srcCompat="@tools:sample/avatars[0]" />
 
         <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:id="@+id/foodDesc"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="match_parent"
-            android:textStyle="bold"
+            android:textStyle="italic"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_marginTop="40dp"
+            android:textSize="10dp"
             android:layout_height="wrap_content"
             android:text="* Picture shown is for illustration purpose only" />
 

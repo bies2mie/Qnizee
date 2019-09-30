@@ -7,314 +7,316 @@
 7
 8    <uses-sdk
 9        android:minSdkVersion="21"
-9-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml
+9-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml
 10        android:targetSdkVersion="29" />
-10-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml
+10-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml
 11
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:127:5-67
-12-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:127:22-64
+12-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:6:5-67
+12-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:6:22-64
 13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:129:5-79
-13-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:129:22-76
+13-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:7:5-79
+13-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:7:22-76
 14    <uses-permission android:name="android.permission.CAMERA" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
-14-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:21:5-65
-14-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:21:22-62
+14-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:21:5-65
+14-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:21:22-62
 15    <uses-feature
-15-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:24:5-26:36
+15-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:24:5-26:36
 16        android:name="android.hardware.camera"
-16-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:25:9-47
+16-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:25:9-47
 17        android:required="false" />
-17-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:26:9-33
+17-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:26:9-33
 18    <uses-feature
-18-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:27:5-29:36
+18-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:27:5-29:36
 19        android:name="android.hardware.camera.front"
-19-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:28:9-53
+19-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:28:9-53
 20        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
-20-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:29:9-33
+20-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:29:9-33
 21    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
 22    <uses-feature
-22-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:32:5-34:36
+22-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:32:5-34:36
 23        android:name="android.hardware.camera.autofocus"
-23-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:33:9-57
+23-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:33:9-57
 24        android:required="false" />
-24-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:34:9-33
+24-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:34:9-33
 25    <uses-feature
-25-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:35:5-37:36
+25-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:35:5-37:36
 26        android:name="android.hardware.camera.flash"
-26-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:36:9-53
+26-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:36:9-53
 27        android:required="false" />
-27-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:37:9-33
+27-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:37:9-33
 28    <uses-feature
-28-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:38:5-40:36
+28-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:38:5-40:36
 29        android:name="android.hardware.screen.landscape"
-29-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:39:9-57
+29-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:39:9-57
 30        android:required="false" />
-30-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:40:9-33
+30-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:40:9-33
 31    <uses-feature
-31-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:41:5-43:36
+31-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:41:5-43:36
 32        android:name="android.hardware.wifi"
-32-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:42:9-45
+32-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:42:9-45
 33        android:required="false" />
-33-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:43:9-33
+33-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:43:9-33
 34
 35    <application
-35-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:6:5-126:19
+35-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:9:5-127:19
 36        android:allowBackup="true"
-36-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:7:9-35
+36-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:10:9-35
 37        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-37-->[androidx.core:core:1.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2ffb88316df49107418be0872d7babe4\core-1.0.0\AndroidManifest.xml:22:18-86
+37-->[androidx.core:core:1.0.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\2ffb88316df49107418be0872d7babe4\core-1.0.0\AndroidManifest.xml:22:18-86
 38        android:debuggable="true"
 39        android:icon="@drawable/ic_launcher"
-39-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:8:9-45
+39-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:11:9-45
 40        android:label="@string/app_name"
-40-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:9:9-41
+40-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:12:9-41
 41        android:networkSecurityConfig="@xml/network_security_config"
-41-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:10:9-69
-42        android:theme="@style/SplashTheme" >
-42-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:11:9-43
-43        <activity android:name="com.badrul.qnitibox.FoodDisplay" />
-43-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:12:9-58
-43-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:12:19-46
-44        <activity android:name="com.badrul.qnitibox.MainActivity" >
-44-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:13:9-19:20
-44-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:13:19-47
-45            <intent-filter>
-45-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:14:13-18:29
-46                <action android:name="android.intent.action.MAIN" />
-46-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:15:17-69
-46-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:15:25-66
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:17:17-77
-48-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:17:27-74
-49            </intent-filter>
-50        </activity>
-51        <activity
-51-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:20:9-22:52
-52            android:name="com.badrul.qnitibox.RegisterPage"
-52-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:21:13-41
-53            android:screenOrientation="portrait" />
-53-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:22:13-49
-54        <activity
-54-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:23:9-25:52
-55            android:name="com.badrul.qnitibox.OrderDetails"
-55-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:24:13-41
-56            android:screenOrientation="portrait" />
-56-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:25:13-49
-57        <activity
-57-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:26:9-28:52
-58            android:name="com.badrul.qnitibox.OrderPage"
-58-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:27:13-38
-59            android:screenOrientation="portrait" />
-59-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:28:13-49
-60        <activity
-60-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:29:9-31:52
-61            android:name="com.badrul.qnitibox.LoginPage"
-61-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:30:13-38
-62            android:screenOrientation="portrait" />
-62-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:31:13-49
-63        <activity
-63-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:32:9-41:20
-64            android:name="com.badrul.qnitibox.MenuType"
-64-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:33:13-37
-65            android:label="@string/app_name"
-65-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:34:13-45
-66            android:screenOrientation="portrait" >
-66-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:35:13-49
-67            <intent-filter>
-67-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:14:13-18:29
-68                <action android:name="android.intent.action.MAIN" />
-68-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:15:17-69
-68-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:15:25-66
-69
-70                <category android:name="android.intent.category.LAUNCHER" />
-70-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:17:17-77
-70-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:17:27-74
-71            </intent-filter>
-72        </activity>
-73        <activity
-73-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:42:9-44:52
-74            android:name="com.badrul.qnitibox.SundayBreakfast"
-74-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:43:13-44
-75            android:screenOrientation="portrait" />
-75-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:44:13-49
-76        <activity
-76-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:45:9-47:52
-77            android:name="com.badrul.qnitibox.IndvOrder"
-77-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:46:13-38
-78            android:screenOrientation="portrait" />
-78-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:47:13-49
-79        <activity
-79-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:48:9-50:52
-80            android:name="com.badrul.qnitibox.WednesdayBreakfast"
-80-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:49:13-47
-81            android:screenOrientation="portrait" />
-81-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:50:13-49
-82        <activity
-82-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:51:9-53:52
-83            android:name="com.badrul.qnitibox.ErrorPage1"
-83-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:52:13-39
-84            android:screenOrientation="portrait" />
-84-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:53:13-49
-85        <activity
-85-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:54:9-56:52
-86            android:name="com.badrul.qnitibox.ErrorPage2"
-86-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:55:13-39
-87            android:screenOrientation="portrait" />
-87-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:56:13-49
-88        <activity
-88-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:57:9-59:52
-89            android:name="com.badrul.qnitibox.MondayBreakfast"
-89-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:58:13-44
-90            android:screenOrientation="portrait" />
-90-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:59:13-49
-91        <activity
-91-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:60:9-62:52
-92            android:name="com.badrul.qnitibox.TuesdayBreakfast"
-92-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:61:13-45
-93            android:screenOrientation="portrait" />
-93-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:62:13-49
-94        <activity
-94-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:63:9-65:52
-95            android:name="com.badrul.qnitibox.ThursdayBreakfast"
-95-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:64:13-46
-96            android:screenOrientation="portrait" />
-96-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:65:13-49
-97        <activity
-97-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:66:9-68:52
-98            android:name="com.badrul.qnitibox.SundayLunch"
-98-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:67:13-40
-99            android:screenOrientation="portrait" />
-99-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:68:13-49
-100        <activity
-100-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:69:9-71:52
-101            android:name="com.badrul.qnitibox.MondayLunch"
-101-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:70:13-40
-102            android:screenOrientation="portrait" />
-102-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:71:13-49
-103        <activity
-103-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:72:9-74:52
-104            android:name="com.badrul.qnitibox.TuesdayLunch"
-104-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:73:13-41
-105            android:screenOrientation="portrait" />
-105-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:74:13-49
-106        <activity
-106-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:75:9-77:52
-107            android:name="com.badrul.qnitibox.WednesdayLunch"
-107-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:76:13-43
-108            android:screenOrientation="portrait" />
-108-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:77:13-49
-109        <activity
-109-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:78:9-80:52
-110            android:name="com.badrul.qnitibox.ThursdayLunch"
-110-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:79:13-42
-111            android:screenOrientation="portrait" />
-111-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:80:13-49
-112        <activity
-112-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:81:9-83:52
-113            android:name="com.badrul.qnitibox.SundayDinner"
-113-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:82:13-41
-114            android:screenOrientation="portrait" />
-114-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:83:13-49
-115        <activity
-115-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:84:9-86:52
-116            android:name="com.badrul.qnitibox.MondayDinner"
-116-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:85:13-41
-117            android:screenOrientation="portrait" />
-117-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:86:13-49
-118        <activity
-118-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:87:9-89:52
-119            android:name="com.badrul.qnitibox.TuesdayDinner"
-119-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:88:13-42
-120            android:screenOrientation="portrait" />
-120-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:89:13-49
-121        <activity
-121-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:90:9-92:52
-122            android:name="com.badrul.qnitibox.WednesdayDinner"
-122-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:91:13-44
-123            android:screenOrientation="portrait" />
-123-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:92:13-49
-124        <activity
-124-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:93:9-95:52
-125            android:name="com.badrul.qnitibox.ThursdayDinner"
-125-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:94:13-43
-126            android:screenOrientation="portrait" />
-126-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:95:13-49
-127        <activity
-127-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:96:9-98:52
-128            android:name="com.badrul.qnitibox.HowTo"
-128-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:97:13-34
-129            android:screenOrientation="portrait" />
-129-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:98:13-49
-130        <activity
-130-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:99:9-101:52
-131            android:name="com.badrul.qnitibox.FeedbackPage"
-131-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:100:13-41
-132            android:screenOrientation="portrait" />
-132-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:101:13-49
-133        <activity
-133-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:102:9-104:52
-134            android:name="com.badrul.qnitibox.StaffOrder"
-134-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:103:13-39
-135            android:screenOrientation="portrait" />
-135-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:104:13-49
-136        <activity
-136-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:105:9-107:52
-137            android:name="com.badrul.qnitibox.FridayBreakfast"
-137-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:106:13-44
-138            android:screenOrientation="portrait" />
-138-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:107:13-49
-139        <activity
-139-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:108:9-110:52
-140            android:name="com.badrul.qnitibox.SaturdayBreakfast"
-140-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:109:13-46
-141            android:screenOrientation="portrait" />
-141-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:110:13-49
-142        <activity
-142-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:111:9-113:52
-143            android:name="com.badrul.qnitibox.FridayLunch"
-143-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:112:13-40
-144            android:screenOrientation="portrait" />
-144-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:113:13-49
-145        <activity
-145-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:114:9-116:52
-146            android:name="com.badrul.qnitibox.FridayDinner"
-146-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:115:13-41
-147            android:screenOrientation="portrait" />
-147-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:116:13-49
-148        <activity
-148-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:117:9-119:52
-149            android:name="com.badrul.qnitibox.SaturdayLunch"
-149-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:118:13-42
-150            android:screenOrientation="portrait" />
-150-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:119:13-49
-151        <activity
-151-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:120:9-122:52
-152            android:name="com.badrul.qnitibox.SaturdayDinner"
-152-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:121:13-43
-153            android:screenOrientation="portrait" />
-153-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:122:13-49
-154        <activity
-154-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:123:9-125:52
-155            android:name="com.badrul.qnitibox.HowToMenu"
-155-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:124:13-38
-156            android:screenOrientation="portrait" />
-156-->C:\Users\User\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:125:13-49
-157        <activity
-157-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:46:9-52:63
-158            android:name="com.journeyapps.barcodescanner.CaptureActivity"
-158-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:47:13-74
-159            android:clearTaskOnLaunch="true"
-159-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:48:13-45
-160            android:screenOrientation="sensorLandscape"
-160-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:49:13-56
-161            android:stateNotNeeded="true"
-161-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:50:13-42
-162            android:theme="@style/zxing_CaptureTheme"
-162-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:51:13-54
-163            android:windowSoftInputMode="stateAlwaysHidden" />
-163-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e04cb6862f6c695b57aa988ec553f02\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:52:13-60
-164    </application>
-165
-166</manifest>
+41-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:13:9-69
+42        android:testOnly="true"
+43        android:theme="@style/SplashTheme" >
+43-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:14:9-43
+44        <activity
+44-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:15:9-16:61
+45            android:name="com.badrul.qnitibox.NewIndvOrder"
+45-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:15:19-47
+46            android:screenOrientation="portrait" />
+46-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:16:13-49
+47        <activity
+47-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:17:9-18:51
+48            android:name="com.badrul.qnitibox.FoodDisplay"
+48-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:17:19-46
+49            android:screenOrientation="portrait" />
+49-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:18:13-49
+50        <activity
+50-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:19:9-26:20
+51            android:name="com.badrul.qnitibox.MainActivity"
+51-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:19:19-47
+52            android:screenOrientation="portrait" >
+52-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:20:13-49
+53            <intent-filter>
+53-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:21:13-25:29
+54                <action android:name="android.intent.action.MAIN" />
+54-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:22:17-69
+54-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:22:25-66
+55
+56                <category android:name="android.intent.category.LAUNCHER" />
+56-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:24:17-77
+56-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:24:27-74
+57            </intent-filter>
+58        </activity>
+59        <activity
+59-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:27:9-29:52
+60            android:name="com.badrul.qnitibox.RegisterPage"
+60-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:28:13-41
+61            android:screenOrientation="portrait" />
+61-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:29:13-49
+62        <activity
+62-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:30:9-32:52
+63            android:name="com.badrul.qnitibox.OrderDetails"
+63-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:31:13-41
+64            android:screenOrientation="portrait" />
+64-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:32:13-49
+65        <activity
+65-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:33:9-35:52
+66            android:name="com.badrul.qnitibox.OrderPage"
+66-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:34:13-38
+67            android:screenOrientation="portrait" />
+67-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:35:13-49
+68        <activity
+68-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:36:9-38:52
+69            android:name="com.badrul.qnitibox.LoginPage"
+69-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:37:13-38
+70            android:screenOrientation="portrait" />
+70-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:38:13-49
+71        <activity
+71-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:39:9-42:61
+72            android:name="com.badrul.qnitibox.MenuType"
+72-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:40:13-37
+73            android:label="@string/app_name"
+73-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:41:13-45
+74            android:screenOrientation="portrait" />
+74-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:42:13-49
+75        <activity
+75-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:43:9-45:52
+76            android:name="com.badrul.qnitibox.SundayBreakfast"
+76-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:44:13-44
+77            android:screenOrientation="portrait" />
+77-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:45:13-49
+78        <activity
+78-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:46:9-48:52
+79            android:name="com.badrul.qnitibox.IndvOrder"
+79-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:47:13-38
+80            android:screenOrientation="portrait" />
+80-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:48:13-49
+81        <activity
+81-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:49:9-51:52
+82            android:name="com.badrul.qnitibox.WednesdayBreakfast"
+82-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:50:13-47
+83            android:screenOrientation="portrait" />
+83-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:51:13-49
+84        <activity
+84-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:52:9-54:52
+85            android:name="com.badrul.qnitibox.ErrorPage1"
+85-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:53:13-39
+86            android:screenOrientation="portrait" />
+86-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:54:13-49
+87        <activity
+87-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:55:9-57:52
+88            android:name="com.badrul.qnitibox.ErrorPage2"
+88-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:56:13-39
+89            android:screenOrientation="portrait" />
+89-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:57:13-49
+90        <activity
+90-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:58:9-60:52
+91            android:name="com.badrul.qnitibox.MondayBreakfast"
+91-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:59:13-44
+92            android:screenOrientation="portrait" />
+92-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:60:13-49
+93        <activity
+93-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:61:9-63:52
+94            android:name="com.badrul.qnitibox.TuesdayBreakfast"
+94-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:62:13-45
+95            android:screenOrientation="portrait" />
+95-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:63:13-49
+96        <activity
+96-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:64:9-66:52
+97            android:name="com.badrul.qnitibox.ThursdayBreakfast"
+97-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:65:13-46
+98            android:screenOrientation="portrait" />
+98-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:66:13-49
+99        <activity
+99-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:67:9-69:52
+100            android:name="com.badrul.qnitibox.SundayLunch"
+100-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:68:13-40
+101            android:screenOrientation="portrait" />
+101-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:69:13-49
+102        <activity
+102-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:70:9-72:52
+103            android:name="com.badrul.qnitibox.MondayLunch"
+103-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:71:13-40
+104            android:screenOrientation="portrait" />
+104-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:72:13-49
+105        <activity
+105-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:73:9-75:52
+106            android:name="com.badrul.qnitibox.TuesdayLunch"
+106-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:74:13-41
+107            android:screenOrientation="portrait" />
+107-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:75:13-49
+108        <activity
+108-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:76:9-78:52
+109            android:name="com.badrul.qnitibox.WednesdayLunch"
+109-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:77:13-43
+110            android:screenOrientation="portrait" />
+110-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:78:13-49
+111        <activity
+111-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:79:9-81:52
+112            android:name="com.badrul.qnitibox.ThursdayLunch"
+112-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:80:13-42
+113            android:screenOrientation="portrait" />
+113-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:81:13-49
+114        <activity
+114-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:82:9-84:52
+115            android:name="com.badrul.qnitibox.SundayDinner"
+115-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:83:13-41
+116            android:screenOrientation="portrait" />
+116-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:84:13-49
+117        <activity
+117-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:85:9-87:52
+118            android:name="com.badrul.qnitibox.MondayDinner"
+118-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:86:13-41
+119            android:screenOrientation="portrait" />
+119-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:87:13-49
+120        <activity
+120-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:88:9-90:52
+121            android:name="com.badrul.qnitibox.TuesdayDinner"
+121-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:89:13-42
+122            android:screenOrientation="portrait" />
+122-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:90:13-49
+123        <activity
+123-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:91:9-93:52
+124            android:name="com.badrul.qnitibox.WednesdayDinner"
+124-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:92:13-44
+125            android:screenOrientation="portrait" />
+125-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:93:13-49
+126        <activity
+126-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:94:9-96:52
+127            android:name="com.badrul.qnitibox.ThursdayDinner"
+127-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:95:13-43
+128            android:screenOrientation="portrait" />
+128-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:96:13-49
+129        <activity
+129-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:97:9-99:52
+130            android:name="com.badrul.qnitibox.HowTo"
+130-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:98:13-34
+131            android:screenOrientation="portrait" />
+131-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:99:13-49
+132        <activity
+132-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:100:9-102:52
+133            android:name="com.badrul.qnitibox.FeedbackPage"
+133-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:101:13-41
+134            android:screenOrientation="portrait" />
+134-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:102:13-49
+135        <activity
+135-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:103:9-105:52
+136            android:name="com.badrul.qnitibox.StaffOrder"
+136-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:104:13-39
+137            android:screenOrientation="portrait" />
+137-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:105:13-49
+138        <activity
+138-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:106:9-108:52
+139            android:name="com.badrul.qnitibox.FridayBreakfast"
+139-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:107:13-44
+140            android:screenOrientation="portrait" />
+140-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:108:13-49
+141        <activity
+141-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:109:9-111:52
+142            android:name="com.badrul.qnitibox.SaturdayBreakfast"
+142-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:110:13-46
+143            android:screenOrientation="portrait" />
+143-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:111:13-49
+144        <activity
+144-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:112:9-114:52
+145            android:name="com.badrul.qnitibox.FridayLunch"
+145-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:113:13-40
+146            android:screenOrientation="portrait" />
+146-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:114:13-49
+147        <activity
+147-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:115:9-117:52
+148            android:name="com.badrul.qnitibox.FridayDinner"
+148-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:116:13-41
+149            android:screenOrientation="portrait" />
+149-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:117:13-49
+150        <activity
+150-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:118:9-120:52
+151            android:name="com.badrul.qnitibox.SaturdayLunch"
+151-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:119:13-42
+152            android:screenOrientation="portrait" />
+152-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:120:13-49
+153        <activity
+153-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:121:9-123:52
+154            android:name="com.badrul.qnitibox.SaturdayDinner"
+154-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:122:13-43
+155            android:screenOrientation="portrait" />
+155-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:123:13-49
+156        <activity
+156-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:124:9-126:52
+157            android:name="com.badrul.qnitibox.HowToMenu"
+157-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:125:13-38
+158            android:screenOrientation="portrait" />
+158-->C:\Users\Badrul\Documents\AndroidStudioWorkspace\Qnizee\app\src\main\AndroidManifest.xml:126:13-49
+159        <activity
+159-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:46:9-52:63
+160            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+160-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:47:13-74
+161            android:clearTaskOnLaunch="true"
+161-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:48:13-45
+162            android:screenOrientation="sensorLandscape"
+162-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:49:13-56
+163            android:stateNotNeeded="true"
+163-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:50:13-42
+164            android:theme="@style/zxing_CaptureTheme"
+164-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:51:13-54
+165            android:windowSoftInputMode="stateAlwaysHidden" />
+165-->[com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Badrul\.gradle\caches\transforms-2\files-2.1\79ad464949e0dec25b1f09c33d43c76e\jetified-zxing-android-embedded-3.2.0\AndroidManifest.xml:52:13-60
+166    </application>
+167
+168</manifest>

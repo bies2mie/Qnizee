@@ -13,6 +13,9 @@ public class Config {
 	public static final String ORDER_STATUS_COMPLETE = "http://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
 	public static final String ORDER_STATUS_PROCESSING = "http://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
 	public static final String PROFILE = "http://gmartbox.cvmall.my/apps/getuserinfo.php?userEmail=";
+	public static final String SHOW_FOOD = "http://gmartbox.cvmall.my/apps/showfood.php";
+	public static final String FOOD_ID = "foodID";
+
 	//FOR ORDER
 	public static final String ORDER_ID = "orderid";
 	public static final String CARD_ID = "cardID";

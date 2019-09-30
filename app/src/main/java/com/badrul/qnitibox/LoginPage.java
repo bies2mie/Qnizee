@@ -221,7 +221,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void loadUser(){
-        final ProgressDialog loading = ProgressDialog.show(this,"Sila Tunggu","Menghubungi Server",false,false);
+        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.PROFILE+userEmailID,
                 new Response.Listener<String>() {

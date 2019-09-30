@@ -1031,10 +1031,10 @@ drawable adaptergreenstroke
 drawable avd_hide_password
 drawable avd_show_password
 drawable background_splash
+drawable buttoncornerblack
 drawable buttoncornerblue
 drawable buttoncornergradient
 drawable buttoncornergradientgreen
-drawable buttoncornergreen
 drawable buttoncornerpink
 drawable buttoncornerpurple
 drawable buttoncornerpurplegrad
@@ -1217,6 +1217,7 @@ id filled
 id fitCenter
 id fitXY
 id fixed
+id foodDesc
 id forever
 id fragment_container
 id ghost_view
@@ -1230,6 +1231,7 @@ id icon
 id icon_group
 id ifRoom
 id image
+id imageFood
 id imageView1
 id imageViewGone
 id imageViewQR
@@ -1291,6 +1293,7 @@ id phoneNumtxt
 id pin
 id popup_element
 id prevorder
+id progress
 id progress_circular
 id progress_horizontal
 id puLocat
@@ -1331,6 +1334,7 @@ id sharebtn
 id shortcut
 id showCustom
 id showHome
+id showPrice
 id showTitle
 id showqrtxt
 id smallLabel
@@ -1348,6 +1352,7 @@ id src_in
 id src_over
 id standard
 id start
+id startOrder
 id status_bar_latest_event_content
 id stretch
 id submenuarrow
@@ -1461,16 +1466,19 @@ layout abc_tooltip
 layout activity_error_page1
 layout activity_error_page2
 layout activity_feedback_page
+layout activity_food_display
 layout activity_friday_breakfast
 layout activity_friday_dinner
 layout activity_friday_lunch
 layout activity_how_to
 layout activity_howtomenu
 layout activity_login_page
+layout activity_main
 layout activity_menu_type
 layout activity_monday_breakfast
 layout activity_monday_dinner
 layout activity_monday_lunch
+layout activity_new_indv_order
 layout activity_order_details
 layout activity_order_menu
 layout activity_order_page
@@ -1567,6 +1575,10 @@ mipmap menuicon
 mipmap mondaybreakfast
 mipmap mondaydinner
 mipmap mondaylunch
+mipmap newbg1
+mipmap newbg2
+mipmap newbg3
+mipmap newbg4
 mipmap registerbg
 mipmap saturdaybreakfast
 mipmap saturdaydinner
