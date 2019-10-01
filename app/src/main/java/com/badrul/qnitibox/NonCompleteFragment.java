@@ -207,7 +207,8 @@ ImageButton logout;
                                         product.getString("puTime"),
                                         product.getString("orderStatus"),
                                         product.getString("completeDate"),
-                                        product.getString("completeTime")
+                                        product.getString("completeTime"),
+                                        product.getString("totalPrice")
 
                                 ));
                             }
@@ -308,7 +309,7 @@ ImageButton logout;
         editor.putString(Config.ORDER_STATUS, order.getOrderStatus());
         editor.putString(Config.ORDER_COMPLETEDATE, order.getCompleteDate());
         editor.putString(Config.ORDER_COMPLETETIME, order.getCompleteTime());
-
+        editor.putString(Config.TOTAL_FOOD_PRICE, order.getTotalPrice());
 
         // Saving values to editor
         editor.commit();

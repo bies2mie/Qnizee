@@ -124,7 +124,7 @@ public class FoodDisplay extends AppCompatActivity {
                             }
 
                             title.setText(foodtitle);
-                            price.setText(foodprice);
+                            price.setText("RM "+foodprice);
                             desc.setText(fooddesc);
 
                             //add shared preference ID,nama,credit here
@@ -138,6 +138,7 @@ public class FoodDisplay extends AppCompatActivity {
 
                             editor.putString(Config.FOOD_ID, String.valueOf(foodID));
                             editor.putString(Config.MENU_TYPE, foodtitle);
+                            editor.putString(Config.FOOD_PRICE,foodprice);
 
                             // Saving values to editor
                             editor.commit();

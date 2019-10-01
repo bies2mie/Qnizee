@@ -18,7 +18,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class OrderDetails extends AppCompatActivity {
 
-    TextView order,name,phone,email,matrix,orType,orDay,orDatenTime,orQTT,orUsrType,pickupLo,pickupTime,orStat,comDatenTime;
+    TextView order,name,phone,email,matrix,orType,orDay,orDatenTime,orQTT,orUsrType,pickupLo,pickupTime,orStat,comDatenTime,totprice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class OrderDetails extends AppCompatActivity {
         String orderStatus = sharedPreferences.getString(Config.ORDER_STATUS, "Not Available");
         String completeDate = sharedPreferences.getString(Config.ORDER_COMPLETEDATE, "Not Available");
         String completeTime = sharedPreferences.getString(Config.ORDER_COMPLETETIME, "Not Available");
+        String totalPrice1 = sharedPreferences.getString(Config.TOTAL_FOOD_PRICE, "Not Available");
 
         order = findViewById(R.id.orderIDtxt);
         name = findViewById(R.id.buyerNametxt);
@@ -57,6 +58,7 @@ public class OrderDetails extends AppCompatActivity {
         pickupTime = findViewById(R.id.puTimetxt);
         orStat = findViewById(R.id.orderStat);
         comDatenTime = findViewById(R.id.completedatentime);
+        totprice = findViewById(R.id.totalPricetxt);
 
         order.setText(orderID);
         name.setText(nameID);
@@ -72,6 +74,7 @@ public class OrderDetails extends AppCompatActivity {
         pickupTime.setText(puTime);
         orStat.setText(orderStatus);
         comDatenTime.setText(completeDate+" "+completeTime);
+        totprice.setText("RM "+totalPrice1);
 
 
         ImageView imgView = findViewById(R.id.imageViewQR);

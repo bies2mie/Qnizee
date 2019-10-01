@@ -1,6 +1,7 @@
 package com.badrul.qnitibox;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,6 +87,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     private PopupWindow pwindo;
     final Context context = this;
     int id = 0;
+    DecimalFormat df;
     Button nextBtn;
     ImageButton exit;
     ImageButton staffOrder;
@@ -97,7 +99,9 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     List<String> list;
     ArrayAdapter<String> adp;
     Boolean loggedIn;
+    Double foodprice1;
     String foodID;
+    double totalprice1;
     // int result = 0;
 
     @Override
@@ -107,12 +111,16 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_new_indv_order);
 
+        df = new DecimalFormat("0.00");
+
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         menuType = sharedPreferences.getString(Config.MENU_TYPE, "Not Available");
         menuDay = sharedPreferences.getString(Config.MENU_DAY, "Not Available");
         orderDate = sharedPreferences.getString(Config.ORDER_DATE, "Not Available");
         orderTime = sharedPreferences.getString(Config.ORDER_TIME, "Not Available");
         userID = sharedPreferences.getString(Config.USER_ID2,"0");
+        String foodprice = sharedPreferences.getString(Config.FOOD_PRICE,"0");
+        foodprice1 = Double.valueOf(foodprice);
         nameID = sharedPreferences.getString(Config.NAME_ID2, "Not Available");
         phoneID = sharedPreferences.getString(Config.PHONE_ID2, "Not Available");
         emailID = sharedPreferences.getString(Config.EMAIL_ID2, "Not Available");
@@ -194,7 +202,9 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                 final String myCard = cardNum.getText().toString().trim();
                 final String myQtt = qttNum.getText().toString().trim();
-                final int result = Integer.parseInt(myQtt);
+                final double result = Double.parseDouble(myQtt);
+
+
 
                 if (locat == "") {
                     Toast.makeText(getApplicationContext(), "Please select pickup location",
@@ -239,7 +249,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             @Override
                             public void onClick(View v) {
 
-
+                                totalprice1 = foodprice1*result;
                                 try {
                                     if (Settings.Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
 
@@ -271,7 +281,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                                             loading.dismiss();
 
-                                            Intent i = new Intent(NewIndvOrder.this, MenuType.class);
+                                            Intent i = new Intent(NewIndvOrder.this, MainActivity.class);
                                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(i);
                                             finish();
@@ -303,6 +313,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                             params.put(KEY_LOCATION, locat);
                                             params.put(KEY_USERID, userID);
                                             params.put(KEY_FOODID, foodID);
+                                            params.put("totalPrice", df.format(totalprice1));
                                             return params;
                                         }
 
@@ -443,6 +454,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 params.put(KEY_MENUSTATUS, myStatus);
                 params.put(KEY_LOCATION, locat);
                 params.put(KEY_EMAIL, emailID);
+                params.put("totalPrice", df.format(totalprice1));
                 return params;
             }
 

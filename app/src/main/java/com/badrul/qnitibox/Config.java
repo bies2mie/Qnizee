@@ -33,6 +33,8 @@ public class Config {
 	public static final String ORDER_USERTYPE = "orderUserType";
 	public static final String PICKUP_LOCATION = "puLocation";
 	public static final String PICKUP_TIME = "puTime";
+	public static final String FOOD_PRICE = "foodPrice";
+	public static final String TOTAL_FOOD_PRICE = "totalfoodPrice";
 
 	public static final String COMPLETE_DATE = "completeDate";
 	public static final String COMPLETE_TIME = "completeTime";
