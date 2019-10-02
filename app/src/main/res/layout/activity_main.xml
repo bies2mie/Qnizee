@@ -75,7 +75,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:src="@mipmap/menuicon" />
+        android:src="@mipmap/qnitibox_icon" />
 
     <ImageButton
         android:id="@+id/feedbackbtn"

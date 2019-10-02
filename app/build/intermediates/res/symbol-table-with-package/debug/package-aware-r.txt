@@ -1580,6 +1580,8 @@ mipmap newbg1
 mipmap newbg2
 mipmap newbg3
 mipmap newbg4
+mipmap qnitibox_icon
+mipmap qnitiboxbg
 mipmap registerbg
 mipmap saturdaybreakfast
 mipmap saturdaydinner
