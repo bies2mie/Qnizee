@@ -184,7 +184,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                             list = new ArrayList<>();
 
-                            list.add("Pejabat Inasis Bank Rakyat (Pick Up: 7 PM - 9 PM)");
+                            list.add("Pusat Dobi Bank Rakyat (Pick Up: 7 PM - 9 PM)");
                             list.add("Pusat Dobi SME (Pick Up: 7 PM - 9 PM)");
 
                             adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
