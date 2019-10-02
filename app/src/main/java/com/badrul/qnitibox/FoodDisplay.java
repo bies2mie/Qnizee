@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -37,7 +38,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FoodDisplay extends AppCompatActivity {
@@ -48,6 +52,7 @@ public class FoodDisplay extends AppCompatActivity {
     TextView title,price,desc;
     ImageView showFood;
     ProgressBar progressBar;
+    String my_date = "10/10/2019";
 
     String menuType;//Data for database;foodTitle
     String foodtitle,foodprice,fooddesc,foodimage;
@@ -73,11 +78,48 @@ public class FoodDisplay extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FoodDisplay.this, NewIndvOrder.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+
+                try {
+                    if (Settings.Global.getInt(getContentResolver(), Settings.Global.AUTO_TIME) == 0) {
+
+                        Toast.makeText(getApplicationContext(),
+                                "Please set Automatic Date & Time to ON in the Settings",
+                                Toast.LENGTH_LONG).show();
+
+                        startActivityForResult(
+                                new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
+                    } else if (Settings.Global.getInt(getContentResolver(),
+                            Settings.Global.AUTO_TIME_ZONE) == 0) {
+
+                        Toast.makeText(getApplicationContext(),
+                                "Please set Automatic Time Zone to ON in the Settings",
+                                Toast.LENGTH_LONG).show();
+
+                        startActivityForResult(
+                                new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
+                    }
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        Date strDate = sdf.parse(my_date);
+                        if (System.currentTimeMillis() < strDate.getTime()) {
+
+                            Toast.makeText(FoodDisplay.this,"You can start ordering on 10 October 2019",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+
+                        Intent intent = new Intent(FoodDisplay.this, NewIndvOrder.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        }
+
+                } catch (Settings.SettingNotFoundException ex) {
+                    ex.printStackTrace();
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                }
             }
-        });
+            });
 
         eventBtn.setOnClickListener(new View.OnClickListener() {
             @Override

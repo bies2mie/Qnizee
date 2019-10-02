@@ -127,7 +127,7 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                                 editor.commit();
 
                                 //Starting login activity
-                                Intent intent = new Intent(getActivity().getApplicationContext(), MenuType.class);
+                                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 getActivity().finish();
                                 startActivity(intent);
