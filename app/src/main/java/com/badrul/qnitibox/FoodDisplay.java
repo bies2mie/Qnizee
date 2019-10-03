@@ -52,7 +52,7 @@ public class FoodDisplay extends AppCompatActivity {
     TextView title,price,desc;
     ImageView showFood;
     ProgressBar progressBar;
-    String my_date = "10/10/2019";
+    String my_date ;
 
     String menuType;//Data for database;foodTitle
     String foodtitle,foodprice,fooddesc,foodimage;
@@ -72,7 +72,7 @@ public class FoodDisplay extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
 
         foodList = new ArrayList<>();
-
+        checkDate();
         show_Food();
 
         continueBtn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +103,7 @@ public class FoodDisplay extends AppCompatActivity {
                         Date strDate = sdf.parse(my_date);
                         if (System.currentTimeMillis() < strDate.getTime()) {
 
-                            Toast.makeText(FoodDisplay.this,"You can start ordering on 10 October 2019",
+                            Toast.makeText(FoodDisplay.this,"You can start ordering on "+my_date,
                                     Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -236,5 +236,44 @@ public class FoodDisplay extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
+    }
+    public void checkDate(){
+
+        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                Config.URL_CHECKDATE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                loading.dismiss();
+                my_date = response;
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                loading.dismiss();
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(FoodDisplay.this,
+                            "No internet. Please check your connection",
+                            Toast.LENGTH_LONG).show();
+                }else{
+
+                    Toast.makeText(FoodDisplay.this,
+                            error.toString(),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        })
+                ;
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
     }
 }

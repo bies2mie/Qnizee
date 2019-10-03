@@ -12,9 +12,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -27,13 +30,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class RegisterPage extends AppCompatActivity {
+public class RegisterPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Button register;
     EditText name,phone,email,matrix,pass,confirmPass;
+    Spinner sp;
+    List<String> list;
+    ArrayAdapter<String> adp;
+    String locat = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +58,16 @@ public class RegisterPage extends AppCompatActivity {
         pass = findViewById(R.id.enPass);
         confirmPass = findViewById(R.id.enConfirmPass);
 
+        sp = findViewById(R.id.spinner);
+        sp.setOnItemSelectedListener(this);
+        list = new ArrayList<>();
 
+        list.add("UUM");
+        list.add("UNIMAP");
 
-
-
-
-
-
-
-
+        adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
+        adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp.setAdapter(adp);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +101,9 @@ public class RegisterPage extends AppCompatActivity {
                 else if (!pss.equals(conpss)) {
                     Toast.makeText(getApplicationContext(),
                             "Your Password not Equal", Toast.LENGTH_LONG).show();
+                }else if(locat.equalsIgnoreCase("")) {
+                    Toast.makeText(getApplicationContext(), "Please select your location",
+                            Toast.LENGTH_LONG).show();
                 }
 
                 else{
@@ -106,7 +119,7 @@ public class RegisterPage extends AppCompatActivity {
 
                                             Toast.makeText(RegisterPage.this, response, Toast.LENGTH_LONG)
                                                     .show();
-                                            Intent i = new Intent(RegisterPage.this, MenuType.class);
+                                            Intent i = new Intent(RegisterPage.this, MainActivity.class);
                                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(i);
                                             finish();
@@ -134,6 +147,7 @@ public class RegisterPage extends AppCompatActivity {
                                             params.put("emailID", em);
                                             params.put("matrixID", mt);
                                             params.put("userPass", pss);
+                                            params.put("userLocation", locat);
                                             return params;
                                         }
 
@@ -149,5 +163,20 @@ public class RegisterPage extends AppCompatActivity {
 
             }}
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        locat = parent.getSelectedItem().toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + locat, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        Toast.makeText(arg0.getContext(), "Please Select Your Location", Toast.LENGTH_LONG).show();
+
     }
 }

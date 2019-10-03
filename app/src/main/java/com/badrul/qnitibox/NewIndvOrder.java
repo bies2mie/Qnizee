@@ -101,6 +101,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     Boolean loggedIn;
     Double foodprice1;
     String foodID;
+    String userLocation;
     double totalprice1;
     // int result = 0;
 
@@ -126,6 +127,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         emailID = sharedPreferences.getString(Config.EMAIL_ID2, "Not Available");
         matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
         foodID = sharedPreferences.getString(Config.FOOD_ID, "Not Available");
+        userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
 
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         //If we will get true
@@ -181,16 +183,28 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.inasis) {
 
+                            if(userLocation.equalsIgnoreCase("UUM")) {
+                                list = new ArrayList<>();
 
-                            list = new ArrayList<>();
+                                list.add("Pusat Dobi Bank Rakyat (Pick Up: 7 PM - 9 PM)");
+                                list.add("Pusat Dobi SME (Pick Up: 7 PM - 9 PM)");
 
-                            list.add("Pusat Dobi Bank Rakyat (Pick Up: 7 PM - 9 PM)");
-                            list.add("Pusat Dobi SME (Pick Up: 7 PM - 9 PM)");
+                                adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
+                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                sp.setAdapter(adp);
+                            }
 
-                            adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
-                            adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            sp.setAdapter(adp);
+                            else{
 
+                                list = new ArrayList<>();
+
+                                list.add("Unimap1 (Pick Up: 7 PM - 9 PM)");
+                                list.add("Unimap2 (Pick Up: 7 PM - 9 PM)");
+
+                                adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
+                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                sp.setAdapter(adp);
+                            }
                     }
             }
         });
@@ -212,9 +226,9 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 } else if (result < 1) {
                     Toast.makeText(getApplicationContext(), "Please enter minimum 1 order",
                             Toast.LENGTH_LONG).show();
-                } else if (result > 10) {
+                } else if (result > 5) {
                     Toast.makeText(getApplicationContext(),
-                            "Cannot order more than 10. Maximum allowed per order reached",
+                            "Cannot order more than 5. Maximum allowed per order reached",
                             Toast.LENGTH_LONG).show();
                 }
                 /*
@@ -314,6 +328,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                             params.put(KEY_USERID, userID);
                                             params.put(KEY_FOODID, foodID);
                                             params.put("totalPrice", df.format(totalprice1));
+                                            params.put("orderLocation", userLocation);
                                             return params;
                                         }
 

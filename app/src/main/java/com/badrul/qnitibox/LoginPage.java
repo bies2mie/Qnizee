@@ -50,7 +50,7 @@ public class LoginPage extends AppCompatActivity {
     String phoneID;
     String emailID;
     String matrixID;
-
+    String userLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -243,8 +243,8 @@ public class LoginPage extends AppCompatActivity {
                                         nameID = user.getString("nameID"),
                                         phoneID = user.getString("phoneID"),
                                         emailID = user.getString("emailID"),
-                                        matrixID = user.getString("matrixID")
-
+                                        matrixID = user.getString("matrixID"),
+                                        userLocation = user.getString("userLocation")
 
                                 ));
 
@@ -264,7 +264,7 @@ public class LoginPage extends AppCompatActivity {
                             editor.putString(Config.PHONE_ID2, phoneID);
                             editor.putString(Config.EMAIL_ID2, emailID);
                             editor.putString(Config.MATRIX_ID2, matrixID);
-
+                            editor.putString(Config.LOCATION_ID2, userLocation);
 
                             // Saving values to editor
                             editor.commit();
@@ -272,7 +272,7 @@ public class LoginPage extends AppCompatActivity {
                             loading.dismiss();
 
                             //Starting profile activity
-                            Intent intent = new Intent(LoginPage.this, MenuType.class);
+                            Intent intent = new Intent(LoginPage.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
