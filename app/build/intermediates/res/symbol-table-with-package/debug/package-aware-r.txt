@@ -1271,6 +1271,7 @@ id never
 id nextBtn
 id none
 id normal
+id normal1
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -1296,12 +1297,14 @@ id prevorder
 id progress
 id progress_circular
 id progress_horizontal
+id promo1
 id puLocat
 id puLoctxt
 id puTimetxt
 id purchasedateNtime
 id qttNum
 id radio
+id radioPromo
 id radioType
 id recylcerView
 id registerBtn

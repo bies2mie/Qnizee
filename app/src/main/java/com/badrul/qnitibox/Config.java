@@ -10,6 +10,7 @@ public class Config {
 	public static final String ORDER_TIME = "orderTime";
 
 	public static final String URL_CHECKDATE = "http://gmartbox.cvmall.my/apps/checkdate.php";
+	public static final String URL_CHECKMAXQTT = "http://gmartbox.cvmall.my/apps/checkmaxqtt.php";
 
 	public static final String ORDER_STATUS_COMPLETE = "http://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
 	public static final String ORDER_STATUS_PROCESSING = "http://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
@@ -48,7 +49,7 @@ public class Config {
 	public static final String EMAIL_ID2 = "emailID2";
 	public static final String MATRIX_ID2 = "matrixID";
 	public static final String LOCATION_ID2 = "userLocation";
-
+	public static final String PROMO = "userPromo";
 
 	public static final String LOGIN_URL = "http://gmartbox.cvmall.my/apps/loginqniti.php";
 	public static final String REGISTER_URL = "http://gmartbox.cvmall.my/apps/registerqniti.php";

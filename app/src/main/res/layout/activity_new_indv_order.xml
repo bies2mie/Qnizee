@@ -115,13 +115,16 @@
                             android:id="@+id/inasis"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
+                            android:buttonTint="#ff8080"
                             android:text="DORM" />
 
                         <RadioButton
                             android:id="@+id/acade"
                             android:layout_marginLeft="5dp"
                             android:enabled="false"
+                            android:buttonTint="#ff8080"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ACADEMIC(Coming Soon)" />
@@ -135,6 +138,44 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/layoutcornergrey" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Choose Promo Type"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#000000" />
+
+                <RadioGroup
+                    android:id="@+id/radioPromo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/promo1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="#ffad33"
+                        android:layout_marginRight="30dp"
+                        android:text="FREE 1 PACK" />
+
+                    <RadioButton
+                        android:id="@+id/normal1"
+                        android:layout_marginLeft="5dp"
+                        android:buttonTint="#ffad33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NO PROMOTION" />
+                </RadioGroup>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -308,7 +349,7 @@
                     android:ems="10"
                     android:inputType="number"
                     android:padding="7dp"
-                    android:text="0" />
+                   />
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

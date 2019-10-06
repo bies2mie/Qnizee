@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.SettingNotFoundException;
@@ -48,6 +49,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -72,6 +74,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     public static final String KEY_USERID = "userID";
     public static final String KEY_FOODID = "foodID";
 
+    double result;
     String userID;
     String nameID;
     String phoneID;
@@ -103,7 +106,10 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String foodID;
     String userLocation;
     double totalprice1;
+    int maxQTT;
+    String promo;
     // int result = 0;
+    String claimPromo;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +134,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
         foodID = sharedPreferences.getString(Config.FOOD_ID, "Not Available");
         userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
+        promo = sharedPreferences.getString(Config.PROMO, "Not Available");
 
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         //If we will get true
@@ -138,7 +145,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             startActivity(intent);
             finish();
         }
-
+        checkMaxQTT();
 
         TextView showName = findViewById(R.id.nameText);
         TextView showPhone = findViewById(R.id.phoneNum);
@@ -209,6 +216,38 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             }
         });
 
+        final RadioGroup promoType = findViewById(R.id.radioPromo);
+
+        promoType.clearCheck();
+        promoType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                if (i == R.id.promo1) {
+
+                        if (promo.equalsIgnoreCase("YES")){
+
+                            RadioButton radio = findViewById(R.id.promo1);
+                            radio.setEnabled(false);
+                            Toast.makeText(getApplicationContext(), "You already claim this promotion",
+                                    Toast.LENGTH_LONG).show();
+                            promoType.clearCheck();
+
+                        }else{
+
+                            claimPromo ="YES";
+                        }
+                    }
+                else if(i == R.id.normal1){
+
+                            claimPromo = "NO";
+
+                }
+
+            }});
+
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -216,27 +255,35 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                 final String myCard = cardNum.getText().toString().trim();
                 final String myQtt = qttNum.getText().toString().trim();
-                final double result = Double.parseDouble(myQtt);
+
+                if (myQtt.equalsIgnoreCase("")|| myQtt.equalsIgnoreCase("0")){
+
+                    Toast.makeText(getApplicationContext(), "Please enter minimum 1 order",
+                            Toast.LENGTH_LONG).show();
+                }
+                else{
+                    result = Double.parseDouble(myQtt);
+                }
 
 
-
-                if (locat == "") {
+                if (locat.equalsIgnoreCase( "")) {
                     Toast.makeText(getApplicationContext(), "Please select pickup location",
                             Toast.LENGTH_LONG).show();
                 } else if (result < 1) {
                     Toast.makeText(getApplicationContext(), "Please enter minimum 1 order",
                             Toast.LENGTH_LONG).show();
-                } else if (result > 5) {
+                } else if (result > maxQTT && claimPromo.equalsIgnoreCase("NO")) {
                     Toast.makeText(getApplicationContext(),
-                            "Cannot order more than 5. Maximum allowed per order reached",
+                            "Cannot order more than "+ maxQTT +" unit. Maximum allowed per order reached",
                             Toast.LENGTH_LONG).show();
                 }
-                /*
-                 * else if (myCard.length() < 5 ||myCard.length() >
-                 * 10) { Toast.makeText(getApplicationContext(),
-                 * "Please enter proper ATS Card number!",
-                 * Toast.LENGTH_LONG).show(); }
-                 */
+                else if (result > 1&& claimPromo.equalsIgnoreCase("YES")) {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot order more than 1 unit. Maximum allowed per promotion reached",
+                            Toast.LENGTH_LONG).show();
+                }
+
+
                 else
 
                     try {
@@ -264,6 +311,12 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             public void onClick(View v) {
 
                                 totalprice1 = foodprice1*result;
+
+                                if (claimPromo.equalsIgnoreCase("YES")) {
+                                    promo = "YES";
+                                    totalprice1 = 0;
+                                }
+
                                 try {
                                     if (Settings.Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
 
@@ -329,6 +382,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                             params.put(KEY_FOODID, foodID);
                                             params.put("totalPrice", df.format(totalprice1));
                                             params.put("orderLocation", userLocation);
+                                            params.put("promo", promo);
                                             return params;
                                         }
 
@@ -480,6 +534,46 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
+    }
+
+    public void checkMaxQTT(){
+
+        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                Config.URL_CHECKMAXQTT, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                loading.dismiss();
+                maxQTT = Integer.valueOf(response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                loading.dismiss();
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(NewIndvOrder.this,
+                            "No internet. Please check your connection",
+                            Toast.LENGTH_LONG).show();
+                }else{
+
+                    Toast.makeText(NewIndvOrder.this,
+                            error.toString(),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        })
+                ;
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }

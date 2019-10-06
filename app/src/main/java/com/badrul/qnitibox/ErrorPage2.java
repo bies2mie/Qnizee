@@ -25,7 +25,7 @@ public class ErrorPage2 extends AppCompatActivity {
 		backBtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 
-				Intent i = new Intent(ErrorPage2.this, MenuType.class);
+				Intent i = new Intent(ErrorPage2.this, MainActivity.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 				finish();
