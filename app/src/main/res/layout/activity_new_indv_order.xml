@@ -164,6 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:enabled="false"
                         android:buttonTint="#ffad33"
                         android:layout_marginRight="30dp"
                         android:text="FREE 1 PACK" />

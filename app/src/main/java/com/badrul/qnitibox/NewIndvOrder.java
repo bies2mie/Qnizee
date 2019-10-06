@@ -110,6 +110,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String promo;
     // int result = 0;
     String claimPromo;;
+    RadioButton promoBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,12 +146,14 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             startActivity(intent);
             finish();
         }
+        checkPromo();
         checkMaxQTT();
 
         TextView showName = findViewById(R.id.nameText);
         TextView showPhone = findViewById(R.id.phoneNum);
         TextView showEmail = findViewById(R.id.emailIDtxt);
         TextView showMatrix = findViewById(R.id.matrixNum);
+        promoBtn = findViewById(R.id.promo1);
 
         showName.setText(nameID);
         showEmail.setText(emailID);
@@ -193,8 +196,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             if(userLocation.equalsIgnoreCase("UUM")) {
                                 list = new ArrayList<>();
 
-                                list.add("Pusat Dobi Bank Rakyat (Pick Up: 7 PM - 9 PM)");
-                                list.add("Pusat Dobi SME (Pick Up: 7 PM - 9 PM)");
+                                list.add("WashCafe Bank Rakyat (Pick Up: 7 PM - 9 PM)");
+                                list.add("WashCafe SME Bank (Pick Up: 7 PM - 9 PM)");
 
                                 adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
                                 adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -228,11 +231,10 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                         if (promo.equalsIgnoreCase("YES")){
 
-                            RadioButton radio = findViewById(R.id.promo1);
-                            radio.setEnabled(false);
-                            Toast.makeText(getApplicationContext(), "You already claim this promotion",
+
+                            promoBtn.setEnabled(false);
+                            Toast.makeText(getApplicationContext(), "Sorry. You already claim this promotion",
                                     Toast.LENGTH_LONG).show();
-                            promoType.clearCheck();
 
                         }else{
 
@@ -550,6 +552,55 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 loading.dismiss();
                 maxQTT = Integer.valueOf(response);
 
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                loading.dismiss();
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(NewIndvOrder.this,
+                            "No internet. Please check your connection",
+                            Toast.LENGTH_LONG).show();
+                }else{
+
+                    Toast.makeText(NewIndvOrder.this,
+                            error.toString(),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        })
+                ;
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
+    }
+
+    public void checkPromo(){
+
+        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                Config.URL_CHECKPROMOQTT+userLocation, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                int promo_qtt = Integer.valueOf(response);
+
+                if (promo_qtt > 10){
+
+                    promoBtn.setEnabled(true);
+
+                }else{
+
+                    promoBtn.setEnabled(false);
+                }
+
+                loading.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override

@@ -11,6 +11,7 @@ public class Config {
 
 	public static final String URL_CHECKDATE = "http://gmartbox.cvmall.my/apps/checkdate.php";
 	public static final String URL_CHECKMAXQTT = "http://gmartbox.cvmall.my/apps/checkmaxqtt.php";
+	public static final String URL_CHECKPROMOQTT = "http://gmartbox.cvmall.my/apps/getpromoqtt.php?userLocation=";
 
 	public static final String ORDER_STATUS_COMPLETE = "http://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
 	public static final String ORDER_STATUS_PROCESSING = "http://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
