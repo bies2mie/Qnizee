@@ -312,13 +312,6 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             @Override
                             public void onClick(View v) {
 
-                                totalprice1 = foodprice1*result;
-
-                                if (claimPromo.equalsIgnoreCase("YES")) {
-                                    promo = "YES";
-                                    totalprice1 = 0;
-                                }
-
                                 try {
                                     if (Settings.Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
 
@@ -340,6 +333,13 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                     }
 
                                     final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
+
+                                    totalprice1 = foodprice1*result;
+
+                                    if (claimPromo.equalsIgnoreCase("YES")) {
+                                        promo = "YES";
+                                        totalprice1 = 0;
+                                    }
 
                                     StringRequest stringRequest = new StringRequest(Request.Method.POST,
                                             NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
