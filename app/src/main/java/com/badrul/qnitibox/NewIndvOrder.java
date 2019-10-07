@@ -585,7 +585,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                Config.URL_CHECKPROMOQTT+userLocation, new Response.Listener<String>() {
+                Config.URL_CHECKPROMOQTT+userLocation+"&foodID="+foodID, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
