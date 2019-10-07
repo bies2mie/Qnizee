@@ -3,8 +3,8 @@
     package="com.badrul.qnitibox"
     android:installLocation="auto"
     android:targetSandboxVersion="2"
-    android:versionCode="4"
-    android:versionName="0.3" >
+    android:versionCode="5"
+    android:versionName="0.4" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -42,6 +42,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:testOnly="true"
         android:theme="@style/SplashTheme" >
+        <activity android:name="com.badrul.qnitibox.FoodMenuDisplay" />
         <activity
             android:name="com.badrul.qnitibox.NewIndvOrder"
             android:screenOrientation="portrait" />

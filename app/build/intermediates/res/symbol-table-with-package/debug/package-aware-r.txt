@@ -1028,6 +1028,7 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable adaptergreenstroke
+drawable adapterorangestroke
 drawable avd_hide_password
 drawable avd_show_password
 drawable background_splash
@@ -1232,6 +1233,7 @@ id icon_group
 id ifRoom
 id image
 id imageFood
+id imageView
 id imageView1
 id imageViewGone
 id imageViewQR
@@ -1471,6 +1473,7 @@ layout activity_error_page1
 layout activity_error_page2
 layout activity_feedback_page
 layout activity_food_display
+layout activity_food_menu_display
 layout activity_friday_breakfast
 layout activity_friday_dinner
 layout activity_friday_lunch
@@ -1517,6 +1520,7 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout food_list
 layout fragment_complete
 layout fragment_non_complete
 layout mtrl_layout_snackbar
