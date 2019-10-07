@@ -597,6 +597,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                 }else{
 
+                    Toast.makeText(NewIndvOrder.this,"No promotion for this menu. Please check in the future",
+                            Toast.LENGTH_LONG).show();
                     promoBtn.setText("Offer Not Available");
                     promoBtn.setEnabled(false);
                 }
