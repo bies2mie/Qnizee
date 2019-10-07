@@ -597,6 +597,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                 }else{
 
+                    promoBtn.setText("Offer Not Available");
                     promoBtn.setEnabled(false);
                 }
 
