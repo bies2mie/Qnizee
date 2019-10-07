@@ -104,7 +104,7 @@
 
                     <RadioGroup
                         android:id="@+id/radioType"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="10dp"
@@ -113,21 +113,21 @@
 
                         <RadioButton
                             android:id="@+id/inasis"
-                            android:layout_width="wrap_content"
+                            android:layout_width="176dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:buttonTint="#ff8080"
-                            android:text="DORM" />
+                            android:text="Dorm" />
 
                         <RadioButton
                             android:id="@+id/acade"
-                            android:layout_marginLeft="5dp"
                             android:enabled="false"
                             android:buttonTint="#ff8080"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ACADEMIC(Coming Soon)" />
+                            android:text="Academic(Coming Soon)" />
                     </RadioGroup>
 
                     <Spinner
@@ -152,7 +152,7 @@
 
                 <RadioGroup
                     android:id="@+id/radioPromo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
@@ -166,16 +166,15 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:buttonTint="#ffad33"
-                        android:layout_marginRight="30dp"
-                        android:text="FREE 1 PACK" />
+                        android:text="Free 1 Pack" />
 
                     <RadioButton
                         android:id="@+id/normal1"
-                        android:layout_marginLeft="5dp"
                         android:buttonTint="#ffad33"
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NO PROMOTION" />
+                        android:text="No Promotion" />
                 </RadioGroup>
 
                 <TextView

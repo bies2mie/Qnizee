@@ -1,4 +1,4 @@
-#Mon Oct 07 12:39:02 SGT 2019
+#Mon Oct 07 17:45:03 SGT 2019
 base.0=C\:\\Users\\Badrul\\Documents\\AndroidStudioWorkspace\\Qnizee\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
