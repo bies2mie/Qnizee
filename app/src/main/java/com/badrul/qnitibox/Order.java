@@ -22,9 +22,10 @@ public class Order {
     private String completeDate;
     private String completeTime;
     private String totalPrice;
+    private String foodLink;
 
 
-    public Order(int orderID, String cardID, String nameID, String phoneID, String emailID, String matrixID, String orderType, String orderDay, String orderDate, String orderTime, String orderQTT, String orderUserType, String puLocation, String puTime, String orderStatus, String completeDate, String completeTime,String totalPrice) {
+    public Order(int orderID, String cardID, String nameID, String phoneID, String emailID, String matrixID, String orderType, String orderDay, String orderDate, String orderTime, String orderQTT, String orderUserType, String puLocation, String puTime, String orderStatus, String completeDate, String completeTime,String totalPrice,String foodLink) {
 
         this.orderID = orderID;
         this.nameID = nameID;
@@ -44,6 +45,7 @@ public class Order {
         this.completeDate = completeDate;
         this.completeTime = completeTime;
         this.totalPrice = totalPrice;
+        this.foodLink = foodLink;
 
 
     }
@@ -118,5 +120,9 @@ public class Order {
 
     public String getTotalPrice() {
         return totalPrice;
+    }
+
+    public String getFoodLink() {
+        return foodLink;
     }
     }

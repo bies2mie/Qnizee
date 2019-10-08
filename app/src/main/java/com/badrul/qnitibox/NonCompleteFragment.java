@@ -208,7 +208,8 @@ ImageButton logout;
                                         product.getString("orderStatus"),
                                         product.getString("completeDate"),
                                         product.getString("completeTime"),
-                                        product.getString("totalPrice")
+                                        product.getString("totalPrice"),
+                                        product.getString("foodImage")
 
                                 ));
                             }

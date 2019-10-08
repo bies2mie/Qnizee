@@ -55,10 +55,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedListener {
 
-    public static final String NEW_CONFIRMORDER_URL = "http://gmartbox.cvmall.my/apps/neworder.php";
-    public static final String EMAIL_IDV_URL = "http://atsventures.com/mail/indmailer.php";
+    public static final String NEW_CONFIRMORDER_URL = "https://gmartbox.cvmall.my/apps/neworder.php";
+    public static final String EMAIL_IDV_URL = "https://atsventures.com/mail/indmailer.php";
 
     public static final String KEY_MENUTYPE = "menuType";
     public static final String KEY_MENUDAY = "menuDay";
@@ -111,6 +115,10 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     // int result = 0;
     String claimPromo;;
     RadioButton promoBtn;
+    List<Promo> promoList;
+    int promoID;
+    String promoQTT = "0";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +129,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
         df = new DecimalFormat("0.00");
 
-        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         menuType = sharedPreferences.getString(Config.MENU_TYPE, "Not Available");
         menuDay = sharedPreferences.getString(Config.MENU_DAY, "Not Available");
         orderDate = sharedPreferences.getString(Config.ORDER_DATE, "Not Available");
@@ -146,8 +154,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             startActivity(intent);
             finish();
         }
-        checkPromo();
-        checkMaxQTT();
+
 
         TextView showName = findViewById(R.id.nameText);
         TextView showPhone = findViewById(R.id.phoneNum);
@@ -176,6 +183,10 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         c.add(Calendar.DATE, 1);
         dt = c.getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        promoList = new ArrayList<>();
+
+        checkPromo();
+        checkMaxQTT();
 
         // to convert Date to String, use format method of SimpleDateFormat
         // class.
@@ -184,7 +195,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         menuDayD.setText(orderDate);
         menuTypeD.setText(menuType);
 
-        RadioGroup locationType = findViewById(R.id.radioType);
+        final RadioGroup locationType = findViewById(R.id.radioType);
 
         locationType.clearCheck();
         locationType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -192,6 +203,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.inasis) {
+
+                    sp.setVisibility(View.VISIBLE);
 
                             if(userLocation.equalsIgnoreCase("UUM")) {
                                 list = new ArrayList<>();
@@ -269,7 +282,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
 
                 if (locat.equalsIgnoreCase( "")) {
-                    Toast.makeText(getApplicationContext(), "Please select pickup location",
+                    Toast.makeText(getApplicationContext(), "Please select pick-up location",
                             Toast.LENGTH_LONG).show();
                 } else if (result < 1) {
                     Toast.makeText(getApplicationContext(), "Please enter minimum 1 order",
@@ -283,6 +296,13 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                     Toast.makeText(getApplicationContext(),
                             "Cannot order more than 1 unit. Maximum allowed per promotion reached",
                             Toast.LENGTH_LONG).show();
+                }else if(promoType.getCheckedRadioButtonId()==-1)
+                {
+                    Toast.makeText(getApplicationContext(), "Please select promotion type", Toast.LENGTH_SHORT).show();
+                }
+                else if(locationType.getCheckedRadioButtonId()==-1)
+                {
+                    Toast.makeText(getApplicationContext(), "Please select pick-up point", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -311,6 +331,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                             @Override
                             public void onClick(View v) {
+
+                                final String newpromoID = sharedPreferences.getString(Config.PROMO_ID,"0");
 
                                 try {
                                     if (Settings.Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
@@ -385,6 +407,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                             params.put("totalPrice", df.format(totalprice1));
                                             params.put("orderLocation", userLocation);
                                             params.put("promo", promo);
+                                            params.put("promoID", newpromoID);
                                             return params;
                                         }
 
@@ -495,8 +518,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                     @Override
                     public void onResponse(String response) {
 
-                        loading.dismiss();
-                        // Toast.makeText(IndvOrder.this,response,Toast.LENGTH_LONG).show();
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -580,55 +602,91 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         requestQueue.add(stringRequest);
     }
 
-    public void checkPromo(){
 
+    public void checkPromo(){
         final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 Config.URL_CHECKPROMOQTT+userLocation+"&foodID="+foodID, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
 
-                int promo_qtt = Integer.valueOf(response);
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
 
-                if (promo_qtt > 10){
+                                //getting product object from json array
+                                JSONObject promo = array.getJSONObject(i);
 
-                    promoBtn.setEnabled(true);
+                                //adding the product to product list
+                                promoList.add(new Promo(
+                                        promoID = promo.getInt("promoID"),
+                                        promoQTT = promo.getString("promoQTT")
 
-                }else{
 
-                    Toast.makeText(NewIndvOrder.this,"No promotion for this menu. Please check in the future",
-                            Toast.LENGTH_LONG).show();
-                    promoBtn.setText("Offer Not Available");
-                    promoBtn.setEnabled(false);
-                }
+                                ));
 
-                loading.dismiss();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                            }
 
-                loading.dismiss();
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    Toast.makeText(NewIndvOrder.this,
-                            "No internet. Please check your connection",
-                            Toast.LENGTH_LONG).show();
-                }else{
+                            int promo_qtt = Integer.valueOf(promoQTT);
 
-                    Toast.makeText(NewIndvOrder.this,
-                            error.toString(),
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        })
-                ;
+                            if (promo_qtt > 5){
 
+                                promoBtn.setEnabled(true);
+
+                            }else{
+
+                                Toast.makeText(NewIndvOrder.this,"No promotion for this menu. Please check in the future",
+                                        Toast.LENGTH_LONG).show();
+                                promoBtn.setText("Offer Not Available");
+                                promoBtn.setEnabled(false);
+                            }
+
+                            //add shared preference ID,nama,credit here
+                            SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
+                                    Context.MODE_PRIVATE);
+
+                            // Creating editor to store values to shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            // Adding values to editor
+
+                            editor.putString(Config.PROMO_ID, String.valueOf(promoID));
+                            editor.putString(Config.PROMO_QTT, promoQTT);
+
+                            // Saving values to editor
+                            editor.commit();
+
+                            loading.dismiss();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+
+                            Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 30000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        //adding our stringrequest to queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
 }

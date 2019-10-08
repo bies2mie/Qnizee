@@ -190,7 +190,8 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                                         product.getString("orderStatus"),
                                         product.getString("completeDate"),
                                         product.getString("completeTime"),
-                                        product.getString("totalPrice")
+                                        product.getString("totalPrice"),
+                                        product.getString("foodImage")
                                 ));
                             }
 

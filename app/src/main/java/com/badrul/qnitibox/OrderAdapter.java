@@ -1,12 +1,25 @@
 package com.badrul.qnitibox;
 
 import android.content.Context;
+
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
@@ -35,8 +48,28 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     }
 
     @Override
-    public void onBindViewHolder(OrderViewHolder holder,final int position) {
+    public void onBindViewHolder(final OrderViewHolder holder, final int position) {
         Order order = orderList.get(position);
+
+        RequestOptions options = new RequestOptions().centerCrop().dontAnimate().placeholder(R.drawable.ic_launcher).error(R.drawable.ic_launcher);
+        Glide
+                .with(mCtx)
+                .load(order.getFoodLink()).apply(options).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                holder.progressBar.setVisibility(View.INVISIBLE);
+                holder.imageView.setVisibility(View.VISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                holder.progressBar.setVisibility(View.INVISIBLE);
+                holder.imageView.setVisibility(View.VISIBLE);
+                return false;
+            }
+        })
+                .into(holder.imageView);
 
 
         holder.textViewTitle.setText(order.getOrderType()); //getName
@@ -60,7 +93,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     class OrderViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewTitle, textViewShortDesc, textViewRating, textViewPrice;
-        // ImageView imageView;
+        ImageView imageView;
+        ProgressBar progressBar;
         RelativeLayout test;
 
         public OrderViewHolder(View itemView) {
@@ -71,7 +105,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
-            //imageView = itemView.findViewById(R.id.imageView);
+            imageView = itemView.findViewById(R.id.imageView);
+            progressBar = itemView.findViewById(R.id.progress);
         }
     }
     public void setOnClick(OnItemClicked onClick)

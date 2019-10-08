@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "506080448400",
+    "firebase_url": "https://qnitibox.firebaseio.com",
+    "project_id": "qnitibox",
+    "storage_bucket": "qnitibox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506080448400:android:94f0e253d26250aa6a2d15",
+        "android_client_info": {
+          "package_name": "com.badrul.qnitibox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506080448400-sogcnvt7slfbl6qfkn81ilf9hvve0k4m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.badrul.qnitibox",
+            "certificate_hash": "25b55bb2bbdbcf910ba75e00b7c0a37af0fd0841"
+          }
+        },
+        {
+          "client_id": "506080448400-n73381m160r82qktpc40ako75jmjoh1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.badrul.qnitibox",
+            "certificate_hash": "04df549be231fd2b3da632f2d749a0a043d902b8"
+          }
+        },
+        {
+          "client_id": "506080448400-re354bc1uo51secdrg8fs3hq8l1g2ivm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn4XSKbnfGldbmhfczpwHGfHOZI-SW6mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506080448400-re354bc1uo51secdrg8fs3hq8l1g2ivm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     sharedpref();
 
 
-                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) && (hour >= 8 && hour < 18)) {
+                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) && (hour >= 8 && hour < 18)) {//Check THis
 
 
                     menuDay = "Tuesday";

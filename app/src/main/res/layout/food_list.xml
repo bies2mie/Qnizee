@@ -15,10 +15,17 @@
         android:paddingLeft="10dp"
         android:paddingRight="8dp">
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="visible" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:visibility="invisible"
             android:scaleType="fitCenter"
             android:padding="5dp" />
 

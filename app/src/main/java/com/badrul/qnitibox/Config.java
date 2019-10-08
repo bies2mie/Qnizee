@@ -9,14 +9,14 @@ public class Config {
 	public static final String ORDER_DATE = "orderDate";
 	public static final String ORDER_TIME = "orderTime";
 
-	public static final String URL_CHECKDATE = "http://gmartbox.cvmall.my/apps/checkdate.php";
-	public static final String URL_CHECKMAXQTT = "http://gmartbox.cvmall.my/apps/checkmaxqtt.php";
-	public static final String URL_CHECKPROMOQTT = "http://gmartbox.cvmall.my/apps/getpromoqtt.php?userLocation=";
+	public static final String URL_CHECKDATE = "https://gmartbox.cvmall.my/apps/checkdate.php";
+	public static final String URL_CHECKMAXQTT = "https://gmartbox.cvmall.my/apps/checkmaxqtt.php";
+	public static final String URL_CHECKPROMOQTT = "https://gmartbox.cvmall.my/apps/getpromoqtt.php?userLocation=";
 
-	public static final String ORDER_STATUS_COMPLETE = "http://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
-	public static final String ORDER_STATUS_PROCESSING = "http://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
-	public static final String PROFILE = "http://gmartbox.cvmall.my/apps/getuserinfo.php?userEmail=";
-	public static final String SHOW_FOOD = "http://gmartbox.cvmall.my/apps/showfood.php";
+	public static final String ORDER_STATUS_COMPLETE = "https://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
+	public static final String ORDER_STATUS_PROCESSING = "https://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
+	public static final String PROFILE = "https://gmartbox.cvmall.my/apps/getuserinfo.php?userEmail=";
+	public static final String SHOW_FOOD = "https://gmartbox.cvmall.my/apps/showfood.php";
 	public static final String FOOD_ID = "foodID";
 
 	//FOR ORDER
@@ -42,6 +42,9 @@ public class Config {
 	public static final String FOOD_DESC = "foodDesc";
 	public static final String FOOD_IMAGE = "foodImage";
 
+	public static final String PROMO_ID = "promoID";
+	public static final String PROMO_QTT = "promoQTT";
+
 	public static final String COMPLETE_DATE = "completeDate";
 	public static final String COMPLETE_TIME = "completeTime";
 	public static final String ORDER_STATUS = "orderStatus";
@@ -55,8 +58,8 @@ public class Config {
 	public static final String LOCATION_ID2 = "userLocation";
 	public static final String PROMO = "userPromo";
 
-	public static final String LOGIN_URL = "http://gmartbox.cvmall.my/apps/loginqniti.php";
-	public static final String REGISTER_URL = "http://gmartbox.cvmall.my/apps/registerqniti.php";
+	public static final String LOGIN_URL = "https://gmartbox.cvmall.my/apps/loginqniti.php";
+	public static final String REGISTER_URL = "https://gmartbox.cvmall.my/apps/registerqniti.php";
 
 	//Keys for email and password as defined in our $_POST['key'] in login.php
 //public static final String KEY_ID = "userIC";
