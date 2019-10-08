@@ -209,8 +209,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             if(userLocation.equalsIgnoreCase("UUM")) {
                                 list = new ArrayList<>();
 
-                                list.add("WashCafe Bank Rakyat (Pick Up: 7 PM - 9 PM)");
-                                list.add("WashCafe SME Bank (Pick Up: 7 PM - 9 PM)");
+                                list.add("WashCafe Bank Rakyat (Time: 7 PM - 9 PM)");
+                                list.add("WashCafe SME Bank (Time: 7 PM - 9 PM)");
 
                                 adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
                                 adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -221,8 +221,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                                 list = new ArrayList<>();
 
-                                list.add("Unimap1 (Pick Up: 7 PM - 9 PM)");
-                                list.add("Unimap2 (Pick Up: 7 PM - 9 PM)");
+                                list.add("Unimap1 (Time: 7 PM - 9 PM)");
+                                list.add("Unimap2 (Time: 7 PM - 9 PM)");
 
                                 adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
                                 adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -245,9 +245,11 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                         if (promo.equalsIgnoreCase("YES")){
 
 
+
                             promoBtn.setEnabled(false);
                             Toast.makeText(getApplicationContext(), "Sorry. You already claim this promotion",
                                     Toast.LENGTH_LONG).show();
+                            promoType.clearCheck();
 
                         }else{
 
@@ -408,6 +410,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                             params.put("orderLocation", userLocation);
                                             params.put("promo", promo);
                                             params.put("promoID", newpromoID);
+                                            params.put("claimpromo", claimPromo);
                                             return params;
                                         }
 
