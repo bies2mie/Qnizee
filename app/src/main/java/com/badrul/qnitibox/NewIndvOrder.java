@@ -148,8 +148,6 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         foodID = sharedPreferences.getString(Config.FOOD_ID, "Not Available");
         userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
 
-        checkPromoUser();
-
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         //If we will get true
         if(loggedIn==false){
@@ -297,11 +295,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                     Toast.makeText(getApplicationContext(), "Please enter minimum 1 order",
                             Toast.LENGTH_LONG).show();
                 }
-                else if (result > 1&& claimPromo.equalsIgnoreCase("YES")) {
-                    Toast.makeText(getApplicationContext(),
-                            "Cannot order more than 1 unit. Maximum allowed per promotion reached",
-                            Toast.LENGTH_LONG).show();
-                }else if(promoType.getCheckedRadioButtonId()==-1)
+                else if(promoType.getCheckedRadioButtonId()==-1)
                 {
                     Toast.makeText(getApplicationContext(), "Please select promotion type", Toast.LENGTH_SHORT).show();
                 }
@@ -312,6 +306,10 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 else if (result > maxQTT && claimPromo.equalsIgnoreCase("NO")) {
                     Toast.makeText(getApplicationContext(),
                             "Cannot order more than "+ maxQTT +" unit. Maximum allowed per order reached",
+                            Toast.LENGTH_LONG).show();
+                }                else if (result > 1&& claimPromo.equalsIgnoreCase("YES")) {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot order more than 1 unit. Maximum allowed per promotion reached",
                             Toast.LENGTH_LONG).show();
                 }
 
@@ -670,6 +668,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                     promoBtn.setText("Offer Not Available");
                                     promoBtn.setEnabled(false);
                                 }
+
+                                checkPromoUser();
                             }
 
 
@@ -780,9 +780,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String, String>();
                 //Adding parameters to request
-                params.put("foodID", foodID);
+                params.put("promoID", String.valueOf(promoID));
                 params.put("userID", userID);
-                params.put("claimDate", orderDate);
 
                 //returning parameter
                 return params;

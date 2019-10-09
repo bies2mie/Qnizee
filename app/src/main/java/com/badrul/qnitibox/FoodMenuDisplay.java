@@ -1,13 +1,17 @@
 package com.badrul.qnitibox;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -118,8 +122,9 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
                                     Toast.LENGTH_LONG).show();
                         }
                         else{
-
-                            Toast.makeText(FoodMenuDisplay.this, error.toString(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(FoodMenuDisplay.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FoodMenuDisplay.this, "Wrong version detected. Please update QnitiBox to latest version", Toast.LENGTH_LONG).show();
+                            openMarket();
                         }
                     }
                 });
@@ -179,5 +184,64 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
         //finish();
+    }
+
+    public void openMarket(){
+
+        final String LiveAppPackage = "com.badrul.qnitibox";
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FoodMenuDisplay.this);
+        alertDialogBuilder.setMessage("Do you want to update to latest version?");
+        final Dialog dialog = new Dialog(FoodMenuDisplay.this);
+
+        alertDialogBuilder.setPositiveButton(getString(R.string.btn_yes),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        dialog.setCanceledOnTouchOutside(true);
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                                    .parse("market://details?id="
+                                            + LiveAppPackage)));
+                        } catch (android.content.ActivityNotFoundException e1) {
+                            startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://play.google.com/store/apps/details?id="
+                                            + LiveAppPackage)));
+                        }
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton(getString(R.string.btn_no),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        dialog.setCanceledOnTouchOutside(true);
+                        Intent i = new Intent(FoodMenuDisplay.this, MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                        finish();
+
+
+                    }
+                });
+        alertDialogBuilder.setOnCancelListener(
+                new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        Intent i = new Intent(FoodMenuDisplay.this, MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                        finish();
+                    }
+                }
+        );
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
+
     }
 }

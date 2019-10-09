@@ -1,11 +1,13 @@
 package com.badrul.qnitibox;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -246,7 +248,9 @@ ImageButton logout;
                         }
                         else{
 
-                            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Wrong version detected. Please update QnitiBox to latest version", Toast.LENGTH_LONG).show();
+                            openMarket();
+
                         }
                     }
                 });
@@ -321,4 +325,64 @@ ImageButton logout;
         //finish();
     }
 
+    public void openMarket() {
+
+        final String LiveAppPackage = "com.badrul.qnitibox";
+
+        androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setMessage("Do you want to update to latest version?");
+        final Dialog dialog = new Dialog(getActivity());
+
+        alertDialogBuilder.setPositiveButton(getString(R.string.btn_yes),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        dialog.setCanceledOnTouchOutside(true);
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                                    .parse("market://details?id="
+                                            + LiveAppPackage)));
+                        } catch (android.content.ActivityNotFoundException e1) {
+                            startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://play.google.com/store/apps/details?id="
+                                            + LiveAppPackage)));
+                        }
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton(getString(R.string.btn_no),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        dialog.setCanceledOnTouchOutside(true);
+                        Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getActivity().finish();
+                        startActivity(intent);
+                        getActivity().getSupportFragmentManager().popBackStack();
+
+
+                    }
+                });
+        alertDialogBuilder.setOnCancelListener(
+                new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+
+                        Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getActivity().finish();
+                        startActivity(intent);
+                        getActivity().getSupportFragmentManager().popBackStack();
+                    }
+                }
+        );
+
+        //Showing the alert dialog
+        androidx.appcompat.app.AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
+    }
 }
