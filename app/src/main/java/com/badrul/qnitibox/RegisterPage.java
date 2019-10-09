@@ -117,13 +117,24 @@ public class RegisterPage extends AppCompatActivity implements AdapterView.OnIte
 
                                             loading.dismiss();
 
-                                            Toast.makeText(RegisterPage.this, response, Toast.LENGTH_LONG)
-                                                    .show();
-                                            Intent i = new Intent(RegisterPage.this, MainActivity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            startActivity(i);
-                                            finish();
+                                            if (response.equalsIgnoreCase("Success")) {
 
+                                                Toast.makeText(RegisterPage.this, "Successfully Registered", Toast.LENGTH_LONG)
+                                                        .show();
+                                                Intent i = new Intent(RegisterPage.this, MainActivity.class);
+                                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(i);
+                                                finish();
+                                            }
+                                            else if(response.equalsIgnoreCase("Exist")){
+
+                                                Toast.makeText(RegisterPage.this, "Email already exist", Toast.LENGTH_LONG)
+                                                        .show();
+                                            }else{
+
+                                                Toast.makeText(RegisterPage.this, "Cannot Register", Toast.LENGTH_LONG)
+                                                        .show();
+                                            }
                                         }
                                     }, new Response.ErrorListener() {
                                         @Override
