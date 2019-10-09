@@ -41,7 +41,7 @@
 
         <Button
             android:layout_marginTop="40dp"
-            android:id="@+id/prevorder"
+            android:id="@+id/prevorder2"
             android:layout_width="297dp"
             android:layout_height="75dp"
             android:background="@drawable/buttoncornerredgrad2"

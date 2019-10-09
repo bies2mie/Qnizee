@@ -1314,6 +1314,7 @@ id navigation_header_container
 id navigation_noncomplete
 id never
 id nextBtn
+id nextBtnStart
 id none
 id normal
 id normal1
@@ -1339,6 +1340,7 @@ id phoneNumtxt
 id pin
 id popup_element
 id prevorder
+id prevorder2
 id progress
 id progress_circular
 id progress_horizontal
@@ -1699,6 +1701,8 @@ string action_settings
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
+string btn_no
+string btn_yes
 string character_counter_content_description
 string character_counter_pattern
 string common_google_play_services_enable_button
@@ -1772,6 +1776,8 @@ string title_activity_wednesday_dinner
 string title_activity_wednesday_lunch
 string title_complete
 string title_noncomplete
+string txt_confirm
+string txt_tnc
 string zxing_app_name
 string zxing_button_ok
 string zxing_msg_camera_framework_bug

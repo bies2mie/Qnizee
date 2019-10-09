@@ -9,9 +9,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -34,21 +37,22 @@ public class MainActivity extends AppCompatActivity {
     String currentDate;
     ImageButton feedback;
     String menuDay;
+    Button prv2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        adjustFontScale(getResources().getConfiguration());
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         feedback = findViewById(R.id.feedbackbtn);
         startOrder = findViewById(R.id.startOrder);
-        Button prv = findViewById(R.id.prevorder);
+        prv2 = findViewById(R.id.prevorder2);
 
 
-        prv.setOnClickListener(new View.OnClickListener() {
+        prv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -162,5 +166,14 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, FoodMenuDisplay.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+    }
+    public void adjustFontScale(Configuration configuration)
+    {
+        configuration.fontScale = (float) 1.0;
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metrics);
+        metrics.scaledDensity = configuration.fontScale * metrics.density;
+        getBaseContext().getResources().updateConfiguration(configuration, metrics);
     }
 }

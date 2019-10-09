@@ -21,11 +21,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.SettingNotFoundException;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import android.view.Gravity;
@@ -89,13 +92,13 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String orderDate;
     String orderTime;
     // String emailID;
-    String locat = "";
+    String locat = "0";
     String myStatus = "Processing";
-    private PopupWindow pwindo;
+    //private PopupWindow pwindo;
     final Context context = this;
     int id = 0;
     DecimalFormat df;
-    Button nextBtn;
+    Button nextBtn2;
     ImageButton exit;
     ImageButton staffOrder;
     TextView menuTypeD;
@@ -118,6 +121,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     List<Promo> promoList;
     int promoID;
     String promoQTT = "0";
+    String promoName;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -167,7 +171,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         showMatrix.setText(matrixID);
         showPhone.setText(phoneID);
 
-        nextBtn = findViewById(R.id.nextBtn);
+        nextBtn2 = findViewById(R.id.nextBtnStart);
         exit = findViewById(R.id.exit);
         // staffOrder =(ImageButton) findViewById(R.id.stafforder);
         menuTypeD = findViewById(R.id.menuTypeDisplay);
@@ -265,7 +269,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             }});
 
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        nextBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -283,15 +287,11 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 }
 
 
-                if (locat.equalsIgnoreCase( "")) {
+                if (locat.equalsIgnoreCase( "0")) {
                     Toast.makeText(getApplicationContext(), "Please select pick-up location",
                             Toast.LENGTH_LONG).show();
                 } else if (result < 1) {
                     Toast.makeText(getApplicationContext(), "Please enter minimum 1 order",
-                            Toast.LENGTH_LONG).show();
-                } else if (result > maxQTT && claimPromo.equalsIgnoreCase("NO")) {
-                    Toast.makeText(getApplicationContext(),
-                            "Cannot order more than "+ maxQTT +" unit. Maximum allowed per order reached",
                             Toast.LENGTH_LONG).show();
                 }
                 else if (result > 1&& claimPromo.equalsIgnoreCase("YES")) {
@@ -306,139 +306,157 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 {
                     Toast.makeText(getApplicationContext(), "Please select pick-up point", Toast.LENGTH_SHORT).show();
                 }
+                else if (result > maxQTT && claimPromo.equalsIgnoreCase("NO")) {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot order more than "+ maxQTT +" unit. Maximum allowed per order reached",
+                            Toast.LENGTH_LONG).show();
+                }
 
 
                 else
 
                     try {
-                        // We need to get the instance of the LayoutInflater
-                        LayoutInflater inflater = (LayoutInflater) NewIndvOrder.this
-                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View layout = inflater.inflate(R.layout.popup_confirmationorder,
-                                (ViewGroup) findViewById(R.id.popup_element));
-                        pwindo = new PopupWindow(layout, 700, 1000, true);
-                        pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-                        Button cancel = (Button) layout.findViewById(R.id.cancelBtn);
-                        Button confirm = (Button) layout.findViewById(R.id.confirmBtn);
 
-                        cancel.setOnClickListener(new OnClickListener() {
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NewIndvOrder.this);
+                        alertDialogBuilder.setTitle(getString(R.string.txt_confirm));
+                        alertDialogBuilder.setMessage(getString(R.string.txt_tnc));
 
-                            @Override
-                            public void onClick(View v) {
-                                pwindo.dismiss();
-                            }
-                        });
+                        final Dialog dialog = new Dialog(NewIndvOrder.this);
 
-                        confirm.setOnClickListener(new OnClickListener() {
+                        alertDialogBuilder.setPositiveButton(getString(R.string.btn_yes),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        dialog.setCanceledOnTouchOutside(true);
 
-                            @Override
-                            public void onClick(View v) {
+                                        final String newpromoID = sharedPreferences.getString(Config.PROMO_ID,"0");
 
-                                final String newpromoID = sharedPreferences.getString(Config.PROMO_ID,"0");
+                                        try {
+                                            if (Settings.Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
 
-                                try {
-                                    if (Settings.Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
-
-                                        Toast.makeText(getApplicationContext(),
-                                                "Please set Automatic Date & Time to ON in the Settings",
-                                                Toast.LENGTH_LONG).show();
-
-                                        startActivityForResult(
-                                                new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
-                                    } else if (Settings.Global.getInt(getContentResolver(),
-                                            Global.AUTO_TIME_ZONE) == 0) {
-
-                                        Toast.makeText(getApplicationContext(),
-                                                "Please set Automatic Time Zone to ON in the Settings",
-                                                Toast.LENGTH_LONG).show();
-
-                                        startActivityForResult(
-                                                new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
-                                    }
-
-                                    final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
-
-                                    totalprice1 = foodprice1*result;
-
-                                    if (claimPromo.equalsIgnoreCase("YES")) {
-                                        promo = "YES";
-                                        totalprice1 = 0;
-                                    }
-
-                                    StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                                            NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String response) {
-                                            Toast.makeText(NewIndvOrder.this, response, Toast.LENGTH_LONG)
-                                                    .show();
-
-                                            loading.dismiss();
-
-                                            Intent i = new Intent(NewIndvOrder.this, MainActivity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            startActivity(i);
-                                            finish();
-                                        }
-                                    }, new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-                                            loading.dismiss();
-                                            if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                                                Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                                Toast.makeText(getApplicationContext(),
+                                                        "Please set Automatic Date & Time to ON in the Settings",
                                                         Toast.LENGTH_LONG).show();
+
+                                                startActivityForResult(
+                                                        new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
+                                            } else if (Settings.Global.getInt(getContentResolver(),
+                                                    Global.AUTO_TIME_ZONE) == 0) {
+
+                                                Toast.makeText(getApplicationContext(),
+                                                        "Please set Automatic Time Zone to ON in the Settings",
+                                                        Toast.LENGTH_LONG).show();
+
+                                                startActivityForResult(
+                                                        new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
                                             }
-                                            else{
 
-                                                Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                                            final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
+
+                                            totalprice1 = foodprice1*result;
+
+                                            if (claimPromo.equalsIgnoreCase("YES")) {
+                                                promo = "YES";
+                                                totalprice1 = 0;
                                             }
+
+                                            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                                                    NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Toast.makeText(NewIndvOrder.this, response, Toast.LENGTH_LONG)
+                                                            .show();
+
+                                                    loading.dismiss();
+
+                                                    Intent i = new Intent(NewIndvOrder.this, MainActivity.class);
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    startActivity(i);
+                                                    finish();
+                                                }
+                                            }, new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    loading.dismiss();
+                                                    if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                                                        Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                                                Toast.LENGTH_LONG).show();
+                                                    }
+                                                    else{
+
+                                                        Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            }) {
+                                                @Override
+                                                protected Map<String, String> getParams() {
+                                                    Map<String, String> params = new HashMap<String, String>();
+                                                    params.put(KEY_MENUTYPE, menuType);
+                                                    params.put(KEY_MENUDAY, menuDay);
+                                                    params.put(KEY_ORDER_DATE, orderDate);
+                                                    params.put(KEY_ORDER_TIME, orderTime);
+                                                    params.put(KEY_CARDNUM, myCard);
+                                                    params.put(KEY_MENUQTT, myQtt);
+                                                    params.put(KEY_MENUSTATUS, myStatus);
+                                                    params.put(KEY_LOCATION, locat);
+                                                    params.put(KEY_USERID, userID);
+                                                    params.put(KEY_FOODID, foodID);
+                                                    params.put("totalPrice", df.format(totalprice1));
+                                                    params.put("orderLocation", userLocation);
+                                                    params.put("promo", promo);
+                                                    params.put("promoID", newpromoID);
+                                                    params.put("claimpromo", claimPromo);
+                                                    return params;
+                                                }
+
+                                            };
+
+                                            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                                                    30000,
+                                                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                                            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                                            requestQueue.add(stringRequest);
+
+                                            emailer();
+                                            notifyMe();
                                         }
-                                    }) {
-                                        @Override
-                                        protected Map<String, String> getParams() {
-                                            Map<String, String> params = new HashMap<String, String>();
-                                            params.put(KEY_MENUTYPE, menuType);
-                                            params.put(KEY_MENUDAY, menuDay);
-                                            params.put(KEY_ORDER_DATE, orderDate);
-                                            params.put(KEY_ORDER_TIME, orderTime);
-                                            params.put(KEY_CARDNUM, myCard);
-                                            params.put(KEY_MENUQTT, myQtt);
-                                            params.put(KEY_MENUSTATUS, myStatus);
-                                            params.put(KEY_LOCATION, locat);
-                                            params.put(KEY_USERID, userID);
-                                            params.put(KEY_FOODID, foodID);
-                                            params.put("totalPrice", df.format(totalprice1));
-                                            params.put("orderLocation", userLocation);
-                                            params.put("promo", promo);
-                                            params.put("promoID", newpromoID);
-                                            params.put("claimpromo", claimPromo);
-                                            return params;
+                                        catch (SettingNotFoundException e) {
+                                            // TODO Auto-generated catch block
+                                            e.printStackTrace();
                                         }
 
-                                    };
+                                    }
+                                });
 
-                                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                                            30000,
-                                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                        alertDialogBuilder.setNegativeButton(getString(R.string.btn_no),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        dialog.setCanceledOnTouchOutside(true);
 
-                                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                                    requestQueue.add(stringRequest);
+                                    }
+                                });
+                        alertDialogBuilder.setOnCancelListener(
+                                new DialogInterface.OnCancelListener() {
+                                    @Override
+                                    public void onCancel(DialogInterface dialog) {
 
-                                    emailer();
-                                    notifyMe();
+                                    }
                                 }
-                                catch (SettingNotFoundException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
+                        );
+
+                        //Showing the alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
             }
         });
+
         exit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
@@ -626,26 +644,32 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                 //adding the product to product list
                                 promoList.add(new Promo(
                                         promoID = promo.getInt("promoID"),
-                                        promoQTT = promo.getString("promoQTT")
-
+                                        promoQTT = promo.getString("promoQTT"),
+                                        promoName = promo.getString("promoName")
 
                                 ));
 
                             }
 
+                            promoBtn.setText(promoName);
+
                             int promo_qtt = Integer.valueOf(promoQTT);
 
-                            if (promo_qtt > 5){
+                            if(loggedIn==true){
+                                
+                                if (promo_qtt > 5){
 
-                                promoBtn.setEnabled(true);
+                                    promoBtn.setEnabled(true);
 
-                            }else{
+                                }else{
 
-                                Toast.makeText(NewIndvOrder.this,"No promotion for this menu. Please check in the future",
-                                        Toast.LENGTH_LONG).show();
-                                promoBtn.setText("Offer Not Available");
-                                promoBtn.setEnabled(false);
+                                    Toast.makeText(NewIndvOrder.this,"No promotion for this menu. Please check in the future",
+                                            Toast.LENGTH_LONG).show();
+                                    promoBtn.setText("Offer Not Available");
+                                    promoBtn.setEnabled(false);
+                                }
                             }
+
 
                             //add shared preference ID,nama,credit here
                             SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
