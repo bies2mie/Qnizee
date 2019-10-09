@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
@@ -114,14 +115,13 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String userLocation;
     double totalprice1;
     int maxQTT;
-    String promo;
-    // int result = 0;
     String claimPromo;;
     RadioButton promoBtn;
     List<Promo> promoList;
     int promoID;
     String promoQTT = "0";
     String promoName;
+    String promo;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -147,7 +147,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
         foodID = sharedPreferences.getString(Config.FOOD_ID, "Not Available");
         userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
-        promo = sharedPreferences.getString(Config.PROMO, "Not Available");
+
+        checkPromoUser();
 
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         //If we will get true
@@ -245,6 +246,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
                 if (i == R.id.promo1) {
+
+                    promo = sharedPreferences.getString(Config.PROMO, "Not Available");
 
                         if (promo.equalsIgnoreCase("YES")){
 
@@ -356,7 +359,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                             totalprice1 = foodprice1*result;
 
                                             if (claimPromo.equalsIgnoreCase("YES")) {
-                                                promo = "YES";
+
                                                 totalprice1 = 0;
                                             }
 
@@ -403,7 +406,6 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                                     params.put(KEY_FOODID, foodID);
                                                     params.put("totalPrice", df.format(totalprice1));
                                                     params.put("orderLocation", userLocation);
-                                                    params.put("promo", promo);
                                                     params.put("promoID", newpromoID);
                                                     params.put("claimpromo", claimPromo);
                                                     return params;
@@ -656,7 +658,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             int promo_qtt = Integer.valueOf(promoQTT);
 
                             if(loggedIn==true){
-                                
+
                                 if (promo_qtt > 5){
 
                                     promoBtn.setEnabled(true);
@@ -712,6 +714,85 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //adding our stringrequest to queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    private void checkPromoUser(){
+        //Getting values from edit texts
+        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
+        //Creating a string request
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.CHECK_USERPROMO,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        loading.dismiss();
+                        //If we are getting success from server
+                        if(response.equalsIgnoreCase("Success")){
+                            //Creating a shared preference
+                            SharedPreferences sharedPreferences = NewIndvOrder.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+                            //Creating editor to store values to shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            //Adding values to editor
+                            editor.putString(Config.PROMO, "YES");
+
+                            //Saving values to editor
+                            editor.commit();
+
+
+                        }else{
+                            //If the server response is not success
+                            //Displaying an error message on toast
+
+                            SharedPreferences sharedPreferences = NewIndvOrder.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+                            //Creating editor to store values to shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            //Adding values to editor
+                            editor.putString(Config.PROMO, "NO");
+
+                            //Saving values to editor
+                            editor.commit();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //You can handle error here if you want
+                        loading.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+
+                            Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }){
+
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                //Adding parameters to request
+                params.put("foodID", foodID);
+                params.put("userID", userID);
+                params.put("claimDate", orderDate);
+
+                //returning parameter
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Adding the string request to the queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

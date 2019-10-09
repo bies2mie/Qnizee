@@ -17,6 +17,7 @@ public class Config {
 	public static final String ORDER_STATUS_PROCESSING = "https://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
 	public static final String PROFILE = "https://gmartbox.cvmall.my/apps/getuserinfo.php?userEmail=";
 	public static final String SHOW_FOOD = "https://gmartbox.cvmall.my/apps/showfood.php";
+    public static final String CHECK_USERPROMO= "https://gmartbox.cvmall.my/apps/checkifpromo.php";
 	public static final String FOOD_ID = "foodID";
 
 	//FOR ORDER

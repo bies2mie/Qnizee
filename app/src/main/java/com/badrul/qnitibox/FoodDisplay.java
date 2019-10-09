@@ -61,7 +61,6 @@ public class FoodDisplay extends AppCompatActivity {
     String emailID;
     String matrixID;
     String userLocation;
-    String promo;
     String userEmailID;
 
     String menuType;//Data for database;foodTitle
@@ -91,7 +90,6 @@ public class FoodDisplay extends AppCompatActivity {
         userList = new ArrayList<>();
         foodList = new ArrayList<>();
         checkDate();
-        loadUser();
 
         title.setText(foodtitle);
         price.setText("RM "+foodprice);
@@ -214,88 +212,6 @@ public class FoodDisplay extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(stringRequest);
-    }
-
-    private void loadUser(){
-        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.PROFILE+userEmailID,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            //converting the string to json array object
-                            JSONArray array = new JSONArray(response);
-
-                            //traversing through all the object
-                            for (int i = 0; i < array.length(); i++) {
-
-                                //getting product object from json array
-                                JSONObject user = array.getJSONObject(i);
-
-                                //adding the product to product list
-                                userList.add(new User(
-                                        userID = user.getInt("userID"),
-                                        nameID = user.getString("nameID"),
-                                        phoneID = user.getString("phoneID"),
-                                        emailID = user.getString("emailID"),
-                                        matrixID = user.getString("matrixID"),
-                                        userLocation = user.getString("userLocation"),
-                                        promo = user.getString("promo")
-
-
-                                ));
-
-                            }
-
-                            //add shared preference ID,nama,credit here
-                            SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
-                                    Context.MODE_PRIVATE);
-
-                            // Creating editor to store values to shared preferences
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                            // Adding values to editor
-
-                            editor.putString(Config.USER_ID2, String.valueOf(userID));
-                            editor.putString(Config.NAME_ID2, nameID);
-                            editor.putString(Config.PHONE_ID2, phoneID);
-                            editor.putString(Config.EMAIL_ID2, emailID);
-                            editor.putString(Config.MATRIX_ID2, matrixID);
-                            editor.putString(Config.LOCATION_ID2, userLocation);
-                            editor.putString(Config.PROMO,promo);
-
-                            // Saving values to editor
-                            editor.commit();
-
-                            loading.dismiss();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        loading.dismiss();
-                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                            Toast.makeText(FoodDisplay.this,"No internet . Please check your connection",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        else{
-
-                            Toast.makeText(FoodDisplay.this, error.toString(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                30000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //adding our stringrequest to queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
 }

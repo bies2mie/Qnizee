@@ -9,9 +9,8 @@ public class User {
     private String phoneID;
     private String emailID;
     private String userLocation;
-    private String promo;
 
-    public User(int userID, String matrixID, String nameID, String phoneID, String emailID, String userLocation,String promo) {
+    public User(int userID, String matrixID, String nameID, String phoneID, String emailID, String userLocation) {
 
         this.userID = userID;
         this.nameID = nameID;
@@ -19,7 +18,6 @@ public class User {
         this.phoneID = phoneID;
         this.emailID = emailID;
         this.userLocation = userLocation;
-        this.promo = promo;
 
     }
 
@@ -47,9 +45,5 @@ public class User {
         return userLocation;
     }
 
-    public String getPromo(){
-
-        return promo;
-    }
 
 }

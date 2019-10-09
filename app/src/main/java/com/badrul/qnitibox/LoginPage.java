@@ -51,7 +51,6 @@ public class LoginPage extends AppCompatActivity {
     String emailID;
     String matrixID;
     String userLocation;
-    String promo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,8 +244,7 @@ public class LoginPage extends AppCompatActivity {
                                         phoneID = user.getString("phoneID"),
                                         emailID = user.getString("emailID"),
                                         matrixID = user.getString("matrixID"),
-                                        userLocation = user.getString("userLocation"),
-                                        promo = user.getString("promo")
+                                        userLocation = user.getString("userLocation")
 
 
                                 ));
@@ -268,7 +266,6 @@ public class LoginPage extends AppCompatActivity {
                             editor.putString(Config.EMAIL_ID2, emailID);
                             editor.putString(Config.MATRIX_ID2, matrixID);
                             editor.putString(Config.LOCATION_ID2, userLocation);
-                            editor.putString(Config.PROMO,promo);
 
                             // Saving values to editor
                             editor.commit();
