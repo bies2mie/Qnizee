@@ -126,8 +126,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String promo;
     SharedPreferences sharedPreferences;
     int saletimeID;
-    String saleStart="8";
-    String saleEnd="18";
+    int saleStart;
+    int saleEnd;
     int hour;
     String getsalestart;
     String getsaleend;
@@ -191,7 +191,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
         Calendar currTime = Calendar.getInstance();
         hour = currTime.get(Calendar.HOUR_OF_DAY);
-        dateFormat1 = new SimpleDateFormat("HH:mm");
+
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(dt);
@@ -201,7 +201,6 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         promoList = new ArrayList<>();
         saletimeList = new ArrayList<>();
         checkSaleDate();
-        checkPromo();
         checkMaxQTT();
 
 
@@ -232,8 +231,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             if(userLocation.equalsIgnoreCase("UUM")) {
                                 list = new ArrayList<>();
 
-                                list.add("WashCafe Bank Rakyat (Time: 7 PM - 9 PM)");
-                                list.add("WashCafe SME Bank (Time: 7 PM - 9 PM)");
+                                list.add("Near Bank Rakyat Office (Time: 8 PM)");
+                                list.add("Near SME Bank Office (Time: 8 PM)");
 
                                 adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
                                 adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -396,7 +395,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                                                     loading.dismiss();
 
-                                                    Intent i = new Intent(NewIndvOrder.this, MainActivity.class);
+                                                    Intent i = new Intent(NewIndvOrder.this, FoodMenuDisplay.class);
                                                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                     startActivity(i);
                                                     finish();
@@ -841,52 +840,35 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                         //adding the product to product list
                         saletimeList.add(new SaleTime(
                                 saletimeID = saletime.getInt("saletimeID"),
-                                saleStart = saletime.getString("saleStart"),
-                                saleEnd = saletime.getString("saleEnd")
+                                saleStart = saletime.getInt("saleStart"),
+                                saleEnd = saletime.getInt("saleEnd")
 
                         ));
 
                     }
 
+                    Toast.makeText(NewIndvOrder.this,String.valueOf(hour),
+                            Toast.LENGTH_LONG).show();
 
-                    //add shared preference ID,nama,credit here
-                    SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
-                            Context.MODE_PRIVATE);
-
-                    // Creating editor to store values to shared preferences
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    // Adding values to editor
-
-                    editor.putString(Config.SALETIME_ID, String.valueOf(saletimeID));
-                    editor.putString(Config.SALETIME_START, saleStart);
-                    editor.putString(Config.SALETIME_END, saleEnd);
-
-                    // Saving values to editor
-                    editor.commit();
-
-                    Date EndTime = dateFormat1.parse(saleEnd);
-                    Date StartTime = dateFormat1.parse(saleStart);
-
-                    Date CurrentTime = dateFormat1.parse(dateFormat1.format(new Date()));
-
-                    if (CurrentTime.before(StartTime) && CurrentTime.after(EndTime))
+                    if (!(hour >= saleStart && hour < saleEnd))
                     {
-                        Toast.makeText(NewIndvOrder.this,"Order close now. You can start order at "+saleEnd+" end at "+saleEnd,
-                                Toast.LENGTH_LONG).show();
+                       Toast.makeText(NewIndvOrder.this,"Order close now. You can start ordering from "+saleEnd+":00 until "+saleEnd+":00",
+                              Toast.LENGTH_LONG).show();
 
                         Intent i = new Intent(NewIndvOrder.this, MainActivity.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
                         finish();
-                        
+
+                    }else{
+
+                        checkPromo();
+
                     }
 
                     loading.dismiss();
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }

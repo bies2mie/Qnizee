@@ -4,11 +4,11 @@ public class SaleTime {
 
         //private int userid;
         private int saletimeID;
-        private String saleStart;
-        private String saleEnd;
+        private int saleStart;
+        private int saleEnd;
 
 
-        public SaleTime(int saletimeID, String saleStart,String saleEnd) {
+        public SaleTime(int saletimeID, int saleStart,int saleEnd) {
 
             this.saletimeID = saletimeID;
             this.saleStart = saleStart;
@@ -20,10 +20,10 @@ public class SaleTime {
             return saletimeID;
         }
 
-        public String getSaleStart() {
+        public int getSaleStart() {
             return saleStart;
         }
 
-        public String getSaleEnd() { return saleEnd; }
+        public int getSaleEnd() { return saleEnd; }
 
     }
