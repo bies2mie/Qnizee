@@ -88,19 +88,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && (hour >= 8 && hour < 18)) { // x.after(calendar1.getTime())
+                if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)) { // x.after(calendar1.getTime())
 
                     menuDay = "Sunday";
                     sharedpref();
 
 
-                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) && (hour >= 8 && hour < 18)) {
+                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)) {
 
                     menuDay = "Monday";
                     sharedpref();
 
 
-                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) && (hour >= 8 && hour < 18)) {//Check THis
+                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) ) {//Check THis
 
 
                     menuDay = "Tuesday";
@@ -109,27 +109,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) && (hour >= 8 && hour < 18)) {
+                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) ) {
 
                     menuDay = "Wednesday";
                     sharedpref();
 
 
-                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) && (hour >= 8 && hour < 18)) {
+                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)) {
 
                     menuDay = "Thursday";
                     sharedpref();
 
 
 
-                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) && (hour >= 8 && hour < 18)) {
+                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY)) {
 
                     menuDay = "Friday";
                     sharedpref();
 
 
 
-                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && (hour >= 8 && hour < 18)) {
+                } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)) {
 
                     menuDay = "Saturday";
                     sharedpref();

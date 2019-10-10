@@ -2,6 +2,7 @@ package com.badrul.qnitibox;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -118,11 +119,19 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String claimPromo;;
     RadioButton promoBtn;
     List<Promo> promoList;
+    List<SaleTime> saletimeList;
     int promoID;
     String promoQTT = "0";
     String promoName;
     String promo;
     SharedPreferences sharedPreferences;
+    int saletimeID;
+    String saleStart="8";
+    String saleEnd="18";
+    int hour;
+    String getsalestart;
+    String getsaleend;
+    SimpleDateFormat dateFormat1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,6 +189,9 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         sp = findViewById(R.id.spinner);
         sp.setOnItemSelectedListener(this);
 
+        Calendar currTime = Calendar.getInstance();
+        hour = currTime.get(Calendar.HOUR_OF_DAY);
+        dateFormat1 = new SimpleDateFormat("HH:mm");
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(dt);
@@ -187,9 +199,17 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         dt = c.getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         promoList = new ArrayList<>();
-
+        saletimeList = new ArrayList<>();
+        checkSaleDate();
         checkPromo();
         checkMaxQTT();
+
+
+
+
+
+
+
 
         // to convert Date to String, use format method of SimpleDateFormat
         // class.
@@ -287,8 +307,14 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                     result = Double.parseDouble(myQtt);
                 }
 
+                if (hour <= Integer.parseInt(getsalestart) && hour > Integer.parseInt(getsaleend)){
 
-                if (locat.equalsIgnoreCase( "0")) {
+
+                    Toast.makeText(getApplicationContext(), "Order Still Closed. Order start at "+getsalestart+":00 and Order end at "+getsaleend+":00",
+                            Toast.LENGTH_LONG).show();
+
+                }
+                else if (locat.equalsIgnoreCase( "0")) {
                     Toast.makeText(getApplicationContext(), "Please select pick-up location",
                             Toast.LENGTH_LONG).show();
                 } else if (result < 1) {
@@ -795,5 +821,96 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+    public void checkSaleDate(){
+        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
 
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                Config.URL_CHECKSALEDATE+foodID, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    //converting the string to json array object
+                    JSONArray array = new JSONArray(response);
+
+                    //traversing through all the object
+                    for (int i = 0; i < array.length(); i++) {
+
+                        //getting product object from json array
+                        JSONObject saletime = array.getJSONObject(i);
+
+                        //adding the product to product list
+                        saletimeList.add(new SaleTime(
+                                saletimeID = saletime.getInt("saletimeID"),
+                                saleStart = saletime.getString("saleStart"),
+                                saleEnd = saletime.getString("saleEnd")
+
+                        ));
+
+                    }
+
+
+                    //add shared preference ID,nama,credit here
+                    SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
+                            Context.MODE_PRIVATE);
+
+                    // Creating editor to store values to shared preferences
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    // Adding values to editor
+
+                    editor.putString(Config.SALETIME_ID, String.valueOf(saletimeID));
+                    editor.putString(Config.SALETIME_START, saleStart);
+                    editor.putString(Config.SALETIME_END, saleEnd);
+
+                    // Saving values to editor
+                    editor.commit();
+
+                    Date EndTime = dateFormat1.parse(saleEnd);
+                    Date StartTime = dateFormat1.parse(saleStart);
+
+                    Date CurrentTime = dateFormat1.parse(dateFormat1.format(new Date()));
+
+                    if (CurrentTime.before(StartTime) && CurrentTime.after(EndTime))
+                    {
+                        Toast.makeText(NewIndvOrder.this,"Order close now. You can start order at "+saleEnd+" end at "+saleEnd,
+                                Toast.LENGTH_LONG).show();
+
+                        Intent i = new Intent(NewIndvOrder.this, MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                        finish();
+                        
+                    }
+
+                    loading.dismiss();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+
+                            Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //adding our stringrequest to queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 }
