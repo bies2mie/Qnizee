@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,8 +42,10 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class FoodDisplay extends AppCompatActivity {
 
@@ -67,6 +70,15 @@ public class FoodDisplay extends AppCompatActivity {
     String foodtitle,foodprice,fooddesc,foodimage;
     int foodID;
 
+
+    Calendar startDate;
+
+
+    int hour;
+    String curTime;
+    String currentDate;
+    String menuDay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +98,16 @@ public class FoodDisplay extends AppCompatActivity {
         foodprice= sharedPreferences.getString(Config.FOOD_PRICE, "Not Available");
         fooddesc= sharedPreferences.getString(Config.FOOD_DESC, "Not Available");
         foodimage= sharedPreferences.getString(Config.FOOD_IMAGE, "Not Available");
+
+        startDate = Calendar.getInstance();
+
+        Calendar currTime = Calendar.getInstance();
+        hour = currTime.get(Calendar.HOUR_OF_DAY);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+        curTime = sdf.format(currTime.getTime());
+
+        currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
         userList = new ArrayList<>();
         foodList = new ArrayList<>();
@@ -148,9 +170,63 @@ public class FoodDisplay extends AppCompatActivity {
                         }
                         else{
 
-                        Intent intent = new Intent(FoodDisplay.this, NewIndvOrder.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+                            if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && (hour >= 8 && hour < 18)) { // x.after(calendar1.getTime())
+
+                                menuDay = "Sunday";
+                                sharedpref();
+
+
+                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) && (hour >= 8 && hour < 18)) {
+
+                                menuDay = "Monday";
+                                sharedpref();
+
+
+                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) && (hour >= 8 && hour < 18)) {//Check THis
+
+
+                                menuDay = "Tuesday";
+                                sharedpref();
+
+
+
+
+                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) && (hour >= 8 && hour < 18)) {
+
+                                menuDay = "Wednesday";
+                                sharedpref();
+
+
+                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) && (hour >= 8 && hour < 18)) {
+
+                                menuDay = "Thursday";
+                                sharedpref();
+
+
+
+                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) && (hour >= 8 && hour < 23)) {
+
+                                menuDay = "Friday";
+                                sharedpref();
+
+
+
+                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && (hour >= 8 && hour < 18)) {
+
+                                menuDay = "Saturday";
+                                sharedpref();
+
+
+                            } else {
+
+                                Intent i = new Intent(FoodDisplay.this, ErrorPage2.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i);
+                                finish();
+                            }
+
+
+
                         }
 
                 } catch (Settings.SettingNotFoundException ex) {
@@ -214,4 +290,27 @@ public class FoodDisplay extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }
-}
+
+        public void sharedpref() {
+
+        SharedPreferences sharedPreferences = FoodDisplay.this.getSharedPreferences(Config.SHARED_PREF_NAME,
+        Context.MODE_PRIVATE);
+
+        // Creating editor to store values to shared preferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Adding values to editor
+
+        editor.putString(Config.ORDER_TIME, curTime);
+        editor.putString(Config.ORDER_DATE, currentDate);
+        editor.putString(Config.MENU_DAY, menuDay);
+
+        // Saving values to editor
+        editor.commit();
+
+            Intent intent = new Intent(FoodDisplay.this, NewIndvOrder.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+
+        }
