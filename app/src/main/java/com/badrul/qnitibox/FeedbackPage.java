@@ -158,7 +158,7 @@ public class FeedbackPage extends AppCompatActivity {
 		back.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 
-				Intent i = new Intent(FeedbackPage.this, MenuType.class);
+				Intent i = new Intent(FeedbackPage.this, MainActivity.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 				finish();

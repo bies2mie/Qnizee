@@ -121,7 +121,7 @@ public class RegisterPage extends AppCompatActivity implements AdapterView.OnIte
 
                                                 Toast.makeText(RegisterPage.this, "Successfully Registered", Toast.LENGTH_LONG)
                                                         .show();
-                                                Intent i = new Intent(RegisterPage.this, MainActivity.class);
+                                                Intent i = new Intent(RegisterPage.this, LoginPage.class);
                                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(i);
                                                 finish();
