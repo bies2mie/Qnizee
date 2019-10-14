@@ -231,8 +231,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                             if(userLocation.equalsIgnoreCase("UUM")) {
                                 list = new ArrayList<>();
 
-                                list.add("Near Bank Rakyat Office (Time: 8 PM)");
-                                list.add("Near SME Bank Office (Time: 8 PM)");
+                                list.add("Near Bank Rakyat Office (Time: 6 PM)");
+                                list.add("Near SME Bank Office (Time: 6 PM)");
 
                                 adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
                                 adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -306,14 +306,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                     result = Double.parseDouble(myQtt);
                 }
 
-                if (hour <= Integer.parseInt(getsalestart) && hour > Integer.parseInt(getsaleend)){
-
-
-                    Toast.makeText(getApplicationContext(), "Order Still Closed. Order start at "+getsalestart+":00 and Order end at "+getsaleend+":00",
-                            Toast.LENGTH_LONG).show();
-
-                }
-                else if (locat.equalsIgnoreCase( "0")) {
+             if (locat.equalsIgnoreCase( "0")) {
                     Toast.makeText(getApplicationContext(), "Please select pick-up location",
                             Toast.LENGTH_LONG).show();
                 } else if (result < 1) {
@@ -357,16 +350,17 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                                         final String newpromoID = sharedPreferences.getString(Config.PROMO_ID,"0");
 
+
                                         try {
-                                            if (Settings.Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
+                                            if (Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
 
                                                 Toast.makeText(getApplicationContext(),
                                                         "Please set Automatic Date & Time to ON in the Settings",
                                                         Toast.LENGTH_LONG).show();
 
                                                 startActivityForResult(
-                                                        new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
-                                            } else if (Settings.Global.getInt(getContentResolver(),
+                                                        new Intent(Settings.ACTION_DATE_SETTINGS), 0);
+                                            } else if (Global.getInt(getContentResolver(),
                                                     Global.AUTO_TIME_ZONE) == 0) {
 
                                                 Toast.makeText(getApplicationContext(),
@@ -374,85 +368,85 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                                         Toast.LENGTH_LONG).show();
 
                                                 startActivityForResult(
-                                                        new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
-                                            }
+                                                        new Intent(Settings.ACTION_DATE_SETTINGS), 0);
+                                            }else {
 
-                                            final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
+                                                final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
 
-                                            totalprice1 = foodprice1*result;
+                                                totalprice1 = foodprice1*result;
 
-                                            if (claimPromo.equalsIgnoreCase("YES")) {
+                                                if (claimPromo.equalsIgnoreCase("YES")) {
 
-                                                totalprice1 = 0;
-                                            }
-
-                                            StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                                                    NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
-                                                @Override
-                                                public void onResponse(String response) {
-                                                    Toast.makeText(NewIndvOrder.this, response, Toast.LENGTH_LONG)
-                                                            .show();
-
-                                                    loading.dismiss();
-
-                                                    Intent i = new Intent(NewIndvOrder.this, FoodMenuDisplay.class);
-                                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                    startActivity(i);
-                                                    finish();
+                                                    totalprice1 = 0;
                                                 }
-                                            }, new Response.ErrorListener() {
-                                                @Override
-                                                public void onErrorResponse(VolleyError error) {
-                                                    loading.dismiss();
-                                                    if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                                                        Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
-                                                                Toast.LENGTH_LONG).show();
+
+                                                StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                                                        NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        Toast.makeText(NewIndvOrder.this, response, Toast.LENGTH_LONG)
+                                                                .show();
+
+                                                        loading.dismiss();
+
+                                                        Intent i = new Intent(NewIndvOrder.this, OrderPage.class);
+                                                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        startActivity(i);
+                                                        finish();
                                                     }
-                                                    else{
+                                                }, new Response.ErrorListener() {
+                                                    @Override
+                                                    public void onErrorResponse(VolleyError error) {
+                                                        loading.dismiss();
+                                                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                                                            Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                                                    Toast.LENGTH_LONG).show();
+                                                        }
+                                                        else{
 
-                                                        Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                                                        }
                                                     }
-                                                }
-                                            }) {
-                                                @Override
-                                                protected Map<String, String> getParams() {
-                                                    Map<String, String> params = new HashMap<String, String>();
-                                                    params.put(KEY_MENUTYPE, menuType);
-                                                    params.put(KEY_MENUDAY, menuDay);
-                                                    params.put(KEY_ORDER_DATE, orderDate);
-                                                    params.put(KEY_ORDER_TIME, orderTime);
-                                                    params.put(KEY_CARDNUM, myCard);
-                                                    params.put(KEY_MENUQTT, myQtt);
-                                                    params.put(KEY_MENUSTATUS, myStatus);
-                                                    params.put(KEY_LOCATION, locat);
-                                                    params.put(KEY_USERID, userID);
-                                                    params.put(KEY_FOODID, foodID);
-                                                    params.put("totalPrice", df.format(totalprice1));
-                                                    params.put("orderLocation", userLocation);
-                                                    params.put("promoID", newpromoID);
-                                                    params.put("claimpromo", claimPromo);
-                                                    return params;
-                                                }
+                                                }) {
+                                                    @Override
+                                                    protected Map<String, String> getParams() {
+                                                        Map<String, String> params = new HashMap<String, String>();
+                                                        params.put(KEY_MENUTYPE, menuType);
+                                                        params.put(KEY_MENUDAY, menuDay);
+                                                        params.put(KEY_ORDER_DATE, orderDate);
+                                                        params.put(KEY_ORDER_TIME, orderTime);
+                                                        params.put(KEY_CARDNUM, myCard);
+                                                        params.put(KEY_MENUQTT, myQtt);
+                                                        params.put(KEY_MENUSTATUS, myStatus);
+                                                        params.put(KEY_LOCATION, locat);
+                                                        params.put(KEY_USERID, userID);
+                                                        params.put(KEY_FOODID, foodID);
+                                                        params.put("totalPrice", df.format(totalprice1));
+                                                        params.put("orderLocation", userLocation);
+                                                        params.put("promoID", newpromoID);
+                                                        params.put("claimpromo", claimPromo);
+                                                        return params;
+                                                    }
 
-                                            };
+                                                };
 
-                                            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                                                    30000,
-                                                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                                                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                                                stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                                                        30000,
+                                                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-                                            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                                            requestQueue.add(stringRequest);
+                                                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                                                requestQueue.add(stringRequest);
 
-                                            emailer();
-                                            notifyMe();
-                                        }
-                                        catch (SettingNotFoundException e) {
-                                            // TODO Auto-generated catch block
+                                                emailer();
+                                                notifyMe();
+
+                                            }
+                                        } catch (SettingNotFoundException e) {
                                             e.printStackTrace();
                                         }
-
                                     }
+
                                 });
 
                         alertDialogBuilder.setNegativeButton(getString(R.string.btn_no),
@@ -849,7 +843,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                     if (!(hour >= saleStart && hour < saleEnd))
                     {
-                       Toast.makeText(NewIndvOrder.this,"Order close now. You can start ordering from "+saleEnd+":00 until "+saleEnd+":00",
+                       Toast.makeText(NewIndvOrder.this,"Order close now. You can start ordering from "+saleStart+":00 until "+saleEnd+":00",
                               Toast.LENGTH_LONG).show();
 
                         Intent i = new Intent(NewIndvOrder.this, MainActivity.class);

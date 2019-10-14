@@ -47,12 +47,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            sendNotification(remoteMessage.getData());
         }
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+            createNotification(remoteMessage.getNotification().getBody());
         }
-        sendNotification(remoteMessage.getData());
+
     }
     private void sendNotification(Map<String,String> messageBody) {
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -87,5 +89,41 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         mBuilder.setContentIntent(notifyPendingIntent);
 
         notificationManager.notify(notificationId, mBuilder.build());
+    }
+
+    private void createNotification( String messageBody) {
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        int notificationId = 2;
+        String channelId = "channel-02";
+        String channelName = "Channel Name2";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(
+                    channelId, channelName, importance);
+            notificationManager.createNotificationChannel(mChannel);
+        }
+
+        Uri notificationSoundURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("QnitiBox Notification")
+                .setAutoCancel(true)
+                .setContentText(messageBody)
+                .setSound(notificationSoundURI);
+
+        Intent notifyIntent = new Intent(this, MainActivity.class);
+        // Set the Activity to start in a new, empty task
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // Create the PendingIntent
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        );
+        mBuilder.setContentIntent(notifyPendingIntent);
+
+        notificationManager.notify(notificationId, mBuilder.build());
+
     }
 }

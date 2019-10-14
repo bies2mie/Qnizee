@@ -1,5 +1,6 @@
 package com.badrul.qnitibox;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +25,10 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +58,7 @@ public class LoginPage extends AppCompatActivity {
     String matrixID;
     String userLocation;
     String userToken;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,21 @@ public class LoginPage extends AppCompatActivity {
         // Button btnLinkToRegister =(Button)findViewById(R.id.btnLinkToRegisterScreen);
         //Button tos =(Button)findViewById(R.id.tos);
         // ImageButton exit =(ImageButton)findViewById(R.id.exit);
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        token = task.getResult().getToken();
+
+                    }
+                });
 
         toRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +231,7 @@ public class LoginPage extends AppCompatActivity {
                 //Adding parameters to request
                 params.put("userEmail", userEmailID);
                 params.put(Config.KEY_PASSWORD, passwordP);
-                params.put("userToken",userToken);
+                params.put("userToken", token);
 
                 //returning parameter
                 return params;

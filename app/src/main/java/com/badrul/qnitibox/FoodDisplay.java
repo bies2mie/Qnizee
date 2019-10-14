@@ -149,7 +149,7 @@ public class FoodDisplay extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
 
                         startActivityForResult(
-                                new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
+                                new Intent(Settings.ACTION_DATE_SETTINGS), 0);
                     } else if (Settings.Global.getInt(getContentResolver(),
                             Settings.Global.AUTO_TIME_ZONE) == 0) {
 
@@ -158,8 +158,8 @@ public class FoodDisplay extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
 
                         startActivityForResult(
-                                new Intent(android.provider.Settings.ACTION_DATE_SETTINGS), 0);
-                    }
+                                new Intent(Settings.ACTION_DATE_SETTINGS), 0);
+                    }else{
 
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date strDate = sdf.parse(my_date);
@@ -168,50 +168,46 @@ public class FoodDisplay extends AppCompatActivity {
                             Toast.makeText(FoodDisplay.this,"You can start ordering on "+my_date,
                                     Toast.LENGTH_LONG).show();
                         }
-                        else{
+                        else {
 
-                            if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && (hour >= 8 && hour < 18)) { // x.after(calendar1.getTime())
+                            if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) { // x.after(calendar1.getTime())
 
                                 menuDay = "Sunday";
                                 sharedpref();
 
 
-                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) && (hour >= 8 && hour < 18)) {
+                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
 
                                 menuDay = "Monday";
                                 sharedpref();
 
 
-                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) && (hour >= 8 && hour < 18)) {//Check THis
+                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {//Check THis
 
 
                                 menuDay = "Tuesday";
                                 sharedpref();
 
 
-
-
-                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) && (hour >= 8 && hour < 18)) {
+                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
 
                                 menuDay = "Wednesday";
                                 sharedpref();
 
 
-                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) && (hour >= 8 && hour < 18)) {
+                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
 
                                 menuDay = "Thursday";
                                 sharedpref();
 
 
-
-                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) && (hour >= 8 && hour < 23)) {
+                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
 
                                 menuDay = "Friday";
                                 sharedpref();
 
 
-
-                            } else if ((startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && (hour >= 8 && hour < 18)) {
+                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
 
                                 menuDay = "Saturday";
                                 sharedpref();
@@ -224,18 +220,19 @@ public class FoodDisplay extends AppCompatActivity {
                                 startActivity(i);
                                 finish();
                             }
-
+                        }
 
 
                         }
-
-                } catch (Settings.SettingNotFoundException ex) {
-                    ex.printStackTrace();
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
+                } catch (Settings.SettingNotFoundException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
+
             }
             });
+
 
         eventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
