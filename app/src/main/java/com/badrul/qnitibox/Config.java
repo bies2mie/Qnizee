@@ -42,6 +42,8 @@ public class Config {
 	public static final String FOOD_PRICE = "foodPrice";
 	public static final String TOTAL_FOOD_PRICE = "totalfoodPrice";
 
+	public static final String USER_TOKEN = "userToken";
+
 	public static final String FOOD_DESC = "foodDesc";
 	public static final String FOOD_IMAGE = "foodImage";
 

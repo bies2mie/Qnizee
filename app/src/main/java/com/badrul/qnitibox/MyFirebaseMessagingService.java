@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import androidx.core.app.NotificationCompat;
@@ -13,19 +14,47 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+import java.util.Random;
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyAndroidFCMService";
+
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
-        //Log data to Log Cat
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
-        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
-        //create notification
-        createNotification(remoteMessage.getNotification().getBody());
+    public void onNewToken(String tokenShow) {
+        super.onNewToken(tokenShow);
+        Log.e("newToken", tokenShow);
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+
+        // Creating editor to store values to shared preferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Adding values to editor
+
+        editor.putString(Config.USER_TOKEN, tokenShow);
+
+
+        // Saving values to editor
+        editor.commit();
     }
 
-    private void createNotification( String messageBody) {
+
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        Log.d(TAG, "From: "+remoteMessage.getFrom());
+        // Check if message contains a data payload.
+        if (remoteMessage.getData().size() > 0) {
+            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+        }
+        // Check if message contains a notification payload.
+        if (remoteMessage.getNotification() != null) {
+            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+        }
+        sendNotification(remoteMessage.getData());
+    }
+    private void sendNotification(Map<String,String> messageBody) {
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         int notificationId = 1;
@@ -39,13 +68,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(mChannel);
         }
 
-        Uri notificationSoundURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("QnitiBox Notification")
+                .setContentTitle(messageBody.get("title"))
                 .setAutoCancel(true)
-                .setContentText(messageBody)
-                .setSound(notificationSoundURI);
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(messageBody.get("message")))
+                .setContentText(messageBody.get("title"));
 
         Intent notifyIntent = new Intent(this, MainActivity.class);
         // Set the Activity to start in a new, empty task
@@ -58,6 +87,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         mBuilder.setContentIntent(notifyPendingIntent);
 
         notificationManager.notify(notificationId, mBuilder.build());
-
     }
 }

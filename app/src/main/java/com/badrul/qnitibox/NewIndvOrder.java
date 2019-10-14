@@ -847,9 +847,6 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                     }
 
-                    Toast.makeText(NewIndvOrder.this,String.valueOf(hour),
-                            Toast.LENGTH_LONG).show();
-
                     if (!(hour >= saleStart && hour < saleEnd))
                     {
                        Toast.makeText(NewIndvOrder.this,"Order close now. You can start ordering from "+saleEnd+":00 until "+saleEnd+":00",

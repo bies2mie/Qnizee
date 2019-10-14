@@ -51,12 +51,15 @@ public class LoginPage extends AppCompatActivity {
     String emailID;
     String matrixID;
     String userLocation;
+    String userToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        userToken = sharedPreferences.getString(Config.USER_TOKEN, "Not Available");
 
         inputICnum = findViewById(R.id.icnum);
         inputPassword = findViewById(R.id.password);
@@ -206,6 +209,7 @@ public class LoginPage extends AppCompatActivity {
                 //Adding parameters to request
                 params.put("userEmail", userEmailID);
                 params.put(Config.KEY_PASSWORD, passwordP);
+                params.put("userToken",userToken);
 
                 //returning parameter
                 return params;
