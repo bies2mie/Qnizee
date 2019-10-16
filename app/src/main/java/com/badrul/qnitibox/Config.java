@@ -18,7 +18,7 @@ public class Config {
 	public static final String ORDER_STATUS_COMPLETE = "https://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
 	public static final String ORDER_STATUS_PROCESSING = "https://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
 	public static final String PROFILE = "https://gmartbox.cvmall.my/apps/getuserinfo.php?userEmail=";
-	public static final String SHOW_FOOD = "https://gmartbox.cvmall.my/apps/showfood.php";
+	public static final String SHOW_FOOD = "https://gmartbox.cvmall.my/apps/showfood.php?inasisID=";
     public static final String CHECK_USERPROMO= "https://gmartbox.cvmall.my/apps/checkifpromo.php";
 	public static final String FOOD_ID = "foodID";
 
@@ -54,6 +54,11 @@ public class Config {
 	public static final String SALETIME_START = "saleStart";
 	public static final String SALETIME_END = "saleEnd";
 
+	public static final String INASIS_ID = "inasisID";
+	public static final String INASIS_NAME = "inasisName";
+	public static final String INASIS_LOCATION = "inasisLocation";
+	public static final String INASIS_LOGO = "inasisLogo";
+
 	public static final String COMPLETE_DATE = "completeDate";
 	public static final String COMPLETE_TIME = "completeTime";
 	public static final String ORDER_STATUS = "orderStatus";
@@ -69,6 +74,8 @@ public class Config {
 
 	public static final String LOGIN_URL = "https://gmartbox.cvmall.my/apps/loginqniti.php";
 	public static final String REGISTER_URL = "https://gmartbox.cvmall.my/apps/registerqniti.php";
+
+	public static final String GET_INASIS = "https://gmartbox.cvmall.my/apps/getInasis.php?inasisLocation=";
 
 	//Keys for email and password as defined in our $_POST['key'] in login.php
 //public static final String KEY_ID = "userIC";

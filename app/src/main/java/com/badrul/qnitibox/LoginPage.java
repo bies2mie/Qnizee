@@ -299,7 +299,7 @@ public class LoginPage extends AppCompatActivity {
                             loading.dismiss();
 
                             //Starting profile activity
-                            Intent intent = new Intent(LoginPage.this, FoodMenuDisplay.class);
+                            Intent intent = new Intent(LoginPage.this, InasisDisplay.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 

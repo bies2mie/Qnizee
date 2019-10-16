@@ -32,25 +32,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.OnItemClicked {
+public class InasisDisplay extends AppCompatActivity implements InasisAdapter.OnItemClicked {
 
-    List<Food> foodList;
+    List<Inasis> inasisList;
     //the recyclerview
     RecyclerView recyclerView;
-    String inasisID;
+    String userLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_menu_display);
-
-        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        inasisID = sharedPreferences.getString(Config.INASIS_ID, "Not Available");
+        setContentView(R.layout.activity_inasis_display);
 
 
         recyclerView = findViewById(R.id.recylcerView);
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(FoodMenuDisplay.this);
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(InasisDisplay.this);
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
 
@@ -60,7 +60,7 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
 
         //initializing the productlist
 
-        foodList = new ArrayList<>();
+        inasisList = new ArrayList<>();
 
 
         //this method will fetch and parse json
@@ -72,9 +72,9 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
 
     private void loadOrder() {
 
-        final ProgressDialog loading = ProgressDialog.show(FoodMenuDisplay.this,"Please Wait","Contacting Server",false,false);
+        final ProgressDialog loading = ProgressDialog.show(InasisDisplay.this,"Please Wait","Contacting Server",false,false);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.SHOW_FOOD+inasisID,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.GET_INASIS+userLocation,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -86,16 +86,15 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
                             for (int i = 0; i < array.length(); i++) {
 
                                 //getting product object from json array
-                                JSONObject food = array.getJSONObject(i);
+                                JSONObject inasis = array.getJSONObject(i);
 
                                 //adding the product to product list
-                                foodList.add(new Food(
+                                inasisList.add(new Inasis(
 
-                                        food.getInt("foodID"),
-                                        food.getString("foodTitle"),
-                                        food.getString("foodPrice"),
-                                        food.getString("foodDesc"),
-                                        food.getString("foodImage")
+                                        inasis.getInt("inasisID"),
+                                        inasis.getString("inasisName"),
+                                        inasis.getString("inasisLocation"),
+                                        inasis.getString("inasisLogo")
 
 
                                 ));
@@ -103,9 +102,9 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            FoodAdapter adapter = new FoodAdapter(FoodMenuDisplay.this, foodList);
+                            InasisAdapter adapter = new InasisAdapter(InasisDisplay.this, inasisList);
                             recyclerView.setAdapter(adapter);
-                            adapter.setOnClick(FoodMenuDisplay.this);
+                            adapter.setOnClick(InasisDisplay.this);
 
 
                             //add shared preference ID,nama,credit here
@@ -121,12 +120,12 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                            Toast.makeText(FoodMenuDisplay.this,"No internet . Please check your connection",
+                            Toast.makeText(InasisDisplay.this,"No internet . Please check your connection",
                                     Toast.LENGTH_LONG).show();
                         }
                         else{
-                            //Toast.makeText(FoodMenuDisplay.this, error.toString(), Toast.LENGTH_SHORT).show();
-                            Toast.makeText(FoodMenuDisplay.this, "Wrong version detected. Please update QnitiBox to latest version", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(InasisMenuDisplay.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InasisDisplay.this, "Wrong version detected. Please update QnitiBox to latest version", Toast.LENGTH_LONG).show();
                             openMarket();
                         }
                     }
@@ -141,29 +140,14 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
 
 
     }
-/*
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("curChoice", curCheckPosition);
-    }
-
-   /* public void setRvadapter (List<Product> productList) {
-
-        ProductsAdapter myAdapter = new ProductsAdapter(this,productList) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(myAdapter);
-
-    }*/
-
 
 
     @Override
     public void onItemClick(int position) {
         // The onClick implementation of the RecyclerView item click
         //ur intent code here
-        Food food = foodList.get(position);
-        //Toast.makeText(FoodMenu.this, product.getLongdesc(),
+        Inasis inasis = inasisList.get(position);
+        //Toast.makeText(InasisMenu.this, product.getLongdesc(),
         //      Toast.LENGTH_LONG).show();
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
@@ -174,16 +158,15 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
 
         // Adding values to editor
 
-        editor.putString(Config.FOOD_ID, String.valueOf(food.getFoodID()));
-        editor.putString(Config.MENU_TYPE, food.getFoodTitle());
-        editor.putString(Config.FOOD_PRICE,food.getFoodPrice());
-        editor.putString(Config.FOOD_DESC,food.getFoodDesc());
-        editor.putString(Config.FOOD_IMAGE,food.getFoodImage());
+        editor.putString(Config.INASIS_ID, String.valueOf(inasis.getInasisID()));
+        editor.putString(Config.INASIS_NAME, inasis.getInasisName());
+        editor.putString(Config.INASIS_LOCATION,inasis.getInasisLocation());
+        editor.putString(Config.INASIS_LOGO,inasis.getInasisLogo());
 
         // Saving values to editor
         editor.commit();
 
-        Intent i = new Intent(FoodMenuDisplay.this, FoodDisplay.class);
+        Intent i = new Intent(InasisDisplay.this, FoodMenuDisplay.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
         //finish();
@@ -193,9 +176,9 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
 
         final String LiveAppPackage = "com.badrul.qnitibox";
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FoodMenuDisplay.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(InasisDisplay.this);
         alertDialogBuilder.setMessage("Do you want to update to latest version?");
-        final Dialog dialog = new Dialog(FoodMenuDisplay.this);
+        final Dialog dialog = new Dialog(InasisDisplay.this);
 
         alertDialogBuilder.setPositiveButton(getString(R.string.btn_yes),
                 new DialogInterface.OnClickListener() {
@@ -220,7 +203,7 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         dialog.setCanceledOnTouchOutside(true);
-                        Intent i = new Intent(FoodMenuDisplay.this, MainActivity.class);
+                        Intent i = new Intent(InasisDisplay.this, MainActivity.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
                         finish();
@@ -232,7 +215,7 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
                 new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        Intent i = new Intent(FoodMenuDisplay.this, MainActivity.class);
+                        Intent i = new Intent(InasisDisplay.this, MainActivity.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
                         finish();
