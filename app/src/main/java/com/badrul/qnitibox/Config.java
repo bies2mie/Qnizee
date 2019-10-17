@@ -14,7 +14,10 @@ public class Config {
 	public static final String URL_CHECKPROMOQTT = "https://gmartbox.cvmall.my/apps/getpromoqtt.php?userLocation=";
 
 	public static final String URL_CHECKSALEDATE = "https://gmartbox.cvmall.my/apps/getsaletime.php?foodID=";
+	public static final String CANCEL_ORDER_URL = "https://gmartbox.cvmall.my/apps/admin/cancelorder.php";
 
+
+	public static final String ORDER_STATUS_CANCEL = "https://gmartbox.cvmall.my/apps/orderstatuscancel.php?userID=";
 	public static final String ORDER_STATUS_COMPLETE = "https://gmartbox.cvmall.my/apps/orderstatuscomplete.php?userID=";
 	public static final String ORDER_STATUS_PROCESSING = "https://gmartbox.cvmall.my/apps/orderstatusprocessing.php?userID=";
 	public static final String PROFILE = "https://gmartbox.cvmall.my/apps/getuserinfo.php?userEmail=";
@@ -41,6 +44,8 @@ public class Config {
 	public static final String PICKUP_TIME = "puTime";
 	public static final String FOOD_PRICE = "foodPrice";
 	public static final String TOTAL_FOOD_PRICE = "totalfoodPrice";
+	public static final String ORDER_FOODID = "orderFoodID";
+	public static final String ORDER_CANCELMSG = "orderCancelMsg";
 
 	public static final String USER_TOKEN = "userToken";
 

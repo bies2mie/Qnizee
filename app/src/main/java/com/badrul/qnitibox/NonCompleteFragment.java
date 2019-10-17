@@ -211,7 +211,9 @@ ImageButton logout;
                                         product.getString("completeDate"),
                                         product.getString("completeTime"),
                                         product.getString("totalPrice"),
-                                        product.getString("foodImage")
+                                        product.getString("foodImage"),
+                                        product.getString("foodID"),
+                                        product.getString("cancelMsg")
 
                                 ));
                             }
@@ -315,6 +317,8 @@ ImageButton logout;
         editor.putString(Config.ORDER_COMPLETEDATE, order.getCompleteDate());
         editor.putString(Config.ORDER_COMPLETETIME, order.getCompleteTime());
         editor.putString(Config.TOTAL_FOOD_PRICE, order.getTotalPrice());
+        editor.putString(Config.ORDER_FOODID, order.getFoodID());
+        editor.putString(Config.ORDER_CANCELMSG, order.getCancelMsg());
 
         // Saving values to editor
         editor.commit();

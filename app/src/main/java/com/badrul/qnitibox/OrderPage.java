@@ -55,6 +55,11 @@ public class OrderPage extends AppCompatActivity implements BottomNavigationView
                 fragment = new CompleteFragment();
                 break;
 
+            case R.id.navigation_cancel:
+                fragment = new CancelFragment();
+                break;
+
+
         }
 
         return loadFragment(fragment);

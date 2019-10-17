@@ -132,6 +132,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String getsalestart;
     String getsaleend;
     SimpleDateFormat dateFormat1;
+    String inasisID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +157,7 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
         foodID = sharedPreferences.getString(Config.FOOD_ID, "Not Available");
         userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
+        inasisID = sharedPreferences.getString(Config.INASIS_ID,"Not Availble");
 
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         //If we will get true
@@ -229,11 +231,20 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                     sp.setVisibility(View.VISIBLE);
 
                             if(userLocation.equalsIgnoreCase("UUM")) {
+
                                 list = new ArrayList<>();
+
+                                if(inasisID.equalsIgnoreCase("14") || inasisID.equalsIgnoreCase("15")) {
 
                                 list.add("Near Bank Rakyat Office (Time: 6 PM)");
                                 list.add("Near SME Bank Office (Time: 6 PM)");
 
+                                }else{
+
+                                    list.add("VMALL (Time: 6 PM)");
+                                    list.add("Near Petronas Office (Time: 6 PM)");
+
+                                }
                                 adp = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, list);
                                 adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 sp.setAdapter(adp);

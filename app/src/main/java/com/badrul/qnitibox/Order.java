@@ -23,9 +23,11 @@ public class Order {
     private String completeTime;
     private String totalPrice;
     private String foodLink;
+    private String foodID;
+    private String cancelMsg;
 
 
-    public Order(int orderID, String cardID, String nameID, String phoneID, String emailID, String matrixID, String orderType, String orderDay, String orderDate, String orderTime, String orderQTT, String orderUserType, String puLocation, String puTime, String orderStatus, String completeDate, String completeTime,String totalPrice,String foodLink) {
+    public Order(int orderID, String cardID, String nameID, String phoneID, String emailID, String matrixID, String orderType, String orderDay, String orderDate, String orderTime, String orderQTT, String orderUserType, String puLocation, String puTime, String orderStatus, String completeDate, String completeTime,String totalPrice,String foodLink, String foodID, String cancelMsg) {
 
         this.orderID = orderID;
         this.nameID = nameID;
@@ -46,6 +48,8 @@ public class Order {
         this.completeTime = completeTime;
         this.totalPrice = totalPrice;
         this.foodLink = foodLink;
+        this.foodID = foodID;
+        this.cancelMsg = cancelMsg;
 
 
     }
@@ -124,5 +128,13 @@ public class Order {
 
     public String getFoodLink() {
         return foodLink;
+    }
+
+    public String getFoodID() {
+        return foodID;
+    }
+
+    public String getCancelMsg() {
+        return cancelMsg;
     }
     }

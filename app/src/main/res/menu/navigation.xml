@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_completed"
         android:title="@string/title_complete" />
 
+    <item
+        android:id="@+id/navigation_cancel"
+        android:icon="@drawable/ic_cancelorder"
+        android:title="@string/title_cancel" />
+
 </menu>

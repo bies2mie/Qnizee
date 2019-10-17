@@ -8,6 +8,7 @@
     <string name="txt_tnc">If you press <b>YES</b>, you agree to allow us to use your contact details to communicate with you on any issues or promotions on regards of our services</string>
     <string name="title_noncomplete">Processing</string>
     <string name="title_complete">Complete</string>
+    <string name="title_cancel">Cancelled</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_sunday_breakfast">Sunday Breakfast</string>
     <string name="title_activity_order_menu">Menu Order</string>

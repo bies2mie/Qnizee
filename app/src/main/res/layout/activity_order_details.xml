@@ -120,21 +120,6 @@
                             android:layout_height="wrap_content"
                             android:text="Tiada" />
 
-                        <TextView
-                            android:id="@+id/cancelTxtUp"
-                            android:layout_marginTop="5dp"
-                            android:textStyle="bold"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Sebab Batal"
-                            android:visibility="gone"/>
-
-                        <TextView
-                            android:id="@+id/cancelTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="info----"
-                            android:visibility="gone"/>
 
                     </LinearLayout>
 
@@ -199,6 +184,22 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Tiada" />
+
+                        <TextView
+                            android:id="@+id/cancelTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Cancellation Reason"
+                            android:textStyle="bold"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/cancelTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="None"
+                            android:visibility="gone"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -336,6 +337,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:srcCompat="@tools:sample/avatars[1]" />
+
+                <Button
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/cancelOrderBtn"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/textboxcornerwhite"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:text="Cancel Order" />
 
             </LinearLayout>
         </ScrollView>

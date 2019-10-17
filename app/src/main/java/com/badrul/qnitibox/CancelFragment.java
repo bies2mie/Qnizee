@@ -37,7 +37,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompleteFragment extends Fragment implements OrderAdapter.OnItemClicked{
+public class CancelFragment extends Fragment implements OrderAdapter.OnItemClicked{
 
     List<Order> orderList;
     ImageButton logout;
@@ -60,7 +60,7 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View myView = inflater.inflate(R.layout.fragment_complete, container, false);
+        View myView = inflater.inflate(R.layout.fragment_cancel, container, false);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, getActivity().getApplicationContext().MODE_PRIVATE);
         userID = sharedPreferences.getString(Config.USER_ID2, "Not Available");
@@ -157,7 +157,7 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
 
         final ProgressDialog loading = ProgressDialog.show(getActivity(),"Please Wait","Contacting Server",false,false);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ORDER_STATUS_COMPLETE+userID,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ORDER_STATUS_CANCEL+userID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -200,11 +200,11 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
                             //creating adapter object and setting it to recyclerview
                             OrderAdapter adapter = new OrderAdapter(getActivity().getApplicationContext(), orderList);
                             recyclerView.setAdapter(adapter);
-                            adapter.setOnClick(CompleteFragment.this);
+                            adapter.setOnClick(CancelFragment.this);
 
                             if (adapter.getItemCount() == 0) {
-                               imgGone.setVisibility(View.VISIBLE);
-                               txtGone.setVisibility(View.VISIBLE);
+                                imgGone.setVisibility(View.VISIBLE);
+                                txtGone.setVisibility(View.VISIBLE);
                             } else{
 
                                 imgGone.setVisibility(View.GONE);
