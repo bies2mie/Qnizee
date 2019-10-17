@@ -62,6 +62,7 @@ public class OrderDetails extends AppCompatActivity {
     String currentDate;
     String userID;
     String orderStatus;
+    String orderDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class OrderDetails extends AppCompatActivity {
         String matrixID = sharedPreferences.getString(Config.MATRIX_ID, "Not Available");
         String orderType = sharedPreferences.getString(Config.ORDER_TYPE, "Not Available");
         String orderDay = sharedPreferences.getString(Config.ORDER_DAY, "Not Available");
-        String orderDate = sharedPreferences.getString(Config.ORDER_DATE2, "Not Available");
+        orderDate = sharedPreferences.getString(Config.ORDER_DATE2, "Not Available");
         String orderTime = sharedPreferences.getString(Config.ORDER_TIME2, "Not Available");
         String orderQTT = sharedPreferences.getString(Config.ORDER_QTT, "Not Available");
         String orderUserType = sharedPreferences.getString(Config.ORDER_USERTYPE, "Not Available");
@@ -363,7 +364,7 @@ public class OrderDetails extends AppCompatActivity {
 
                     }
 
-                    if ((hour >= saleStart && hour < saleEnd)&& orderStatus.equalsIgnoreCase("Processing"))
+                    if ((hour >= saleStart && hour < saleEnd)&& orderStatus.equalsIgnoreCase("Processing") && orderDate.equalsIgnoreCase(currentDate))
                     {
 
                         cancelOrder.setVisibility(View.VISIBLE);

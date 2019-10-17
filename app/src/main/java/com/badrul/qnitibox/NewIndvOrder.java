@@ -395,15 +395,23 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                                         NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
                                                     @Override
                                                     public void onResponse(String response) {
-                                                        Toast.makeText(NewIndvOrder.this, response, Toast.LENGTH_LONG)
-                                                                .show();
 
                                                         loading.dismiss();
 
-                                                        Intent i = new Intent(NewIndvOrder.this, OrderPage.class);
-                                                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                        startActivity(i);
-                                                        finish();
+                                                        if(response.contains("Successfully Order")){
+
+                                                            Toast.makeText(NewIndvOrder.this, "Order success. Thank you", Toast.LENGTH_LONG)
+                                                                    .show();
+                                                            Intent i = new Intent(NewIndvOrder.this, OrderPage.class);
+                                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                            startActivity(i);
+                                                            finish();
+                                                        }
+                                                       else if(response.contains("Could not order")) {
+
+                                                            Toast.makeText(NewIndvOrder.this, "Could not order. Please try again", Toast.LENGTH_LONG)
+                                                                    .show();
+                                                        }
                                                     }
                                                 }, new Response.ErrorListener() {
                                                     @Override
