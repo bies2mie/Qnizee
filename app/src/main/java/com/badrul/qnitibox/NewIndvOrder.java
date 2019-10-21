@@ -859,8 +859,18 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                         ));
 
                     }
+                    if ( saleStart == saleEnd)
+                    {
+                        Toast.makeText(NewIndvOrder.this,"Available Soon. In the meantime, please order other menu",
+                                Toast.LENGTH_LONG).show();
 
-                    if (!(hour >= saleStart && hour < saleEnd))
+                        Intent i = new Intent(NewIndvOrder.this, MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                        finish();
+
+                    }
+                    else if (!(hour >= saleStart && hour < saleEnd))
                     {
                        Toast.makeText(NewIndvOrder.this,"Order close now. You can start ordering from "+saleStart+":00 until "+saleEnd+":00",
                               Toast.LENGTH_LONG).show();

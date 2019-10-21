@@ -8,8 +8,8 @@ android {
         applicationId "com.badrul.qnitibox"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 23
-        versionName "2.2"
+        versionCode 24
+        versionName "2.21"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
