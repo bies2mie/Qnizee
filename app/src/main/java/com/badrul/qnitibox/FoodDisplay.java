@@ -51,9 +51,9 @@ public class FoodDisplay extends AppCompatActivity {
 
     List<Food> foodList;
     List<User> userList;
-    ImageButton continueBtn;
-    ImageButton eventBtn;
-    TextView title,price,desc;
+    Button continueBtn;
+    Button eventBtn;
+    TextView title,price,desc,showsale;
     ImageView showFood;
     ProgressBar progressBar;
     String my_date ;
@@ -68,16 +68,17 @@ public class FoodDisplay extends AppCompatActivity {
 
     String menuType;//Data for database;foodTitle
     String foodtitle,foodprice,fooddesc,foodimage;
-    int foodID;
-
+    String foodID;
+    List<SaleTime> saletimeList;
 
     Calendar startDate;
-
-
     int hour;
     String curTime;
     String currentDate;
     String menuDay;
+    int saletimeID;
+    int saleStart;
+    int saleEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class FoodDisplay extends AppCompatActivity {
         desc = findViewById(R.id.foodDesc);
         showFood = findViewById(R.id.imageFood);
         progressBar = findViewById(R.id.progress);
+        showsale = findViewById(R.id.showDate);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         userEmailID = sharedPreferences.getString(Config.ID_SHARED_PREF, "Not Available");
@@ -98,6 +100,7 @@ public class FoodDisplay extends AppCompatActivity {
         foodprice= sharedPreferences.getString(Config.FOOD_PRICE, "Not Available");
         fooddesc= sharedPreferences.getString(Config.FOOD_DESC, "Not Available");
         foodimage= sharedPreferences.getString(Config.FOOD_IMAGE, "Not Available");
+        foodID = sharedPreferences.getString(Config.FOOD_ID, "Not Available");
 
         startDate = Calendar.getInstance();
 
@@ -111,6 +114,8 @@ public class FoodDisplay extends AppCompatActivity {
 
         userList = new ArrayList<>();
         foodList = new ArrayList<>();
+        saletimeList = new ArrayList<>();
+        checkSaleDate();
         checkDate();
 
         title.setText(foodtitle);
@@ -141,95 +146,108 @@ public class FoodDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                try {
-                    if (Settings.Global.getInt(getContentResolver(), Settings.Global.AUTO_TIME) == 0) {
+                if ( saleStart == saleEnd)
+                {
+                    Toast.makeText(FoodDisplay.this,"Menu not available. Please check in the future",
+                            Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(getApplicationContext(),
-                                "Please set Automatic Date & Time to ON in the Settings",
-                                Toast.LENGTH_LONG).show();
 
-                        startActivityForResult(
-                                new Intent(Settings.ACTION_DATE_SETTINGS), 0);
-                    } else if (Settings.Global.getInt(getContentResolver(),
-                            Settings.Global.AUTO_TIME_ZONE) == 0) {
+                }
+                else if (!(hour >= saleStart && hour < saleEnd))
+                {
+                    Toast.makeText(FoodDisplay.this,"Order close now. You can start ordering from "+saleStart+":00 until "+saleEnd+":00",
+                            Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(getApplicationContext(),
-                                "Please set Automatic Time Zone to ON in the Settings",
-                                Toast.LENGTH_LONG).show();
+                }else {
 
-                        startActivityForResult(
-                                new Intent(Settings.ACTION_DATE_SETTINGS), 0);
-                    }else{
+                    try {
+                        if (Settings.Global.getInt(getContentResolver(), Settings.Global.AUTO_TIME) == 0) {
 
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        Date strDate = sdf.parse(my_date);
-                        if (System.currentTimeMillis() < strDate.getTime()) {
-
-                            Toast.makeText(FoodDisplay.this,"You can start ordering on "+my_date,
+                            Toast.makeText(getApplicationContext(),
+                                    "Please set Automatic Date & Time to ON in the Settings",
                                     Toast.LENGTH_LONG).show();
-                        }
-                        else {
 
-                            if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) { // x.after(calendar1.getTime())
+                            startActivityForResult(
+                                    new Intent(Settings.ACTION_DATE_SETTINGS), 0);
+                        } else if (Settings.Global.getInt(getContentResolver(),
+                                Settings.Global.AUTO_TIME_ZONE) == 0) {
 
-                                menuDay = "Sunday";
-                                sharedpref();
+                            Toast.makeText(getApplicationContext(),
+                                    "Please set Automatic Time Zone to ON in the Settings",
+                                    Toast.LENGTH_LONG).show();
 
+                            startActivityForResult(
+                                    new Intent(Settings.ACTION_DATE_SETTINGS), 0);
+                        } else {
 
-                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                            Date strDate = sdf.parse(my_date);
+                            if (System.currentTimeMillis() < strDate.getTime()) {
 
-                                menuDay = "Monday";
-                                sharedpref();
-
-
-                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {//Check THis
-
-
-                                menuDay = "Tuesday";
-                                sharedpref();
-
-
-                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
-
-                                menuDay = "Wednesday";
-                                sharedpref();
-
-
-                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
-
-                                menuDay = "Thursday";
-                                sharedpref();
-
-
-                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
-
-                                menuDay = "Friday";
-                                sharedpref();
-
-
-                            } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
-
-                                menuDay = "Saturday";
-                                sharedpref();
-
-
+                                Toast.makeText(FoodDisplay.this, "You can start ordering on " + my_date,
+                                        Toast.LENGTH_LONG).show();
                             } else {
 
-                                Intent i = new Intent(FoodDisplay.this, ErrorPage2.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(i);
-                                finish();
+                                if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) { // x.after(calendar1.getTime())
+
+                                    menuDay = "Sunday";
+                                    sharedpref();
+
+
+                                } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+
+                                    menuDay = "Monday";
+                                    sharedpref();
+
+
+                                } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {//Check THis
+
+
+                                    menuDay = "Tuesday";
+                                    sharedpref();
+
+
+                                } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
+
+                                    menuDay = "Wednesday";
+                                    sharedpref();
+
+
+                                } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
+
+                                    menuDay = "Thursday";
+                                    sharedpref();
+
+
+                                } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+
+                                    menuDay = "Friday";
+                                    sharedpref();
+
+
+                                } else if (startDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+
+                                    menuDay = "Saturday";
+                                    sharedpref();
+
+
+                                } else {
+
+                                    Intent i = new Intent(FoodDisplay.this, ErrorPage2.class);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i);
+                                    finish();
+                                }
                             }
-                        }
 
 
                         }
-                } catch (Settings.SettingNotFoundException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                    } catch (Settings.SettingNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
-
             }
             });
 
@@ -310,4 +328,84 @@ public class FoodDisplay extends AppCompatActivity {
             startActivity(intent);
         }
 
-        }
+    public void checkSaleDate(){
+        final ProgressDialog loading = ProgressDialog.show(this,"Please Wait","Contacting Server",false,false);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                Config.URL_CHECKSALEDATE+foodID, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    //converting the string to json array object
+                    JSONArray array = new JSONArray(response);
+
+                    //traversing through all the object
+                    for (int i = 0; i < array.length(); i++) {
+
+                        //getting product object from json array
+                        JSONObject saletime = array.getJSONObject(i);
+
+                        //adding the product to product list
+                        saletimeList.add(new SaleTime(
+                                saletimeID = saletime.getInt("saletimeID"),
+                                saleStart = saletime.getInt("saleStart"),
+                                saleEnd = saletime.getInt("saleEnd")
+
+                        ));
+
+
+
+                    }
+                    if ( saleStart == saleEnd)
+                    {
+                        Toast.makeText(FoodDisplay.this,"Available Soon. In the meantime, please order other menu",
+                                Toast.LENGTH_LONG).show();
+                        showsale.setText("Ordering available soon");
+
+
+
+                    }
+                    else if (!(hour >= saleStart && hour < saleEnd))
+                    {
+                        Toast.makeText(FoodDisplay.this,"Order close now. You can start ordering from "+saleStart+":00 until "+saleEnd+":00",
+                                Toast.LENGTH_LONG).show();
+                        showsale.setText("Ordering starts from "+saleStart+":00 until "+saleEnd+":00");
+
+                    }else{
+
+
+                        showsale.setText("Ordering starts from "+saleStart+":00 until "+saleEnd+":00");
+
+                    }
+
+                    loading.dismiss();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(FoodDisplay.this,"No internet . Please check your connection",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+
+                            Toast.makeText(FoodDisplay.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //adding our stringrequest to queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+}
