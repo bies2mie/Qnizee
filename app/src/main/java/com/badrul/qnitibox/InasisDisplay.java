@@ -50,15 +50,6 @@ public class InasisDisplay extends AppCompatActivity implements InasisAdapter.On
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
 
-        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-        if(loggedIn==false){
-            //We will start the Profile Activity
-            Intent intent = new Intent(InasisDisplay.this, LoginPage.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        }
-
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(InasisDisplay.this);
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);

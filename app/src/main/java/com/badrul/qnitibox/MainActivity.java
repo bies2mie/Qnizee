@@ -4,13 +4,20 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
@@ -18,8 +25,19 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     ImageButton feedback;
     String menuDay;
     Button prv2;
+    String userLocation;
+    String location;
+    int checkedItem;
 
 
     @Override
@@ -46,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         adjustFontScale(getResources().getConfiguration());
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
 
         feedback = findViewById(R.id.feedbackbtn);
         startOrder = findViewById(R.id.startOrder);
@@ -56,11 +80,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(MainActivity.this, LoginPage.class);
+                Intent i = new Intent(MainActivity.this, OrderPage.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
         });
+
+        if (userLocation.equalsIgnoreCase("Not Available")||userLocation.equalsIgnoreCase("")||userLocation.isEmpty()){
+
+            showAlertDialog();
+
+        }
 
         startDate = Calendar.getInstance();
 
@@ -175,5 +205,57 @@ public class MainActivity extends AppCompatActivity {
         wm.getDefaultDisplay().getMetrics(metrics);
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
+    }
+    private void showAlertDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setTitle("Please select your location");
+        String[] items = {"UUM","UNIMAP"};
+        checkedItem = -1;
+        alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        location = "UUM";
+                        checkedItem = 0;
+                        break;
+                    case 1:
+                        location = "UNIMAP";
+                        checkedItem = 1;
+                        break;
+                }
+            }
+        });
+
+        alertDialog.setPositiveButton(getString(R.string.btn_confirm),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int arg1) {
+
+                        if (checkedItem < 0) {
+                            Toast.makeText(MainActivity.this, "Please select your location", Toast.LENGTH_LONG).show();
+                            showAlertDialog();
+
+                        } else {
+
+                            SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME,
+                                    Context.MODE_PRIVATE);
+
+                            // Creating editor to store values to shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            // Adding values to editor
+
+                            editor.putString(Config.LOCATION_ID2, location);
+
+                            // Saving values to editor
+                            editor.commit();
+                        }
+                    }
+                });
+
+        AlertDialog alert = alertDialog.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
     }
 }

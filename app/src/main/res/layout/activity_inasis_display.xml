@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:padding="10dp"
             android:gravity="center"
-            android:text="List of Inasis"
+            android:text="List of Restaurant"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#ffffff"
             android:textStyle="bold" />
