@@ -402,10 +402,9 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
                                                             Toast.makeText(NewIndvOrder.this, "Order success. Thank you", Toast.LENGTH_LONG)
                                                                     .show();
-                                                            Intent i = new Intent(NewIndvOrder.this, OrderPage.class);
-                                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                            startActivity(i);
-                                                            finish();
+
+                                                            pushDeliverer();
+
                                                         }
                                                        else if(response.contains("Could not order")) {
 
@@ -914,5 +913,48 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         //adding our stringrequest to queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    private void pushDeliverer() {
+
+        final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.PUSH_NOTI_DELIVERER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                            loading.dismiss();
+
+                        Intent i = new Intent(NewIndvOrder.this, OrderPage.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                        finish();
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+
+                            Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //adding our stringrequest to queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+
     }
 }

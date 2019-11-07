@@ -9,6 +9,8 @@ public class Config {
 	public static final String ORDER_DATE = "orderDate";
 	public static final String ORDER_TIME = "orderTime";
 
+	public static final String PUSH_NOTI_DELIVERER = "https://gmartbox.cvmall.my/apps/notitodeliverer.php";
+
 	public static final String URL_CHECKDATE = "https://gmartbox.cvmall.my/apps/checkdate.php";
 	public static final String URL_CHECKMAXQTT = "https://gmartbox.cvmall.my/apps/checkmaxqtt.php";
 	public static final String URL_CHECKPROMOQTT = "https://gmartbox.cvmall.my/apps/getpromoqtt.php?userLocation=";
