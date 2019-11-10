@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/sofiamediumpro"
             android:layout_toRightOf="@id/imageView"
             android:text="Apple MacBook Air Core "
             android:textSize="16dp"
@@ -50,6 +51,7 @@
             android:layout_toRightOf="@id/imageView"
             android:layout_marginTop="5dp"
             android:text="13.3 Inch, 256 GB"
+            android:fontFamily="@font/sofiamediumpro"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     </RelativeLayout>
