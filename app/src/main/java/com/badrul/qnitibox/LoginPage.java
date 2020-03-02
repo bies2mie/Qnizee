@@ -184,7 +184,7 @@ public class LoginPage extends AppCompatActivity {
 
 
                         //If we are getting success from server
-                        if(response.equalsIgnoreCase(Config.LOGIN_SUCCESS)){
+                        if(response.equalsIgnoreCase("success")){
                             //Creating a shared preference
                             SharedPreferences sharedPreferences = LoginPage.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 

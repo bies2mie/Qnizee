@@ -66,8 +66,8 @@ import org.json.JSONObject;
 
 public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedListener {
 
-    public static final String NEW_CONFIRMORDER_URL = "https://gmartbox.cvmall.my/apps/neworder.php";
-    public static final String EMAIL_IDV_URL = "https://atsventures.com/mail/indmailer.php";
+    public static final String NEW_CONFIRMORDER_URL = "http://gmartbox.cvmall.my/apps/neworder.php";
+    public static final String EMAIL_IDV_URL = "http://atsventures.com/mail/indmailer.php";
 
     public static final String KEY_MENUTYPE = "menuType";
     public static final String KEY_MENUDAY = "menuDay";
