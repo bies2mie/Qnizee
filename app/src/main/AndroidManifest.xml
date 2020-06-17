@@ -43,17 +43,17 @@
             android:name=".LoginPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MenuType"
+            android:name=".old.MenuType"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SundayBreakfast"
+            android:name=".old.SundayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".IndvOrder"
+            android:name=".old.IndvOrder"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".WednesdayBreakfast"
+            android:name=".old.WednesdayBreakfast"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ErrorPage1"
@@ -62,46 +62,46 @@
             android:name=".ErrorPage2"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MondayBreakfast"
+            android:name=".old.MondayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TuesdayBreakfast"
+            android:name=".old.TuesdayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ThursdayBreakfast"
+            android:name=".old.ThursdayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SundayLunch"
+            android:name=".old.SundayLunch"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MondayLunch"
+            android:name=".old.MondayLunch"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TuesdayLunch"
+            android:name=".old.TuesdayLunch"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".WednesdayLunch"
+            android:name=".old.WednesdayLunch"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ThursdayLunch"
+            android:name=".old.ThursdayLunch"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SundayDinner"
+            android:name=".old.SundayDinner"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MondayDinner"
+            android:name=".old.MondayDinner"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TuesdayDinner"
+            android:name=".old.TuesdayDinner"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".WednesdayDinner"
+            android:name=".old.WednesdayDinner"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ThursdayDinner"
+            android:name=".old.ThursdayDinner"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HowTo"
+            android:name=".old.HowTo"
             android:screenOrientation="portrait" />
         <activity
             android:name=".FeedbackPage"
@@ -110,25 +110,25 @@
             android:name=".StaffOrder"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FridayBreakfast"
+            android:name=".old.FridayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SaturdayBreakfast"
+            android:name=".old.SaturdayBreakfast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FridayLunch"
+            android:name=".old.FridayLunch"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FridayDinner"
+            android:name=".old.FridayDinner"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SaturdayLunch"
+            android:name=".old.SaturdayLunch"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SaturdayDinner"
+            android:name=".old.SaturdayDinner"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HowToMenu"
+            android:name=".old.HowToMenu"
             android:screenOrientation="portrait" />
 
         <service android:name=".MyFirebaseMessagingService">

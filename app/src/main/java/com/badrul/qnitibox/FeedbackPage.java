@@ -12,9 +12,9 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.badrul.qnitibox.old.MenuType;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -37,7 +37,7 @@ import android.widget.Toast;
 
 public class FeedbackPage extends AppCompatActivity {
 
-	public static final String FEEDBACK_URL = "http://gmartbox.cvmall.my/apps/gmatfeedback.php";
+	public static final String FEEDBACK_URL = "https://qnitibox.qniti.com/apps/gmatfeedback.php";
 	public static final String KEY_PHONE = "userNotel";
 	public static final String KEY_NAME = "userName";
 	public static final String KEY_MATRIXNUM = "userMatrix";
@@ -57,13 +57,13 @@ public class FeedbackPage extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feedback_page);
 
-		nextBtn = (Button) findViewById(R.id.nextBtn);
-		back = (Button) findViewById(R.id.back);
+		nextBtn = findViewById(R.id.nextBtn);
+		back = findViewById(R.id.back);
 
-		name = (EditText) findViewById(R.id.nameText);
-		phone = (EditText) findViewById(R.id.phoneNum);
-		matrixNum = (EditText) findViewById(R.id.matrixNum);
-		feedbackTxt = (EditText) findViewById(R.id.feedbackTxt);
+		name = findViewById(R.id.nameText);
+		phone = findViewById(R.id.phoneNum);
+		matrixNum = findViewById(R.id.matrixNum);
+		feedbackTxt = findViewById(R.id.feedbackTxt);
 
 		nextBtn.setOnClickListener(new View.OnClickListener() {
 			@Override

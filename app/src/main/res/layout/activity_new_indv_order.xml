@@ -22,8 +22,7 @@
             android:layout_weight="0.61"
             android:padding="5dp"
             android:text="ORDER"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18dp"
             android:textColor="#ffff"
             android:textStyle="bold" />
 
@@ -35,8 +34,7 @@
             android:layout_weight="0.61"
             android:padding="5dp"
             android:text="ORDER"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18dp"
             android:textColor="#ffff"
             android:textStyle="bold" />
 
@@ -99,7 +97,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Select Pick Up Location"
                         android:textAlignment="center"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="14dp"
                         android:textColor="#000000" />
 
                     <RadioGroup
@@ -149,7 +147,7 @@
                     android:layout_marginRight="10dp"
                     android:text="Choose Promo Type"
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <RadioGroup
@@ -163,6 +161,7 @@
 
                     <RadioButton
                         android:id="@+id/promo1"
+                        android:textSize="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -174,6 +173,7 @@
                         android:id="@+id/normal1"
                         android:buttonTint="#ffad33"
                         android:layout_weight="1"
+                        android:textSize="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="No Promotion" />
@@ -187,7 +187,7 @@
                     android:layout_marginRight="10dp"
                     android:text="Your Name"
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -198,6 +198,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/layoutcornergrey"
                     android:ems="10"
+                    android:textSize="14dp"
                     android:maxLength="30"
                     android:maxLines="1"
                     android:padding="7dp" >
@@ -208,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -219,7 +220,7 @@
                     android:text="Enter ATS PAY Card Number (Optional)"
                     android:textAlignment="center"
                     android:visibility="gone"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <EditText
@@ -240,7 +241,7 @@
                     android:text=""
                     android:visibility="gone"
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -250,7 +251,7 @@
                     android:layout_marginRight="10dp"
                     android:text="Your Email"
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -261,6 +262,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/layoutcornergrey"
                     android:ems="10"
+                    android:textSize="14dp"
                     android:inputType="textEmailAddress"
                     android:padding="7dp" />
 
@@ -269,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -279,7 +281,7 @@
                     android:layout_marginRight="10dp"
                     android:text="Your Phone Number"
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -290,6 +292,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/layoutcornergrey"
                     android:ems="10"
+                    android:textSize="14dp"
                     android:inputType="number"
                     android:padding="7dp" />
 
@@ -298,7 +301,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -308,7 +311,7 @@
                     android:layout_marginRight="10dp"
                     android:text="Your Matric/Staff Number"
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -319,6 +322,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/layoutcornergrey"
                     android:ems="10"
+                    android:textSize="14dp"
                     android:inputType="number"
                     android:padding="7dp" />
 
@@ -327,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <TextView
@@ -337,7 +341,7 @@
                     android:layout_marginRight="10dp"
                     android:text="Enter Quantity of Order"
                     android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="14dp"
                     android:textColor="#000000" />
 
                 <EditText
@@ -347,6 +351,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:textSize="14dp"
                     android:background="@drawable/layoutcornergrey"
                     android:ems="10"
                     android:inputType="number"
@@ -395,6 +400,6 @@
         android:textColor="#ffff"
         android:textStyle="bold"
         android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="22dp" />
 
 </RelativeLayout>
