@@ -21,6 +21,12 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
@@ -32,12 +38,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.SettingNotFoundException;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -53,7 +61,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -132,7 +142,10 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
     String getsalestart;
     String getsaleend;
     SimpleDateFormat dateFormat1;
-    String inasisID;
+    String inasisID,foodimage;
+    ProgressBar progressBar;
+    RadioGroup radioGroup1;
+    String paymentType = "none";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +170,8 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         matrixID = sharedPreferences.getString(Config.MATRIX_ID2, "Not Available");
         foodID = sharedPreferences.getString(Config.FOOD_ID, "Not Available");
         userLocation = sharedPreferences.getString(Config.LOCATION_ID2, "Not Available");
-        inasisID = sharedPreferences.getString(Config.INASIS_ID,"Not Availble");
+        inasisID = sharedPreferences.getString(Config.INASIS_ID,"Not Available");
+        foodimage= sharedPreferences.getString(Config.FOOD_IMAGE, "Not Available");
 
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         //If we will get true
@@ -169,13 +183,17 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
             finish();
         }
 
-
+        final ImageView foodDisplay = findViewById(R.id.imageFood);
+        progressBar = findViewById(R.id.progress);
+        radioGroup1 = findViewById(R.id.radioGroup);
         TextView showName = findViewById(R.id.nameText);
         TextView showPhone = findViewById(R.id.phoneNum);
         TextView showEmail = findViewById(R.id.emailIDtxt);
         TextView showMatrix = findViewById(R.id.matrixNum);
+        TextView menuPrice = findViewById(R.id.menuPrice);
         promoBtn = findViewById(R.id.promo1);
 
+        menuPrice.setText("RM "+foodprice);
         showName.setText(nameID);
         showEmail.setText(emailID);
         showMatrix.setText(matrixID);
@@ -206,8 +224,52 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
         checkMaxQTT();
 
 
+        //Display Food Image
+        RequestOptions options = new RequestOptions().centerCrop().dontAnimate().placeholder(R.drawable.ic_launcher).error(R.drawable.ic_launcher);
+        Glide
+                .with(NewIndvOrder.this)
+                .load(foodimage).apply(options).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                progressBar.setVisibility(View.GONE);
+                foodDisplay.setVisibility(View.VISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                progressBar.setVisibility(View.GONE);
+                foodDisplay.setVisibility(View.VISIBLE);
+                return false;
+            }
+        })
+                .into(foodDisplay);
 
 
+
+
+        //Payment Type
+
+        radioGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId){
+
+                    case R.id.fpx:
+
+
+                        paymentType = "fpx";
+                        break;
+
+                    case R.id.cod:
+
+                        paymentType = "cod";
+                        break;
+
+                }
+            }
+        });
 
 
 
@@ -363,7 +425,12 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
 
 
                                         try {
-                                            if (Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
+                                            if ("none".equalsIgnoreCase(paymentType)){
+                                                Toast.makeText(NewIndvOrder.this, "Choose Payment Type", Toast.LENGTH_LONG)
+                                                        .show();
+
+                                            }
+                                            else if (Global.getInt(getContentResolver(), Global.AUTO_TIME) == 0) {
 
                                                 Toast.makeText(getApplicationContext(),
                                                         "Please set Automatic Date & Time to ON in the Settings",
@@ -382,8 +449,6 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                                         new Intent(Settings.ACTION_DATE_SETTINGS), 0);
                                             }else {
 
-                                                final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
-
                                                 totalprice1 = foodprice1*result;
 
                                                 if (claimPromo.equalsIgnoreCase("YES")) {
@@ -391,75 +456,112 @@ public class NewIndvOrder extends AppCompatActivity implements OnItemSelectedLis
                                                     totalprice1 = 0;
                                                 }
 
-                                                StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                                                        NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
-                                                    @Override
-                                                    public void onResponse(String response) {
 
-                                                        loading.dismiss();
+                                                if ("cod".equalsIgnoreCase(paymentType)){
 
-                                                        if(response.contains("Successfully Order")){
+                                                    final ProgressDialog loading = ProgressDialog.show(NewIndvOrder.this,"Please Wait","Contacting Server",false,false);
 
-                                                            Toast.makeText(NewIndvOrder.this, "Order success. Thank you", Toast.LENGTH_LONG)
-                                                                    .show();
 
-                                                            pushDeliverer();
+                                                    StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                                                            NEW_CONFIRMORDER_URL, new Response.Listener<String>() {
+                                                        @Override
+                                                        public void onResponse(String response) {
 
+                                                            loading.dismiss();
+
+                                                            if(response.contains("Successfully Order")){
+
+                                                                Toast.makeText(NewIndvOrder.this, "Order success. Thank you", Toast.LENGTH_LONG)
+                                                                        .show();
+
+                                                                pushDeliverer();
+
+                                                            }
+                                                            else if(response.contains("Could not order")) {
+
+                                                                Toast.makeText(NewIndvOrder.this, "Could not order. Please try again", Toast.LENGTH_LONG)
+                                                                        .show();
+                                                            }
                                                         }
-                                                       else if(response.contains("Could not order")) {
+                                                    }, new Response.ErrorListener() {
+                                                        @Override
+                                                        public void onErrorResponse(VolleyError error) {
+                                                            loading.dismiss();
+                                                            if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                                                                Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
+                                                                        Toast.LENGTH_LONG).show();
+                                                            }
+                                                            else{
 
-                                                            Toast.makeText(NewIndvOrder.this, "Could not order. Please try again", Toast.LENGTH_LONG)
-                                                                    .show();
+                                                                Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
+                                                            }
                                                         }
+                                                    }) {
+                                                        @Override
+                                                        protected Map<String, String> getParams() {
+                                                            Map<String, String> params = new HashMap<String, String>();
+                                                            params.put(KEY_MENUTYPE, menuType);
+                                                            params.put(KEY_MENUDAY, menuDay);
+                                                            params.put(KEY_ORDER_DATE, orderDate);
+                                                            params.put(KEY_ORDER_TIME, orderTime);
+                                                            params.put(KEY_CARDNUM, myCard);
+                                                            params.put(KEY_MENUQTT, myQtt);
+                                                            params.put(KEY_MENUSTATUS, myStatus);
+                                                            params.put(KEY_LOCATION, locat);
+                                                            params.put(KEY_USERID, userID);
+                                                            params.put(KEY_FOODID, foodID);
+                                                            params.put("totalPrice", df.format(totalprice1));
+                                                            params.put("orderLocation", userLocation);
+                                                            params.put("promoID", newpromoID);
+                                                            params.put("claimpromo", claimPromo);
+                                                            return params;
+                                                        }
+
+                                                    };
+
+                                                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                                                            30000,
+                                                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                                                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                                                    requestQueue.add(stringRequest);
+
+                                                    emailer();
+                                                    notifyMe();
+
+
+
+                                                }else if ("fpx".equalsIgnoreCase(paymentType)){
+
+                                                    if (totalprice1 <= 0){
+
+                                                        Toast.makeText(NewIndvOrder.this,"Please choose COD for free items",
+                                                                Toast.LENGTH_LONG).show();
+
+                                                    }else {
+
+                                                        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,
+                                                                Context.MODE_PRIVATE);
+
+                                                        // Creating editor to store values to shared preferences
+                                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                                        // Adding values to editor
+                                                        editor.putString(Config.FOOD_PRICE_ALL, df.format(totalprice1));
+
+                                                        // Saving values to editor
+                                                        editor.commit();
+
+                                                        Intent intent = new Intent(NewIndvOrder.this, WebViewPayment.class);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        startActivity(intent);
+                                                        finish();
                                                     }
-                                                }, new Response.ErrorListener() {
-                                                    @Override
-                                                    public void onErrorResponse(VolleyError error) {
-                                                        loading.dismiss();
-                                                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                                                            Toast.makeText(NewIndvOrder.this,"No internet . Please check your connection",
-                                                                    Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else{
-
-                                                            Toast.makeText(NewIndvOrder.this, error.toString(), Toast.LENGTH_LONG).show();
-                                                        }
-                                                    }
-                                                }) {
-                                                    @Override
-                                                    protected Map<String, String> getParams() {
-                                                        Map<String, String> params = new HashMap<String, String>();
-                                                        params.put(KEY_MENUTYPE, menuType);
-                                                        params.put(KEY_MENUDAY, menuDay);
-                                                        params.put(KEY_ORDER_DATE, orderDate);
-                                                        params.put(KEY_ORDER_TIME, orderTime);
-                                                        params.put(KEY_CARDNUM, myCard);
-                                                        params.put(KEY_MENUQTT, myQtt);
-                                                        params.put(KEY_MENUSTATUS, myStatus);
-                                                        params.put(KEY_LOCATION, locat);
-                                                        params.put(KEY_USERID, userID);
-                                                        params.put(KEY_FOODID, foodID);
-                                                        params.put("totalPrice", df.format(totalprice1));
-                                                        params.put("orderLocation", userLocation);
-                                                        params.put("promoID", newpromoID);
-                                                        params.put("claimpromo", claimPromo);
-                                                        return params;
-                                                    }
-
-                                                };
-
-                                                stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                                                        30000,
-                                                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                                                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-                                                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                                                requestQueue.add(stringRequest);
-
-                                                emailer();
-                                                notifyMe();
+                                                }
 
                                             }
+
                                         } catch (SettingNotFoundException e) {
                                             e.printStackTrace();
                                         }

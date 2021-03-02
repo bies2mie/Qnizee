@@ -45,6 +45,7 @@ public class Config {
 	public static final String PICKUP_LOCATION = "puLocation";
 	public static final String PICKUP_TIME = "puTime";
 	public static final String FOOD_PRICE = "foodPrice";
+	public static final String FOOD_PRICE_ALL = "foodPriceAll";
 	public static final String TOTAL_FOOD_PRICE = "totalfoodPrice";
 	public static final String ORDER_FOODID = "orderFoodID";
 	public static final String ORDER_CANCELMSG = "orderCancelMsg";

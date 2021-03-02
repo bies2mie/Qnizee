@@ -1,143 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/buttoncornerredgrad2"
-    android:orientation="vertical" >
+    android:background="#EAEAEA"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="#0F1923"
-        android:gravity="center"
-        android:orientation="horizontal" >
+        android:padding="5dp"
+        android:background="@color/colorRed"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/menuTypeDisplay"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.61"
-            android:padding="5dp"
-            android:text="ORDER"
-            android:textSize="18dp"
-            android:textColor="#ffff"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/menuDayDisplay"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.61"
-            android:padding="5dp"
-            android:text="ORDER"
-            android:textSize="18dp"
-            android:textColor="#ffff"
-            android:textStyle="bold" />
-
-        <!--
-            <ImageButton
-            android:id="@+id/stafforder"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="0.08"
-            android:background="@android:color/transparent"
-            android:src="@drawable/staffnew2" />
-        -->
-
-        <ImageButton
-            android:id="@+id/exit"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="0.08"
-            android:scaleType="centerInside"
-            android:padding="5dp"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/homebtn" />
-    </LinearLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp" android:paddingBottom="@dimen/activity_vertical_margin" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin"
-        android:fillViewport="true"> <!--IMPORTANT otherwise backgrnd img. will not fill the whole screen -->
-
-        <RelativeLayout
+            android:id="@+id/textView5"
+            android:layout_marginStart="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="CHECKOUT"
+            android:layout_weight="2"
+            android:textColor="@color/colorWhite"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+
+            android:id="@+id/exit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:scaleType="centerInside"
+            android:background="@null"
+            android:src="@drawable/homebtn" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/layoutcornerwhite"
-                android:orientation="vertical" >
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/buy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:background="@drawable/textboxwhiteround"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/progress"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/imageFood"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:visibility="gone"
+                        android:scaleType="fitCenter"
+                        android:padding="5dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_marginStart="3dp"
+                            android:id="@+id/menuTypeDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBgRegular"
+                            android:text="No Telefon"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/menuPrice"
+                            android:layout_marginStart="3dp"
+                            android:textColor="@color/colorBgLight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="phone"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/menuDayDisplay"
+                            android:layout_marginStart="3dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBgRegular"
+                            android:layout_marginTop="5dp"
+                            android:text="Bangsa"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlack"
+                            android:text="Quantity"
+                            android:gravity="center"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/qttNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/layoutcornergrey"
+                            android:ems="10"
+                            android:textAlignment="center"
+                            android:inputType="number"
+                            android:padding="7dp"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/layoutcornerwhite"
+                android:orientation="vertical">
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/title"
-                    android:background="@drawable/layoutcornerwhite"
-                    android:orientation="vertical" >
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Select Pick Up Location"
+                    android:textAlignment="center"
+                    android:textSize="14dp"
+                    android:textColor="#000000" />
 
-                    <TextView
-                        android:layout_width="match_parent"
+                <RadioGroup
+                    android:id="@+id/radioType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/inasis"
+                        android:layout_width="176dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Select Pick Up Location"
-                        android:textAlignment="center"
-                        android:textSize="14dp"
-                        android:textColor="#000000" />
+                        android:layout_weight="1"
+                        android:buttonTint="@color/colorRadioTint"
+                        android:text="Dorm" />
 
-                    <RadioGroup
-                        android:id="@+id/radioType"
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/acade"
+                        android:enabled="false"
+                        android:buttonTint="@color/colorRadioTint"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal" >
+                        android:text="Academic(Coming Soon)" />
+                </RadioGroup>
 
-                        <RadioButton
-                            android:id="@+id/inasis"
-                            android:layout_width="176dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:buttonTint="#ff8080"
-                            android:text="Dorm" />
-
-                        <RadioButton
-                            android:id="@+id/acade"
-                            android:enabled="false"
-                            android:buttonTint="#ff8080"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Academic(Coming Soon)" />
-                    </RadioGroup>
-
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:padding="7dp"
-                        android:visibility="invisible"
-                        android:background="@drawable/layoutcornergrey" />
-                </LinearLayout>
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="7dp"
+                    android:visibility="gone"
+                    android:background="@drawable/layoutcornergrey" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -147,8 +217,8 @@
                     android:layout_marginRight="10dp"
                     android:text="Choose Promo Type"
                     android:textAlignment="center"
-                    android:textSize="14dp"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="14dp" />
 
                 <RadioGroup
                     android:id="@+id/radioPromo"
@@ -157,26 +227,26 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/promo1"
-                        android:textSize="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:enabled="false"
                         android:buttonTint="#ffad33"
-                        android:text="Free 1 Pack" />
+                        android:enabled="false"
+                        android:text="Free 1 Pack"
+                        android:textSize="14dp" />
 
                     <RadioButton
                         android:id="@+id/normal1"
-                        android:buttonTint="#ffad33"
-                        android:layout_weight="1"
-                        android:textSize="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No Promotion" />
+                        android:layout_weight="1"
+                        android:buttonTint="#ffad33"
+                        android:text="No Promotion"
+                        android:textSize="14dp" />
                 </RadioGroup>
 
                 <TextView
@@ -185,7 +255,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Your Name"
+                    android:text="Name"
                     android:textAlignment="center"
                     android:textSize="14dp"
                     android:textColor="#000000" />
@@ -203,14 +273,6 @@
                     android:maxLines="1"
                     android:padding="7dp" >
                 </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:textSize="14dp"
-                    android:textColor="#000000" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -249,7 +311,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Your Email"
+                    android:layout_marginTop="10dp"
+                    android:text="Email"
                     android:textAlignment="center"
                     android:textSize="14dp"
                     android:textColor="#000000" />
@@ -267,19 +330,12 @@
                     android:padding="7dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:textSize="14dp"
-                    android:textColor="#000000" />
-
-                <TextView
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Your Phone Number"
+                    android:text="Phone Number"
                     android:textAlignment="center"
                     android:textSize="14dp"
                     android:textColor="#000000" />
@@ -297,19 +353,12 @@
                     android:padding="7dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:textSize="14dp"
-                    android:textColor="#000000" />
-
-                <TextView
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Your Matric/Staff Number"
+                    android:text="Matric/Staff Number"
                     android:textAlignment="center"
                     android:textSize="14dp"
                     android:textColor="#000000" />
@@ -327,79 +376,58 @@
                     android:padding="7dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAlignment="center"
                     android:textSize="14dp"
-                    android:textColor="#000000" />
-
-                <TextView
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorBlack"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="Enter Quantity of Order"
-                    android:textAlignment="center"
-                    android:textSize="14dp"
-                    android:textColor="#000000" />
+                    android:text="Payment Method" />
 
-                <EditText
-                    android:id="@+id/qttNum"
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+
+                        android:enabled="true"
+                        android:textColor="@color/colorBgLight"
+                        android:id="@+id/fpx"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/colorRadioTint"
+                        android:text="Online"
+                        app:buttonTint="@color/colorRadioTint" />
+
+                    <RadioButton
+                        android:textColor="@color/colorBgLight"
+                        android:id="@+id/cod"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/colorRadioTint"
+                        android:text="COD"
+                        app:buttonTint="@color/colorRadioTint" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/nextBtnStart"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textSize="14dp"
-                    android:background="@drawable/layoutcornergrey"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:padding="7dp"
-                   />
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttoncornerblack10"
+                    android:text="PROCEED"
+                    android:textColor="@color/colorWhite" />
+
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal" >
 
-        <!--
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BACK"
-            android:id="@+id/back"
-            android:layout_weight="1"
-            android:background="@color/colorBackButton"
-        android:textColor="#000000"
-            />
-        -->
-
-        <Button
-            android:id="@+id/nextBtnStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:background="#0F1923"
-            android:text="PROCEED"
-            android:textColor="#ffff" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:text="Checkout"
-        android:layout_marginTop="15dp"
-        android:textColor="#ffff"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="22dp" />
-
-</RelativeLayout>
+</LinearLayout>

@@ -123,8 +123,14 @@ ImageButton logout;
             @Override
             public void onClick(View view) {
 
+
+                Intent i = new Intent(getActivity().getApplicationContext(), Profile.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().finish();
+                startActivity(i);
+
                 //Creating an alert dialog to confirm logout
-                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(getActivity());
+              /*  android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(getActivity());
                 alertDialogBuilder.setMessage("Do you want to logout?");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -165,7 +171,7 @@ ImageButton logout;
 
                 //Showing the alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                alertDialog.show(); */
             }
         });
 

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
@@ -29,7 +30,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:gravity="center"
         android:textStyle="bold"
-        android:textColor="@color/colorNextButton"
+        android:textColor="@color/colorDarkYellow"
         android:text="Please Login to Proceed" />
 
     <LinearLayout
@@ -72,10 +73,16 @@
             android:background="@drawable/textboxcornerwhite"
             android:ems="10"
             android:hint=" Enter Your Email"
-            android:padding="10dp"
+            android:padding="12dp"
             android:singleLine="true"
             android:textColor="#5e6266"
             android:textColorHint="#5e6266"></EditText>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:hintEnabled="false"
+            app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/password"
@@ -89,6 +96,7 @@
             android:singleLine="true"
             android:textColor="#5e6266"
             android:textColorHint="#5e6266" />
+        </com.google.android.material.textfield.TextInputLayout>
         <!-- Login Button -->
 
         <Button
@@ -107,8 +115,19 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:textStyle="bold"
-            android:textColor="#b30000"
+            android:textColor="@color/colorDarkYellow"
             android:text="Not register yet? Click Here" />
+
+        <Button
+            android:id="@+id/btntoForget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:text="Forgot Password?"
+            android:textColor="@color/red2"
+            android:textSize="12dp"
+            android:textStyle="bold" />
 
         <!-- Link to Login Screen -->
 

@@ -103,49 +103,10 @@ public class CompleteFragment extends Fragment implements OrderAdapter.OnItemCli
             @Override
             public void onClick(View view) {
 
-                //Creating an alert dialog to confirm logout
-                android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(getActivity());
-                alertDialogBuilder.setMessage("Do you want to logout?");
-                alertDialogBuilder.setPositiveButton("Yes",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-
-                                //Getting out sharedpreferences
-                                SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                                //Getting editor
-                                SharedPreferences.Editor editor = preferences.edit();
-
-                                //Puting the value false for loggedin
-                                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-
-                                //Putting blank value to email
-                                editor.putString(Config.ID_SHARED_PREF, "");
-
-                                //Saving the sharedpreferences
-                                editor.clear();
-                                editor.commit();
-
-                                //Starting login activity
-                                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                getActivity().finish();
-                                startActivity(intent);
-                                getActivity().getSupportFragmentManager().popBackStack();
-                            }
-                        });
-
-                alertDialogBuilder.setNegativeButton("No",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-
-                            }
-                        });
-
-                //Showing the alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                Intent i = new Intent(getActivity().getApplicationContext(), Profile.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().finish();
+                startActivity(i);
             }
         });
 
