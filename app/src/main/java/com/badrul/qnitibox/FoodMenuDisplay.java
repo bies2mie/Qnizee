@@ -13,6 +13,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -38,6 +41,9 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
     //the recyclerview
     RecyclerView recyclerView;
     String inasisID;
+    FoodAdapter adapter;
+    EditText editTextSearch;
+    ArrayList<Food> filterdNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,7 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
 
 
         recyclerView = findViewById(R.id.recylcerView);
+        editTextSearch = findViewById(R.id.editTextSearch);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(FoodMenuDisplay.this);
         mLayoutManager.setReverseLayout(true);
@@ -67,6 +74,29 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
         //to display it in recyclerview
 
         loadOrder();
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                /*if(filterdNames!=null){
+                    filterdNames.clear();
+                } */
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //after the change calling the method and passing the search input
+                filter(editable.toString());
+
+            }
+        });
 
     }
 
@@ -103,7 +133,7 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            FoodAdapter adapter = new FoodAdapter(FoodMenuDisplay.this, foodList);
+                            adapter = new FoodAdapter(FoodMenuDisplay.this, foodList);
                             recyclerView.setAdapter(adapter);
                             adapter.setOnClick(FoodMenuDisplay.this);
 
@@ -246,5 +276,21 @@ public class FoodMenuDisplay extends AppCompatActivity implements FoodAdapter.On
 
 
 
+    }
+    private void filter(String text) {
+        //new array list that will hold the filtered data
+        filterdNames = new ArrayList<>();
+        //looping through existing elements
+        for (Food s : foodList) {
+
+            //if the existing elements contains the search input
+            if (s.getFoodTitle().toLowerCase().contains(text.toLowerCase())||s.getFoodDesc().toLowerCase().contains(text.toLowerCase())||s.getFoodPrice().toLowerCase().contains(text.toLowerCase())) {
+                //adding the element to filtered list
+                filterdNames.add(s);
+            }
+        }
+
+        //calling a method of the adapter class and passing the filtered list
+        adapter.filterList(filterdNames);
     }
 }

@@ -58,7 +58,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(Map<String,String> messageBody) {
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        int notificationId = 1;
+       // int notificationId = 1;
         String channelId = "channel-01";
         String channelName = "Channel Name";
         int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -87,13 +87,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         );
         mBuilder.setContentIntent(notifyPendingIntent);
 
-        notificationManager.notify(notificationId, mBuilder.build());
+        notificationManager.notify(( int ) System. currentTimeMillis (), mBuilder.build());
     }
 
     private void createNotification( String messageBody) {
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        int notificationId = 2;
+       // int notificationId = 2;
         String channelId = "channel-02";
         String channelName = "Channel Name2";
         int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -122,7 +122,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         );
         mBuilder.setContentIntent(notifyPendingIntent);
 
-        notificationManager.notify(notificationId, mBuilder.build());
+        notificationManager.notify(( int ) System. currentTimeMillis (), mBuilder.build());
 
     }
 }

@@ -21,6 +21,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
@@ -108,6 +109,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             imageView = itemView.findViewById(R.id.imageView);
             progressBar = itemView.findViewById(R.id.progress);
         }
+    }
+    //This method will filter the list
+//here we are passing the filtered data
+//and assigning it to the list with notifydatasetchanged method
+    public void filterList(ArrayList<Order> filterdNames) {
+        this.orderList = filterdNames;
+        notifyDataSetChanged();
     }
     public void setOnClick(OnItemClicked onClick)
     {

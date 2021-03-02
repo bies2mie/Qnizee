@@ -21,6 +21,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
@@ -104,6 +105,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             imageView = itemView.findViewById(R.id.imageView);
             progressBar = itemView.findViewById(R.id.progress);
         }
+    }
+    //This method will filter the list
+//here we are passing the filtered data
+//and assigning it to the list with notifydatasetchanged method
+    public void filterList(ArrayList<Food> filterdNames) {
+        this.foodList = filterdNames;
+        notifyDataSetChanged();
     }
     public void setOnClick(OnItemClicked onClick)
     {
